@@ -24,10 +24,11 @@ function App() {
     <ConfigProvider
       theme={{
         token: {
-          colorBorderSecondary: '#fff',
+          colorBorderSecondary: '#000',
           colorBgLayout: '#fff',
           colorBgContainer: '#010064',
           colorText: '#fff',
+          colorTextSecondary: '#000',
           colorBgBase: '#010064'
         }
       }}

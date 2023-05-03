@@ -42,7 +42,7 @@ export const MenuScreen = (props: Props) => {
     function startItems() {
 
         const items: MenuProps["items"] = [];
-        
+
         props.navigateMenu.map((value, index: any) => {
 
             return items.push({
@@ -70,7 +70,7 @@ export const MenuScreen = (props: Props) => {
             });
 
         });
-        
+
         setItems(items);
 
     }

@@ -38,15 +38,91 @@ const slides: CarouselType[] = [
     },
 ];
 
-const gridStyle: React.CSSProperties = {
-    textAlign: 'center',
-};
+const articles = [
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.friday} width="100%" height="100%" />
+        ),
+        title: "São afonso",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.monday} width="100%" />
+        ),
+        title: "Santa Catarina",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.tuesday} width="100%" />
+        ),
+        title: "São Eliseu",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.monday} width="100%" />
+        ),
+        title: "Santa Catarina",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.tuesday} width="100%" />
+        ),
+        title: "São Eliseu",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.monday} width="100%" />
+        ),
+        title: "Santa Catarina",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.tuesday} width="100%" />
+        ),
+        title: "São Eliseu",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.tuesday} width="100%" />
+        ),
+        title: "São Eliseu",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+    {
+        date: '2023-05-03',
+        jsx: (
+            <img src={Images.tuesday} width="100%" />
+        ),
+        title: "São Eliseu",
+        subTitle: "Acompanhe-nos no youtube."
+    },
+];
 
 export const HomeScreen = () => {
 
     const {
-        token: { colorText, colorBgBase },
+        token: { colorText, colorBgBase, colorTextSecondary, colorBgLayout },
     } = theme.useToken();
+
+    const gridStyle: React.CSSProperties = {
+        textAlign: 'center',
+        background: colorBgLayout
+    };
 
     return (
         <Content style={{ background: colorBgBase }}>
@@ -93,88 +169,54 @@ export const HomeScreen = () => {
                 <Col span={24}>
 
                     <Card bordered={false}>
-                        <AnimationOnScroll
-                            initiallyVisible={false}
-                            animatePreScroll={false}
-                            animateIn="animate__fadeIn"
-                            animateOut="animate__fadeOut"
-                        >
 
-                            <Card className="border-0 mb-5 mt-5" hoverable={true} title={(
+                        <Card style={{ background: colorBgLayout, color: colorTextSecondary }}
+                            className="border-0 mb-5 mt-5" hoverable={false} title={(
                                 <Row style={{ color: colorText }} className="mt-5 text-center">
                                     <Col md={24}>
                                         <h2>
-                                            <strong>
-                                                Lutando Contra Heresias!
+                                            <strong style={{ color: colorTextSecondary }}>
+                                                Artigos
                                             </strong>
                                         </h2>
                                     </Col>
                                 </Row>
                             )}>
-                                <Row>
-                                    <Col span={24}>
-                                        <Row>
-                                            <Col className="w-100" md={8}>
-                                                <Card.Grid className="w-100 h-100" style={gridStyle}>
-                                                    <Row>
-                                                        <Col span={24}>
-                                                            <IoIosPeople size={70} />
-                                                            <h3 className="text-color">
-                                                                <strong>
-                                                                    Formando Pregadores
-                                                                </strong>
-                                                            </h3>
-                                                            <h6>
-                                                                Disponibilizamos formações gratuitas
-                                                                para que você possa evangelizar sua comunidade.
-                                                            </h6>
-                                                        </Col>
-                                                    </Row>
-                                                </Card.Grid>
-                                            </Col>
-                                            <Col className="w-100" md={8}>
-                                                <Card.Grid className="w-100 h-100" style={gridStyle}>
-                                                    <Row >
-                                                        <Col span={24}>
+                            <Row align={"middle"} justify={"center"} gutter={[20, 20]}>
+                                {articles.map((article, index) => {
+                                    return (
+                                        <Col key={index} md={12}>
+                                            <Card
+                                                hoverable={true}
+                                                className="w-100"
+                                                style={{ ...gridStyle, height: 200 }}
+                                            >
+                                                <Row align={"middle"} justify={"center"} gutter={[20, 20]}>
+                                                    <Col md={10} style={{ color: colorTextSecondary }}>
+                                                        {article.jsx}
+                                                    </Col>
+                                                    <Col md={12}>
+                                                        <Row className="text-start" justify={"start"}>
+                                                            <Col>
+                                                                <h4>
+                                                                    <strong style={{ color: colorTextSecondary }}>
+                                                                        {article.title}
+                                                                    </strong>
+                                                                </h4>
+                                                                <h6 style={{ color: colorTextSecondary }}>
+                                                                    {article.subTitle}
+                                                                </h6>
+                                                            </Col>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
+                                            </Card>
+                                        </Col>
+                                    )
+                                })}
+                            </Row>
 
-                                                            <MdOutlineLiveTv size={70} />
-                                                            <h3 className="text-color">
-                                                                <strong>
-                                                                    Lives
-                                                                </strong>
-                                                            </h3>
-                                                            <h6>
-                                                                Lives Oracionais Diariamente
-                                                            </h6>
-
-                                                        </Col>
-                                                    </Row>
-                                                </Card.Grid>
-                                            </Col>
-                                            <Col className="w-100" md={8}>
-                                                <Card.Grid className="w-100 h-100" style={gridStyle}>
-                                                    <Row>
-                                                        <Col span={24}>
-                                                            <GiLifeInTheBalance size={70} />
-                                                            <h3 className="text-color">
-                                                                <strong>
-                                                                    A Verdade
-                                                                </strong>
-                                                            </h3>
-                                                            <h6>
-                                                                Combatemos firmemente as heresias,
-                                                                falsas doutrinas e ideologias pagãs.'1'
-                                                            </h6>
-                                                        </Col>
-                                                    </Row>
-                                                </Card.Grid>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-
-                            </Card>
-                        </AnimationOnScroll>
+                        </Card>
 
                         <AnimationOnScroll
                             initiallyVisible={false}
@@ -183,17 +225,24 @@ export const HomeScreen = () => {
                             animateOut="animate__fadeOut"
                         >
 
-                            <Card hoverable={true} className="m-4 mt-5 rounde-3">
-                                <Row justify={"space-between"} className="text-white m-3">
-                                    <Col md={14}>
+                            <Card
+                                style={{ background: colorBgLayout, color: colorTextSecondary }}
+                                hoverable={true}
+                                className="mt-5 rounde-3"
+                            >
+                                <Row
+                                    justify={"space-between"}
+                                    className="text-white m-2"
+                                >
+                                    <Col md={18}>
 
-                                        <h2>
+                                        <h2 style={{ color: colorTextSecondary }}>
                                             <strong>
                                                 Tudo o que você precisa.
                                             </strong>
                                         </h2>
 
-                                        <h5>
+                                        <h5 style={{ color: colorTextSecondary }}>
                                             Nossa formação faz você conhecer a fé como ela é.
                                         </h5>
 
@@ -201,7 +250,7 @@ export const HomeScreen = () => {
                                     <Col md={7}>
 
                                         <Row justify={"center"}>
-                                            <Col span={24}>
+                                            <Col span={24} style={{ color: colorTextSecondary }}>
                                                 <MdOutlineConnectWithoutContact size={200} />
                                             </Col>
                                         </Row>
