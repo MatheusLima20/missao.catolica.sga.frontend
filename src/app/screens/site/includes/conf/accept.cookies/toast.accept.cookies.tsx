@@ -1,15 +1,14 @@
-import { Button } from "antd";
-import React from "react";
-import { Col, Row, Toast, ToastContainer } from "react-bootstrap";
-import "./accept.cookies.css";
+import { Button } from 'antd';
+import React from 'react';
+import { Col, Row, Toast, ToastContainer } from 'react-bootstrap';
+import './accept.cookies.css';
 
 interface Props {
-    show: boolean,
-    onHide: () => void,
+    show: boolean;
+    onHide: () => void;
 }
 
 export const ToastAcceptCookies = (props: Props) => {
-
     return (
         <ToastContainer
             className="row m-0 p-3 position-fixed"
@@ -17,31 +16,30 @@ export const ToastAcceptCookies = (props: Props) => {
         >
             <Toast
                 className="col m-0 p-0"
-                style={{ width: "90%" }}
-                show={props.show} delay={5000}
+                style={{ width: '90%' }}
+                show={props.show}
+                delay={5000}
             >
                 <Toast.Header className="m-0 w-100" closeButton={false}>
                     <h5 className="text-dark m-1">
-                        <strong>
-                            Consentimento de Cookies
-                        </strong>
+                        <strong>Consentimento de Cookies</strong>
                     </h5>
                 </Toast.Header>
-                <Toast.Body style={{ backgroundColor: "#fff" }}>
+                <Toast.Body style={{ backgroundColor: '#fff' }}>
                     <Row>
                         <Col md={10}>
-                            <p style={{ color: "#000", fontSize: 18 }}>
-
+                            <p style={{ color: '#000', fontSize: 18 }}>
                                 Nós utilizamos os cookies para personalizar
-                                anúncios, gerar estatísticas e melhorar a sua experiência no site.
-                                Ao continuar navegando, você concorda com a
-                                nossa &nbsp;
-                                <a className="privacy-policy" href="/privacy-policy">
-                                    <strong>
-                                        Política de Privacidade
-                                    </strong>
-                                </a>.
-
+                                anúncios, gerar estatísticas e melhorar a sua
+                                experiência no site. Ao continuar navegando,
+                                você concorda com a nossa &nbsp;
+                                <a
+                                    className="privacy-policy"
+                                    href="/privacy-policy"
+                                >
+                                    <strong>Política de Privacidade</strong>
+                                </a>
+                                .
                             </p>
                         </Col>
                         <Col md={1}>
@@ -52,9 +50,7 @@ export const ToastAcceptCookies = (props: Props) => {
                                         className="button border"
                                         onClick={() => props.onHide()}
                                     >
-                                        <strong>
-                                            Entendi
-                                        </strong>
+                                        <strong>Entendi</strong>
                                     </Button>
                                 </Col>
                             </Row>
@@ -64,5 +60,4 @@ export const ToastAcceptCookies = (props: Props) => {
             </Toast>
         </ToastContainer>
     );
-
-}
+};

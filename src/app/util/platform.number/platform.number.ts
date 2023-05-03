@@ -1,3 +1,1 @@
-
-
-export const platformNumber: number = 5492380000142;
+export const platformNumber = 5492380000142;

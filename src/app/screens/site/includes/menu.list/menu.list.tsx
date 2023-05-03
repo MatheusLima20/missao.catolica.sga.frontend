@@ -1,15 +1,15 @@
-import React from "react";
-import { ListGroup } from "react-bootstrap";
-import "./menu.list.css";
+import React from 'react';
+import { ListGroup } from 'react-bootstrap';
+import './menu.list.css';
 
 interface Props {
-    href: string,
-    name: string,
+    href: string;
+    name: string;
 }
 
 export const MenuList = (props: Props) => {
     return (
-        <ListGroup className="rounded-0" variant="light" >
+        <ListGroup className="rounded-0" variant="light">
             <ListGroup.Item
                 action
                 variant="light"
@@ -18,6 +18,6 @@ export const MenuList = (props: Props) => {
             >
                 {props.name}
             </ListGroup.Item>
-        </ListGroup >
+        </ListGroup>
     );
-}
+};

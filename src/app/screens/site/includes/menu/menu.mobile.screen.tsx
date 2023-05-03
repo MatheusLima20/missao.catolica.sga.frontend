@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import { Accordion, Offcanvas } from "react-bootstrap";
-import { CgMenu } from "react-icons/cg";
-import { MenuNavigation } from "../../../../types/includes/include.types";
-import { MenuList } from "../menu.list/menu.list";
+import React, { useState } from 'react';
+import { Accordion, Offcanvas } from 'react-bootstrap';
+import { CgMenu } from 'react-icons/cg';
+import { MenuNavigation } from '../../../../types/includes/include.types';
+import { MenuList } from '../menu.list/menu.list';
 
 interface Props {
-    navigateMenu: MenuNavigation[],
+    navigateMenu: MenuNavigation[];
 }
 
-
 export const MenuMobileScreen = (prop: Props) => {
-
-
     function OffCanvasExample({ name, ...props }: any) {
         const [show, setShow] = useState(false);
 
@@ -20,66 +17,58 @@ export const MenuMobileScreen = (prop: Props) => {
 
         return (
             <>
-                <a href="/" onClick={(e) => {
-                    e.preventDefault();
-                    handleShow();
-                }} className="me-2">
+                <a
+                    href="/"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        handleShow();
+                    }}
+                    className="me-2"
+                >
                     <CgMenu size={30} />
                 </a>
-                <Offcanvas
-                    show={show}
-                    onHide={handleClose}
-                    {...props}
-                >
+                <Offcanvas show={show} onHide={handleClose} {...props}>
                     <Offcanvas.Header
                         className="primary-background-color"
-                        closeButton>
+                        closeButton
+                    >
                         <Offcanvas.Title>
                             <div className="row">
                                 <div className="col">
                                     <div className="row justify-content-start">
-                                        <div className="col">
-                                            Menu
-                                        </div>
+                                        <div className="col">Menu</div>
                                     </div>
                                 </div>
                             </div>
                         </Offcanvas.Title>
                     </Offcanvas.Header>
-                    <Offcanvas.Body className="primary-background-color" >
+                    <Offcanvas.Body className="primary-background-color">
                         <Accordion>
-                            {
-                                prop.navigateMenu.map((value, index) => {
-                                    return (
-
-                                        <Accordion.Item
-                                            key={index}
-                                            eventKey={index.toString()}>
-                                            <Accordion.Header
-                                                className="menu-mobile"
-                                            >
-                                                <strong>
-                                                    {value.title}
-                                                </strong>
-                                            </Accordion.Header>
-                                            <Accordion.Body>
-                                                {
-                                                    value.subTitles.map((value, index) => {
-                                                        return (
-                                                            <MenuList
-                                                                key={index}
-                                                                href={value.href}
-                                                                name={value.name}
-                                                            />
-                                                        )
-                                                    })
+                            {prop.navigateMenu.map((value, index) => {
+                                return (
+                                    <Accordion.Item
+                                        key={index}
+                                        eventKey={index.toString()}
+                                    >
+                                        <Accordion.Header className="menu-mobile">
+                                            <strong>{value.title}</strong>
+                                        </Accordion.Header>
+                                        <Accordion.Body>
+                                            {value.subTitles.map(
+                                                (value, index) => {
+                                                    return (
+                                                        <MenuList
+                                                            key={index}
+                                                            href={value.href}
+                                                            name={value.name}
+                                                        />
+                                                    );
                                                 }
-                                            </Accordion.Body>
-                                        </Accordion.Item>
-
-                                    )
-                                })
-                            }
+                                            )}
+                                        </Accordion.Body>
+                                    </Accordion.Item>
+                                );
+                            })}
                         </Accordion>
                     </Offcanvas.Body>
                 </Offcanvas>
@@ -89,8 +78,7 @@ export const MenuMobileScreen = (prop: Props) => {
 
     return (
         <>
-            <OffCanvasExample placement={"end"} name={"Button"} />
+            <OffCanvasExample placement={'end'} name={'Button'} />
         </>
     );
-
-}
+};

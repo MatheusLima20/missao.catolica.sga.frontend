@@ -1,21 +1,20 @@
-import { Col, Row, theme } from "antd";
-import React from "react";
-import { Images } from "../../../../config/images";
-import { Menu } from "../menu";
-import "./header.css";
-
+import { Col, Row, theme } from 'antd';
+import React from 'react';
+import { Images } from '../../../../config/images';
+import { Menu } from '../menu';
+import './header.css';
 
 export const HeaderScreen = () => {
-
     const {
-        token: { colorText, colorBgContainer },
+        token: { colorText, colorBgContainer }
     } = theme.useToken();
 
     return (
         <Row
             className="p-0"
-            justify={"space-between"}
-            align={"top"} style={{ backgroundColor: colorBgContainer }}
+            justify={'space-between'}
+            align={'top'}
+            style={{ backgroundColor: colorBgContainer }}
         >
             <Col push={1} md={7} className="logo">
                 <Row>
@@ -24,14 +23,13 @@ export const HeaderScreen = () => {
                             <Col>
                                 <img
                                     className="img-logo"
-                                    src={Images.logo} alt="Sua logo aqui."
+                                    src={Images.logo}
+                                    alt="Sua logo aqui."
                                 />
                             </Col>
                             <Col about="">
                                 <p style={{ color: colorText }}>
-                                    <strong>
-                                        Missão Católica
-                                    </strong>
+                                    <strong>Missão Católica</strong>
                                 </p>
                             </Col>
                         </Row>
@@ -43,5 +41,4 @@ export const HeaderScreen = () => {
             </Col>
         </Row>
     );
-
-}
+};

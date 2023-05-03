@@ -1,12 +1,10 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
-import { Home } from "../screens/home";
-import { Footer } from "../includes/footer";
-import { Header } from "../includes/head";
-
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import { Home } from '../screens/home';
+import { Footer } from '../includes/footer';
+import { Header } from '../includes/head';
 
 export const SiteRoutes = () => {
-
     return (
         <>
             <Header />
@@ -16,5 +14,4 @@ export const SiteRoutes = () => {
             <Footer />
         </>
     );
-
-}
+};

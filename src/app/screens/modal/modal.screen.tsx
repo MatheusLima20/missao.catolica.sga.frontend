@@ -1,11 +1,11 @@
-import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import React from 'react';
+import { Button, Modal } from 'react-bootstrap';
 
 interface Props {
-    show: boolean,
-    onHide: () => void,
-    title: string,
-    body: JSX.Element,
+    show: boolean;
+    onHide: () => void;
+    title: string;
+    body: JSX.Element;
 }
 
 export const CenterModal = (props: Props) => {
@@ -17,20 +17,18 @@ export const CenterModal = (props: Props) => {
             centered
         >
             <Modal.Header closeButton>
-                <Modal.Title className="w-100" style={{ textAlign: "center" }}>
+                <Modal.Title className="w-100" style={{ textAlign: 'center' }}>
                     <div className="row">
-                        <p className="text-center">
-                            {props.title}
-                        </p>
+                        <p className="text-center">{props.title}</p>
                     </div>
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                {props.body}
-            </Modal.Body>
+            <Modal.Body>{props.body}</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.onHide}>Fechar</Button>
+                <Button variant="secondary" onClick={props.onHide}>
+                    Fechar
+                </Button>
             </Modal.Footer>
         </Modal>
     );
-}
+};

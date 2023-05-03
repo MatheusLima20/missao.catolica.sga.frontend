@@ -1,9 +1,7 @@
-import axios from "axios";
+import axios from 'axios';
 
-const baseURL: string = "http://localhost:3001";
+const baseURL = 'http://localhost:3001';
 
 export default axios.create({
     baseURL: baseURL
 });
-
-
