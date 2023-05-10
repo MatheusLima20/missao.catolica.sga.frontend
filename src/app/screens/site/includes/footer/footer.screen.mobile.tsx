@@ -8,11 +8,16 @@ interface Props {
     navigateMenu: MenuNavigation[];
 }
 
-const CustomToggle = React.forwardRef(({ children }: any, ref: any) => (
-    <div ref={ref}>
-        <strong>{children}</strong>
-    </div>
-));
+const CustomToggle = React.forwardRef(function ref(
+    { children }: any,
+    ref: any
+) {
+    return (
+        <div ref={ref}>
+            <strong>{children}</strong>
+        </div>
+    );
+});
 
 export const FooterMobileScreen = (props: Props) => {
     return (
