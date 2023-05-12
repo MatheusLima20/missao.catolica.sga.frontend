@@ -1,54 +1,66 @@
-import { Col, Menu, MenuProps, Row, theme } from 'antd';
-import React, { useEffect, useState } from 'react';
+import { Col, Dropdown, MenuProps, Row } from 'antd';
+import React from 'react';
 import { MenuNavigation } from '../../../../types/includes/include.types';
+import { TbUserCircle } from 'react-icons/tb';
+import { Login } from '../../screens/login';
+import { Logged } from '../../../logged.menu';
+import { cookies } from '../../../../controller/user/adm.cookies';
+import { BiLogIn } from 'react-icons/bi';
 
 interface Props {
     navigateMenu: MenuNavigation[];
 }
 
 export const MenuScreen = (props: Props) => {
-    const {
-        token: { colorBgBase }
-    } = theme.useToken();
-
-    const [items, setItems] = useState<MenuProps['items']>([]);
-
-    useEffect(() => {
-        startItems();
-        // eslint-disable-next-line
-    }, []);
-
     return (
-        <Row className="justify-content-end">
-            <Col span={24} className=" align-self-start">
-                <Menu
-                    mode="horizontal"
-                    className="border-0"
-                    style={{
-                        backgroundColor: colorBgBase
-                    }}
-                    items={items}
-                />
+        <Row justify={'center'}>
+            <Col md={14}>
+                <Menu />
             </Col>
         </Row>
     );
 
-    function startItems() {
-        const items: MenuProps['items'] = [];
+    function Menu() {
+        const token = cookies.get('data.user').token;
 
-        props.navigateMenu.map((value, index: any) => {
-            return items.push({
-                label: <h5 className="p-2 ps-3 text-center">{value.title}</h5>,
-                key: value.title + index,
-                children: value.subTitles.map((sub) => {
-                    return {
-                        label: <a href={sub.href}>{sub.name}</a>,
-                        key: sub.name
-                    } as any;
-                })
-            });
-        });
+        return (
+            <Row className="m-2" gutter={[30, 0]}>
+                {props.navigateMenu.map((value, index: any) => {
+                    const items: MenuProps['items'] = [];
+                    value.subTitles.map((sub) => {
+                        items.push({
+                            label: (
+                                <a className="fs-6" href={sub.href}>
+                                    {sub.name}
+                                </a>
+                            ),
+                            key: sub.name
+                        }) as any;
+                    });
+                    return (
+                        <Col className="mt-2" key={index}>
+                            <Dropdown menu={{ items }}>
+                                <a className="fs-6">{value.title}</a>
+                            </Dropdown>
+                        </Col>
+                    );
+                })}
 
-        setItems(items);
+                <Col>
+                    <Dropdown
+                        trigger={['click']}
+                        dropdownRender={() => (!token ? <Login /> : <Logged />)}
+                    >
+                        <a>
+                            {token ? (
+                                <TbUserCircle size={40} />
+                            ) : (
+                                <BiLogIn size={40} />
+                            )}
+                        </a>
+                    </Dropdown>
+                </Col>
+            </Row>
+        );
     }
 };

@@ -7,37 +7,18 @@ import { Col, Row } from 'antd';
 
 const navigateMenu: MenuNavigation[] = [
     {
-        title: 'Missões',
-        subTitles: [
-            { name: 'Quem Somos', href: '/about' }
-            // /{ name: "Trabalhe conosco", href: "/work-us" },
-        ]
-    },
-    {
-        title: 'Pregadores',
-        subTitles: [
-            { name: 'Nossos Serviços', href: '/services' }
-            // { name: "Tecnologia", href: "/technology" },
-        ]
-    },
-    {
-        title: 'Retiros',
-        subTitles: [
-            { name: 'Nossos Serviços', href: '/services' }
-            // { name: "Tecnologia", href: "/technology" },
-        ]
+        title: 'Missão',
+        subTitles: [{ name: 'Retiros', href: '/retreats' }]
     },
     {
         title: 'Artigos',
-        subTitles: [
-            { name: 'Nossos Serviços', href: '/services' }
-            // { name: "Tecnologia", href: "/technology" },
-        ]
+        subTitles: [{ name: 'Doutrinário', href: '/articles' }]
     },
     {
         title: 'Sobre',
         subTitles: [
-            { name: 'Politica de privacidade', href: '/privacity-police' }
+            { name: 'Politica de privacidade', href: '/about' },
+            { name: 'Nossa história', href: '/about' }
         ]
     }
 ];

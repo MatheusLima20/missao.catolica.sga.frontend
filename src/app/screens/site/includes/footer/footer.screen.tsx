@@ -17,7 +17,11 @@ export const FooterScreen = (props: Props) => {
                     <Row>
                         {props.navigateMenu.map((values, index) => {
                             return (
-                                <Col key={index} md={3} className=" mt-5">
+                                <Col
+                                    key={index}
+                                    md={3}
+                                    className=" mt-5 text-black"
+                                >
                                     <Row>
                                         <h6>
                                             <strong>{values.title}</strong>
@@ -28,7 +32,7 @@ export const FooterScreen = (props: Props) => {
                                             <Row key={index}>
                                                 <div>
                                                     <a href={value.href}>
-                                                        <span className="link">
+                                                        <span className="text-black">
                                                             <TbPoint
                                                                 size={15}
                                                             />

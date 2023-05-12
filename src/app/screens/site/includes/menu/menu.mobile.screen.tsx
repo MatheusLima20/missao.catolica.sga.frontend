@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const MenuMobileScreen = (prop: Props) => {
-    function OffCanvasExample({ name, ...props }: any) {
+    function OffCanvasExample({ ...props }: any) {
         const [show, setShow] = useState(false);
 
         const handleClose = () => setShow(false);

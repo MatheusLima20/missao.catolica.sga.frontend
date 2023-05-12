@@ -1,1 +1,1 @@
-export const platformNumber = 5492380000142;
+export const companyCPFCNPJ = '5492380000142';
