@@ -8,38 +8,20 @@ import { AcceptCookies } from '../conf/accept.cookies';
 
 const menuFooter: MenuNavigation[] = [
     {
-        title: 'Para seu negócio',
-        subTitles: [
-            {
-                name: 'Nossos Serviços',
-                href: '/services'
-            }
-            // {
-            //     name: "Tecnologia",
-            //    href: "/technology"
-            // }
-        ]
+        title: 'Missão',
+        subTitles: [{ name: 'Retiros', href: '/retreats' }]
     },
     {
-        title: 'Ajuda',
+        title: 'Artigos',
+        subTitles: [{ name: 'Doutrinário', href: '/articles' }]
+    },
+    {
+        title: 'Sobre',
         subTitles: [
-            {
-                name: 'Politica de privacidade',
-                href: '/privacity-police'
-            }
-            // {
-            //   name: "Trabalhe conosco",
-            //   href: "/work-us"
-            // }
+            { name: 'Politica de privacidade', href: '/about' },
+            { name: 'Nossa história', href: '/about' }
         ]
     }
-    // {
-    // title: "Ajuda",
-    // subTitles: [{
-    //   name: "Contato",
-    //  href: "/contact"
-    // }]
-    // }
 ];
 
 export const Footer = () => {

@@ -16,7 +16,7 @@ export const HeaderScreen = () => {
             align={'top'}
             style={{ backgroundColor: colorPrimary }}
         >
-            <Col push={1} md={7} className="logo">
+            <Col push={1} md={9}>
                 <Row>
                     <a href="/">
                         <Row align={'middle'}>
@@ -36,7 +36,7 @@ export const HeaderScreen = () => {
                     </a>
                 </Row>
             </Col>
-            <Col md={12}>
+            <Col md={15}>
                 <Menu />
             </Col>
         </Row>

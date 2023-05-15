@@ -27,7 +27,7 @@ export const Menu = () => {
     const [screenMobile, setScreenMobile] = useState(false);
     useEffect(() => {
         const handleResize = () => {
-            const sizeMobile: boolean = window.innerWidth < 1090;
+            const sizeMobile: boolean = window.innerWidth < 930;
             setScreenMobile(sizeMobile);
         };
         handleResize();
@@ -37,7 +37,7 @@ export const Menu = () => {
     return (
         <>
             {!screenMobile && (
-                <Row align={'top'}>
+                <Row align={'middle'}>
                     <Col md={24}>
                         <MenuScreen navigateMenu={navigateMenu} />
                     </Col>
@@ -45,8 +45,8 @@ export const Menu = () => {
             )}
 
             {screenMobile && (
-                <Row justify={'center'} align="bottom">
-                    <Col md={8}>
+                <Row justify={'end'}>
+                    <Col pull={3} md={2} className="mt-3">
                         <MenuMobileScreen navigateMenu={navigateMenu} />
                     </Col>
                 </Row>

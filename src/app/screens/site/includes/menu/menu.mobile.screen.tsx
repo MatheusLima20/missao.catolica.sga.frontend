@@ -76,9 +76,5 @@ export const MenuMobileScreen = (prop: Props) => {
         );
     }
 
-    return (
-        <>
-            <OffCanvasExample placement={'end'} name={'Button'} />
-        </>
-    );
+    return <OffCanvasExample placement={'end'} name={'Button'} />;
 };

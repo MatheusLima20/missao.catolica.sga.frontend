@@ -28,46 +28,61 @@ export const MenuScreen = (props: Props) => {
         const token = cookies.get('data.user').token;
 
         return (
-            <Row className="m-2" gutter={[30, 0]}>
-                {props.navigateMenu.map((value, index: any) => {
-                    const items: MenuProps['items'] = [];
-                    value.subTitles.map((sub) => {
-                        items.push({
-                            label: (
-                                <a className="fs-6" href={sub.href}>
-                                    {sub.name}
-                                </a>
-                            ),
-                            key: sub.name
-                        }) as any;
-                    });
-                    return (
-                        <Col className="mt-2" key={index}>
-                            <Dropdown menu={{ items }}>
-                                <a
-                                    style={{ color: colorTextSecondary }}
-                                    className="fs-6"
-                                >
-                                    {value.title}
+            <Row className="m-2">
+                <Col md={24}>
+                    <Row justify={'end'} align={'stretch'}>
+                        <Col>
+                            <Row gutter={[20, 0]}>
+                                {props.navigateMenu.map((value, index: any) => {
+                                    const items: MenuProps['items'] = [];
+                                    value.subTitles.map((sub) => {
+                                        items.push({
+                                            label: (
+                                                <a
+                                                    className="fs-6"
+                                                    href={sub.href}
+                                                >
+                                                    {sub.name}
+                                                </a>
+                                            ),
+                                            key: sub.name
+                                        }) as any;
+                                    });
+                                    return (
+                                        <Col className="mt-2" key={index}>
+                                            <Dropdown menu={{ items }}>
+                                                <a
+                                                    style={{
+                                                        color: colorTextSecondary
+                                                    }}
+                                                    className="fs-6"
+                                                >
+                                                    {value.title}
+                                                </a>
+                                            </Dropdown>
+                                        </Col>
+                                    );
+                                })}
+                            </Row>
+                        </Col>
+                        <Col>
+                            <Dropdown
+                                className="ms-4"
+                                trigger={['click']}
+                                dropdownRender={() =>
+                                    !token ? <Login /> : <Logged />
+                                }
+                            >
+                                <a style={{ color: colorTextSecondary }}>
+                                    {token ? (
+                                        <TbUserCircle size={40} />
+                                    ) : (
+                                        <BiLogIn size={40} />
+                                    )}
                                 </a>
                             </Dropdown>
                         </Col>
-                    );
-                })}
-
-                <Col>
-                    <Dropdown
-                        trigger={['click']}
-                        dropdownRender={() => (!token ? <Login /> : <Logged />)}
-                    >
-                        <a style={{ color: colorTextSecondary }}>
-                            {token ? (
-                                <TbUserCircle size={40} />
-                            ) : (
-                                <BiLogIn size={40} />
-                            )}
-                        </a>
-                    </Dropdown>
+                    </Row>
                 </Col>
             </Row>
         );
