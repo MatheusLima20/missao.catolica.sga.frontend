@@ -189,7 +189,7 @@ export const HomeScreen = () => {
                         animateIn="animate__fadeIn"
                         animateOut="animate__fadeOut"
                     >
-                        <Card hoverable={true} className="mt-5 rounde-3">
+                        <Card hoverable={true} className="mt-5 rounde-3 m-4">
                             <Row justify={'space-between'} className="m-2">
                                 <Col md={18}>
                                     <h2>
