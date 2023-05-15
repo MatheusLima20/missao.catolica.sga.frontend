@@ -2,7 +2,7 @@ import React from 'react';
 import './footer.css';
 import { MenuNavigation } from '../../../../types/includes/include.types';
 import { Footer } from 'antd/es/layout/layout';
-import { Col, Row } from 'antd';
+import { Col, Row, theme } from 'antd';
 import { TbPoint } from 'react-icons/tb';
 
 interface Props {
@@ -10,8 +10,12 @@ interface Props {
 }
 
 export const FooterScreen = (props: Props) => {
+    const {
+        token: { colorPrimary, colorTextSecondary }
+    } = theme.useToken();
+
     return (
-        <Footer className="mt-5 mb-5">
+        <Footer style={{ backgroundColor: colorPrimary }} className="mt-5 pb-5">
             <Row justify={'end'}>
                 <Col span={24}>
                     <Row>
@@ -19,12 +23,18 @@ export const FooterScreen = (props: Props) => {
                             return (
                                 <Col
                                     key={index}
-                                    md={3}
+                                    md={5}
                                     className=" mt-5 text-black"
                                 >
                                     <Row>
                                         <h6>
-                                            <strong>{values.title}</strong>
+                                            <strong
+                                                style={{
+                                                    color: colorTextSecondary
+                                                }}
+                                            >
+                                                {values.title}
+                                            </strong>
                                         </h6>
                                     </Row>
                                     {values.subTitles.map((value, index) => {
@@ -32,7 +42,11 @@ export const FooterScreen = (props: Props) => {
                                             <Row key={index}>
                                                 <div>
                                                     <a href={value.href}>
-                                                        <span className="text-black">
+                                                        <span
+                                                            style={{
+                                                                color: colorTextSecondary
+                                                            }}
+                                                        >
                                                             <TbPoint
                                                                 size={15}
                                                             />

@@ -6,15 +6,15 @@ import './header.css';
 
 export const HeaderScreen = () => {
     const {
-        token: { colorText, colorBgContainer }
+        token: { colorPrimary, colorTextSecondary }
     } = theme.useToken();
 
     return (
         <Row
-            className="p-0"
+            className="p-0 pb-4"
             justify={'space-between'}
             align={'top'}
-            style={{ backgroundColor: colorBgContainer }}
+            style={{ backgroundColor: colorPrimary }}
         >
             <Col push={1} md={7} className="logo">
                 <Row>
@@ -27,8 +27,8 @@ export const HeaderScreen = () => {
                                     alt="Sua logo aqui."
                                 />
                             </Col>
-                            <Col about="">
-                                <p style={{ color: colorText }}>
+                            <Col className="ms-2">
+                                <p style={{ color: colorTextSecondary }}>
                                     <strong>Missão Católica</strong>
                                 </p>
                             </Col>

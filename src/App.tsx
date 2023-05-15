@@ -20,15 +20,9 @@ function App() {
         <ConfigProvider
             theme={{
                 token: {
-                    colorPrimaryBg: '#010064',
-                    colorTextPlaceholder: '#fff',
-                    colorInfoText: '#fff',
+                    colorPrimary: '#010064',
                     colorBgLayout: '#fff',
-                    colorText: '#fff',
-                    colorTextSecondary: '#000',
-                    colorBgBase: '#010064',
-                    colorTextHeading: '#fff',
-                    colorTextDisabled: '#fff'
+                    colorTextSecondary: '#fff'
                 }
             }}
         >

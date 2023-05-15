@@ -3,7 +3,7 @@ import { Carousel } from 'react-bootstrap';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import './home.css';
 import { Content } from 'antd/es/layout/layout';
-import { Card, Col, Row, theme } from 'antd';
+import { Card, Col, Row } from 'antd';
 import { MdOutlineConnectWithoutContact } from 'react-icons/md';
 import { CarouselType } from '../../../../types/carousel.types';
 import { Images } from '../../../../config/images';
@@ -11,77 +11,72 @@ import { Images } from '../../../../config/images';
 const slides: CarouselType[] = [
     {
         alt: 'Programação semanal',
-        jsx: <img src={Images.monday} width="100%" />,
-        title: 'Programação',
-        subTitle: 'Acompanhe-nos no youtube.'
+        jsx: <img src={Images.monday} width="100%" className="rounded-4" />,
+        title: '',
+        subTitle: ''
     },
     {
         alt: 'Programação semanal',
-        jsx: <img src={Images.tuesday} width="100%" />,
-        title: 'Programação',
-        subTitle: 'Acompanhe-nos no youtube.'
+        jsx: <img src={Images.tuesday} width="100%" className="rounded-4" />,
+        title: '',
+        subTitle: ''
     }
 ];
 
 const articles = [
     {
         date: '2023-05-03',
-        jsx: <img src={Images.monday} width="100%" />,
+        jsx: <img src={Images.monday} width="100%" className="rounded-3" />,
         title: 'Santa Catarina',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" />,
+        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
         title: 'São Eliseu',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.monday} width="100%" />,
+        jsx: <img src={Images.monday} width="100%" className="rounded-3" />,
         title: 'Santa Catarina',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" />,
+        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
         title: 'São Eliseu',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.monday} width="100%" />,
+        jsx: <img src={Images.monday} width="100%" className="rounded-3" />,
         title: 'Santa Catarina',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" />,
+        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
         title: 'São Eliseu',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" />,
+        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
         title: 'São Eliseu',
         subTitle: 'Acompanhe-nos no youtube.'
     },
     {
         date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" />,
+        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
         title: 'São Eliseu',
         subTitle: 'Acompanhe-nos no youtube.'
     }
 ];
 
 export const HomeScreen = () => {
-    const {
-        token: { colorText, colorTextSecondary, colorBgLayout }
-    } = theme.useToken();
-
     const gridStyle: React.CSSProperties = {
-        textAlign: 'center',
-        background: colorBgLayout
+        textAlign: 'center'
     };
 
     return (
@@ -124,26 +119,13 @@ export const HomeScreen = () => {
             <Row justify={'center'}>
                 <Col span={24}>
                     <Card
-                        style={{
-                            background: colorBgLayout,
-                            color: colorTextSecondary
-                        }}
                         className="border-0 mb-5 mt-5"
                         hoverable={false}
                         title={
-                            <Row
-                                style={{ color: colorText }}
-                                className="mt-5 text-center"
-                            >
+                            <Row className="mt-5 text-center">
                                 <Col md={24}>
                                     <h2>
-                                        <strong
-                                            style={{
-                                                color: colorTextSecondary
-                                            }}
-                                        >
-                                            Artigos
-                                        </strong>
+                                        <strong>Artigos</strong>
                                     </h2>
                                 </Col>
                             </Row>
@@ -158,6 +140,7 @@ export const HomeScreen = () => {
                                 return (
                                     <Col key={index} md={12}>
                                         <Card
+                                            bordered={false}
                                             hoverable={true}
                                             className="w-100"
                                             style={{
@@ -170,14 +153,7 @@ export const HomeScreen = () => {
                                                 justify={'center'}
                                                 gutter={[20, 20]}
                                             >
-                                                <Col
-                                                    md={10}
-                                                    style={{
-                                                        color: colorTextSecondary
-                                                    }}
-                                                >
-                                                    {article.jsx}
-                                                </Col>
+                                                <Col md={10}>{article.jsx}</Col>
                                                 <Col md={12}>
                                                     <Row
                                                         className="text-start"
@@ -185,21 +161,13 @@ export const HomeScreen = () => {
                                                     >
                                                         <Col>
                                                             <h4>
-                                                                <strong
-                                                                    style={{
-                                                                        color: colorTextSecondary
-                                                                    }}
-                                                                >
+                                                                <strong>
                                                                     {
                                                                         article.title
                                                                     }
                                                                 </strong>
                                                             </h4>
-                                                            <h6
-                                                                style={{
-                                                                    color: colorTextSecondary
-                                                                }}
-                                                            >
+                                                            <h6>
                                                                 {
                                                                     article.subTitle
                                                                 }
@@ -221,46 +189,23 @@ export const HomeScreen = () => {
                         animateIn="animate__fadeIn"
                         animateOut="animate__fadeOut"
                     >
-                        <Card
-                            style={{
-                                background: colorBgLayout,
-                                color: colorTextSecondary
-                            }}
-                            hoverable={true}
-                            className="mt-5 rounde-3"
-                        >
-                            <Row
-                                justify={'space-between'}
-                                className="text-white m-2"
-                            >
+                        <Card hoverable={true} className="mt-5 rounde-3">
+                            <Row justify={'space-between'} className="m-2">
                                 <Col md={18}>
-                                    <h2
-                                        style={{
-                                            color: colorTextSecondary
-                                        }}
-                                    >
+                                    <h2>
                                         <strong>
                                             Tudo o que você precisa.
                                         </strong>
                                     </h2>
 
-                                    <h5
-                                        style={{
-                                            color: colorTextSecondary
-                                        }}
-                                    >
+                                    <h5>
                                         Nossa formação faz você conhecer a fé
                                         como ela é.
                                     </h5>
                                 </Col>
                                 <Col md={7}>
                                     <Row justify={'center'}>
-                                        <Col
-                                            span={24}
-                                            style={{
-                                                color: colorTextSecondary
-                                            }}
-                                        >
+                                        <Col span={24}>
                                             <MdOutlineConnectWithoutContact
                                                 size={200}
                                             />

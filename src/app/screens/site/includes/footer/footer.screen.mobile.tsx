@@ -3,6 +3,7 @@ import { IoMdArrowDropdownCircle } from 'react-icons/io';
 import Accordion from 'react-bootstrap/Accordion';
 import { MenuNavigation } from '../../../../types/includes/include.types';
 import { MenuList } from '../menu.list/menu.list';
+import { theme } from 'antd';
 
 interface Props {
     navigateMenu: MenuNavigation[];
@@ -20,8 +21,14 @@ const CustomToggle = React.forwardRef(function ref(
 });
 
 export const FooterMobileScreen = (props: Props) => {
+    const {
+        token: { colorPrimary, colorTextSecondary }
+    } = theme.useToken();
     return (
-        <div className="row mt-5 w-100 g-0">
+        <div
+            style={{ backgroundColor: colorPrimary }}
+            className="row mt-5 w-100 g-0"
+        >
             <div className="row mt-5 mb-5 g-0 ">
                 <div className="row g-0 justify-content-center">
                     <Accordion as={CustomToggle}>
@@ -33,7 +40,12 @@ export const FooterMobileScreen = (props: Props) => {
                                         className="p-3"
                                     >
                                         <Accordion.Header>
-                                            <div className="row justify-content-between w-100">
+                                            <div
+                                                style={{
+                                                    color: colorTextSecondary
+                                                }}
+                                                className="row justify-content-between w-100"
+                                            >
                                                 <div className="col-10">
                                                     {values.title}
                                                 </div>

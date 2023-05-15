@@ -1,4 +1,4 @@
-import { Col, Dropdown, MenuProps, Row } from 'antd';
+import { Col, Dropdown, MenuProps, Row, theme } from 'antd';
 import React from 'react';
 import { MenuNavigation } from '../../../../types/includes/include.types';
 import { TbUserCircle } from 'react-icons/tb';
@@ -12,6 +12,10 @@ interface Props {
 }
 
 export const MenuScreen = (props: Props) => {
+    const {
+        token: { colorTextSecondary }
+    } = theme.useToken();
+
     return (
         <Row justify={'center'}>
             <Col md={14}>
@@ -40,7 +44,12 @@ export const MenuScreen = (props: Props) => {
                     return (
                         <Col className="mt-2" key={index}>
                             <Dropdown menu={{ items }}>
-                                <a className="fs-6">{value.title}</a>
+                                <a
+                                    style={{ color: colorTextSecondary }}
+                                    className="fs-6"
+                                >
+                                    {value.title}
+                                </a>
                             </Dropdown>
                         </Col>
                     );
@@ -51,7 +60,7 @@ export const MenuScreen = (props: Props) => {
                         trigger={['click']}
                         dropdownRender={() => (!token ? <Login /> : <Logged />)}
                     >
-                        <a>
+                        <a style={{ color: colorTextSecondary }}>
                             {token ? (
                                 <TbUserCircle size={40} />
                             ) : (
