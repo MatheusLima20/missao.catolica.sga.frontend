@@ -18,8 +18,8 @@ const menuFooter: MenuNavigation[] = [
     {
         title: 'Sobre',
         subTitles: [
-            { name: 'Politica de privacidade', href: '/about' },
-            { name: 'Nossa história', href: '/about' }
+            { name: 'Nossa história', href: '/about' },
+            { name: 'Politica de privacidade', href: '/about' }
         ]
     }
 ];
