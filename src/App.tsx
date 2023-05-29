@@ -6,11 +6,27 @@ import 'animate.css/animate.min.css';
 import { Col, ConfigProvider, Layout, Row, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { Spinner } from 'react-bootstrap';
+import { UserDataLogged } from './app/types/user/user';
+import { cookies } from './app/controller/user/adm.cookies';
+
+const initialValues: UserDataLogged = {
+    name: '',
+    platformName: '',
+    token: '',
+    userType: ''
+};
 
 function App() {
+    const [login, setLogin] = useState<UserDataLogged>(initialValues);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const userData = cookies.get('data.user');
+
+        const loginData = userData.token ? userData : initialValues;
+
+        setLogin(loginData);
+
         setTimeout(() => {
             setLoading(false);
         }, 500);
@@ -27,7 +43,7 @@ function App() {
             }}
         >
             <Layout>
-                {!loading && <AppNavigation />}
+                {!loading && <AppNavigation dataUser={login} />}
 
                 {loading && (
                     <Space direction="vertical">

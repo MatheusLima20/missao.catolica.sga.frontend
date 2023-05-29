@@ -177,18 +177,7 @@ export const PlatformRegistrationForm = () => {
                             </Form.Item>
                         </Col>
                         <Col md={12}>
-                            <Form.Item
-                                label="CNPJ"
-                                name="cnpj"
-                                rules={[
-                                    {
-                                        min: 18,
-                                        max: 18,
-                                        required: true,
-                                        message: 'Por favor, digite o CNPJ!'
-                                    }
-                                ]}
-                            >
+                            <Form.Item label="CNPJ" name="cnpj">
                                 <Input
                                     name="cnpj"
                                     disabled

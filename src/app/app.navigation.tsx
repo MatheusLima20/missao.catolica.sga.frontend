@@ -1,11 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AppRoutes } from './routes/routes';
+import { UserDataLogged } from './types/user/user';
 
-export const AppNavigation = () => {
+interface Props {
+    dataUser: UserDataLogged;
+}
+
+export const AppNavigation = (props: Props) => {
     return (
         <Router>
-            <AppRoutes />
+            <AppRoutes dataUser={props.dataUser} />
         </Router>
     );
 };
