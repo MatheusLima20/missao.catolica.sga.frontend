@@ -3,6 +3,7 @@ import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { BiLogOut } from 'react-icons/bi';
 import { AiOutlineCloudServer } from 'react-icons/ai';
 import { BsGlobe } from 'react-icons/bs';
+import { cookies } from '../../controller/user/adm.cookies';
 
 interface Menu {
     name: string;
@@ -49,6 +50,7 @@ export const LoggedScreen = () => {
     );
 
     function logout() {
+        cookies.remove('data.user');
         setTimeout(() => {
             document.location = '/logout';
         }, 500);

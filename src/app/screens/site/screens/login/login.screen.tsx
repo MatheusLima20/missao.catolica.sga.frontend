@@ -42,7 +42,7 @@ export const LoginScreen = () => {
                     <Form
                         name="normal_login"
                         className="login-form"
-                        autoComplete="off"
+                        autoComplete="on"
                         initialValues={{ remember: true }}
                         onFinish={login}
                         size="large"
