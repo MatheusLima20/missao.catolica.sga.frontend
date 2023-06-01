@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
     Button,
     Col,
@@ -12,11 +12,13 @@ import {
     UploadProps
 } from 'antd';
 import { Content } from '../../../../types/content/content';
-import TextArea from 'antd/es/input/TextArea';
 import Dragger from 'antd/es/upload/Dragger';
 import { InboxOutlined } from '@ant-design/icons';
 import { RcFile } from 'antd/es/upload';
 import { ContentController } from '../../../../controller/content/content.controller';
+import SunEditor from 'suneditor-react';
+import SunEditorCore from 'suneditor/src/lib/core';
+import 'suneditor/dist/css/suneditor.min.css';
 
 type InitialValues = {
     title?: string;
@@ -43,6 +45,7 @@ const initialValues: InitialValues = {
     imageUrl: undefined,
     video: undefined
 };
+const teste = '<strong> Olá </strong>';
 
 const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -61,6 +64,8 @@ export const HomeForm = () => {
     const [values, setValues] = useState(initialValues);
 
     const [messageApi, contextHolder] = message.useMessage();
+
+    const editor = useRef<SunEditorCore>();
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
@@ -125,9 +130,18 @@ export const HomeForm = () => {
         }
     };
 
+    const getSunEditorInstance = (sunEditor: SunEditorCore) => {
+        sunEditor.setOptions({
+            charCounter: true,
+            maxCharCount: 2500
+        });
+        editor.current = sunEditor;
+    };
+
     return (
         <Row>
             {contextHolder}
+            {teste}
             <Col span={24} className="mb-5">
                 <Form
                     id="form"
@@ -243,13 +257,20 @@ export const HomeForm = () => {
                                         }
                                     ]}
                                 >
-                                    <TextArea
-                                        rows={7}
+                                    <SunEditor
                                         name="text"
-                                        onChange={handleChange}
-                                        placeholder="Digite seu texto..."
-                                        maxLength={2500}
-                                        showCount={true}
+                                        height="200"
+                                        lang={'pt_br'}
+                                        placeholder="Digite seu texto"
+                                        getSunEditorInstance={
+                                            getSunEditorInstance
+                                        }
+                                        onChange={(value: string) => {
+                                            setValues({
+                                                ...values,
+                                                text: value
+                                            });
+                                        }}
                                     />
                                 </Form.Item>
                             </Col>
