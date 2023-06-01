@@ -3,6 +3,7 @@ import axios from '../../config/axios';
 import { Content } from '../../types/content/content';
 import { Error } from '../errors/check.errors';
 import { cookies } from '../user/adm.cookies';
+import { companyCPFCNPJ } from '../../util/platform.number/platform.number';
 
 const cookie = cookies.get('data.user');
 
@@ -70,15 +71,9 @@ export const ContentController = {
 
     getByPage: async (page: string) => {
         try {
-            const cookie = cookies.get('data.user');
-
-            const token = cookie.token;
-
-            const platformId = cookie.platformId;
-
-            const request = await axios.get(`/content/${page}/${platformId}`, {
-                headers: { authorization: `Bearer ${token}` }
-            });
+            const request = await axios.get(
+                `/content/${page}/${companyCPFCNPJ}`
+            );
 
             const data = request.data;
 

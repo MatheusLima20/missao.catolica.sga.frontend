@@ -144,7 +144,17 @@ export const HomeForm = () => {
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
                         <Col md={8}>
-                            <Form.Item label="Titulo" name="title">
+                            <Form.Item
+                                label="Titulo"
+                                name="title"
+                                rules={[
+                                    {
+                                        required:
+                                            values.contentType === 'article',
+                                        message: 'Digite o título.'
+                                    }
+                                ]}
+                            >
                                 <Input
                                     name="title"
                                     value={values.title}
@@ -154,7 +164,17 @@ export const HomeForm = () => {
                             </Form.Item>
                         </Col>
                         <Col md={8}>
-                            <Form.Item label="SubTítulo" name="subTitle">
+                            <Form.Item
+                                label="Subtítulo"
+                                name="subTitle"
+                                rules={[
+                                    {
+                                        required:
+                                            values.contentType === 'article',
+                                        message: 'Digite o subtítulo.'
+                                    }
+                                ]}
+                            >
                                 <Input
                                     name="subTitle"
                                     value={values.subTitle}
@@ -187,13 +207,14 @@ export const HomeForm = () => {
                                     }}
                                     options={[
                                         { value: 'text', label: 'Texto' },
-                                        { value: 'slider', label: 'Slider' }
+                                        { value: 'slider', label: 'Slider' },
+                                        { value: 'article', label: 'Artigo' }
                                     ]}
                                 />
                             </Form.Item>
                         </Col>
 
-                        {values.contentType === 'text' && (
+                        {values.contentType !== 'slider' && (
                             <Col md={24}>
                                 <Form.Item
                                     label="Texto"
@@ -218,7 +239,7 @@ export const HomeForm = () => {
                             </Col>
                         )}
 
-                        {values.contentType === 'slider' && (
+                        {values.contentType !== 'text' && (
                             <Col md={24}>
                                 <Form.Item label="Imagem" name="file">
                                     <Dragger
@@ -282,7 +303,7 @@ export const HomeForm = () => {
     );
 
     async function save() {
-        if (values.contentType === 'slider' && !fileList.length) {
+        if (values.contentType !== 'text' && !fileList.length) {
             messageApi.open({
                 key: 'platform.registration',
                 type: 'error',

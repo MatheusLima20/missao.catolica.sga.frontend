@@ -2,26 +2,12 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import './home.css';
-import { Content } from 'antd/es/layout/layout';
+import { Content as ContentLayout } from 'antd/es/layout/layout';
 import { Card, Col, Row } from 'antd';
 import { MdOutlineConnectWithoutContact } from 'react-icons/md';
 import { CarouselType } from '../../../../types/carousel.types';
 import { Images } from '../../../../config/images';
-
-const slides: CarouselType[] = [
-    {
-        alt: 'Programação semanal',
-        jsx: <img src={Images.monday} width="100%" className="rounded-4" />,
-        title: '',
-        subTitle: ''
-    },
-    {
-        alt: 'Programação semanal',
-        jsx: <img src={Images.tuesday} width="100%" className="rounded-4" />,
-        title: '',
-        subTitle: ''
-    }
-];
+import { Content } from '../../../../types/content/content';
 
 const articles = [
     {
@@ -74,17 +60,23 @@ const articles = [
     }
 ];
 
-export const HomeScreen = () => {
+interface Props {
+    sliders: Content[];
+}
+
+export const HomeScreen = (props: Props) => {
+    const sliders = props.sliders;
+
     const gridStyle: React.CSSProperties = {
         textAlign: 'center'
     };
 
     return (
-        <Content className="mt-5">
+        <ContentLayout className="mt-5">
             <Row justify={'center'} className="border-0">
                 <Col span={18}>
                     <Carousel pause={'hover'} fade>
-                        {slides.map((values, index) => {
+                        {initSliders().map((values, index) => {
                             return (
                                 <Carousel.Item key={index}>
                                     <Row justify={'center'}>
@@ -217,6 +209,29 @@ export const HomeScreen = () => {
                     </AnimationOnScroll>
                 </Col>
             </Row>
-        </Content>
+        </ContentLayout>
     );
+
+    function initSliders() {
+        const values: CarouselType[] = [];
+
+        sliders.map((value) => {
+            const alt = value.fileName ? value.fileName : '';
+            const title = value.title ? value.title : '';
+            const subTitle = value.subTitle ? value.subTitle : '';
+            return values.push({
+                alt: alt,
+                jsx: (
+                    <img
+                        src={value.imageUrl}
+                        width="100%"
+                        className="rounded-4"
+                    />
+                ),
+                title: title,
+                subTitle: subTitle
+            });
+        });
+        return values;
+    }
 };
