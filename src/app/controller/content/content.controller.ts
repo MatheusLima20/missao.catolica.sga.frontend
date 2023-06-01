@@ -1,3 +1,4 @@
+import { RcFile } from 'antd/es/upload';
 import axios from '../../config/axios';
 import { Content } from '../../types/content/content';
 import { Error } from '../errors/check.errors';
@@ -6,7 +7,7 @@ import { cookies } from '../user/adm.cookies';
 const cookie = cookies.get('data.user');
 
 export const ContentController = {
-    store: async (content: Content, file: any) => {
+    store: async (content: Content, file: RcFile | undefined) => {
         const values = content;
 
         try {
@@ -16,14 +17,14 @@ export const ContentController = {
 
             Object.keys(values).forEach((key: string) => {
                 if ((values as any)[key]) {
-                    // formData.append(key, (values as any)[key]);
+                    formData.append(key, (values as any)[key]);
                 }
             });
 
             if (file) {
                 formData.append('file', file);
             }
-            console.log(file);
+
             const request = await axios.post('/content', formData, {
                 headers: {
                     'content-type': 'multipart/form-data',

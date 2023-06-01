@@ -53,6 +53,7 @@ const getBase64 = (file: RcFile): Promise<string> =>
     });
 
 export const HomeForm = () => {
+    const [file, setFile] = useState<RcFile>();
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -118,7 +119,8 @@ export const HomeForm = () => {
             newFileList.splice(index, 1);
             setFileList(newFileList);
         },
-        beforeUpload: () => {
+        beforeUpload: (file) => {
+            setFile(file);
             return false;
         }
     };
@@ -176,7 +178,12 @@ export const HomeForm = () => {
                                                 value: value
                                             }
                                         };
-                                        handleChange(event);
+                                        setFile(undefined);
+                                        setFileList([]);
+                                        setValues({
+                                            ...initialValues,
+                                            contentType: event.target.value
+                                        });
                                     }}
                                     options={[
                                         { value: 'text', label: 'Texto' },
@@ -202,6 +209,7 @@ export const HomeForm = () => {
                                     <TextArea
                                         rows={7}
                                         name="text"
+                                        onChange={handleChange}
                                         placeholder="Digite seu texto..."
                                         maxLength={2500}
                                         showCount={true}
@@ -298,7 +306,7 @@ export const HomeForm = () => {
             contentType: values.contentType
         };
 
-        const request = await ContentController.store(dataValues, fileList[0]);
+        const request = await ContentController.store(dataValues, file);
 
         const error = request.error;
 
