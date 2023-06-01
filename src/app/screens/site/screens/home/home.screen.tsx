@@ -6,65 +6,15 @@ import { Content as ContentLayout } from 'antd/es/layout/layout';
 import { Card, Col, Row } from 'antd';
 import { MdOutlineConnectWithoutContact } from 'react-icons/md';
 import { CarouselType } from '../../../../types/carousel.types';
-import { Images } from '../../../../config/images';
 import { Content } from '../../../../types/content/content';
-
-const articles = [
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.monday} width="100%" className="rounded-3" />,
-        title: 'Santa Catarina',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
-        title: 'São Eliseu',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.monday} width="100%" className="rounded-3" />,
-        title: 'Santa Catarina',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
-        title: 'São Eliseu',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.monday} width="100%" className="rounded-3" />,
-        title: 'Santa Catarina',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
-        title: 'São Eliseu',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
-        title: 'São Eliseu',
-        subTitle: 'Acompanhe-nos no youtube.'
-    },
-    {
-        date: '2023-05-03',
-        jsx: <img src={Images.tuesday} width="100%" className="rounded-3" />,
-        title: 'São Eliseu',
-        subTitle: 'Acompanhe-nos no youtube.'
-    }
-];
 
 interface Props {
     sliders: Content[];
+    articles: Content[];
 }
 
 export const HomeScreen = (props: Props) => {
+    const articles = props.articles;
     const sliders = props.sliders;
 
     const gridStyle: React.CSSProperties = {
@@ -128,7 +78,7 @@ export const HomeScreen = (props: Props) => {
                             justify={'center'}
                             gutter={[20, 20]}
                         >
-                            {articles.map((article, index) => {
+                            {initArticles().map((article, index) => {
                                 return (
                                     <Col key={index} md={12}>
                                         <Card
@@ -226,6 +176,27 @@ export const HomeScreen = (props: Props) => {
                         src={value.imageUrl}
                         width="100%"
                         className="rounded-4"
+                    />
+                ),
+                title: title,
+                subTitle: subTitle
+            });
+        });
+        return values;
+    }
+
+    function initArticles() {
+        const values: any[] = [];
+
+        articles.map((value) => {
+            const title = value.title ? value.title : '';
+            const subTitle = value.subTitle ? value.subTitle : '';
+            return values.push({
+                jsx: (
+                    <img
+                        src={value.imageUrl}
+                        width="100%"
+                        className="rounded-3"
                     />
                 ),
                 title: title,

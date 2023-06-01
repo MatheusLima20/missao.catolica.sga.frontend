@@ -18,7 +18,7 @@ export const HomeScreen = () => {
                         >
                             <Col span={24}>
                                 <h3>
-                                    <strong>Conteúdo da página Home</strong>
+                                    <strong>Conteúdo das Páginas</strong>
                                 </h3>
                             </Col>
                         </Row>

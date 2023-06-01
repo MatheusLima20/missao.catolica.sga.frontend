@@ -69,10 +69,10 @@ export const ContentController = {
         }
     },
 
-    getByPage: async (page: string) => {
+    getByPage: async (type: string, page: string) => {
         try {
             const request = await axios.get(
-                `/content/${page}/${companyCPFCNPJ}`
+                `/content/${type}/${page}/${companyCPFCNPJ}`
             );
 
             const data = request.data;

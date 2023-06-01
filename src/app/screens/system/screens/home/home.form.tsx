@@ -38,7 +38,7 @@ const initialValues: InitialValues = {
     text: undefined,
     path: undefined,
     fileName: undefined,
-    page: '',
+    page: 'home',
     contentType: 'text',
     imageUrl: undefined,
     video: undefined
@@ -138,11 +138,57 @@ export const HomeForm = () => {
                     fields={[
                         { name: 'title', value: values.title },
                         { name: 'subTitle', value: values.subTitle },
-                        { name: 'contentType', value: values.contentType }
+                        { name: 'contentType', value: values.contentType },
+                        { name: 'page', value: values.page }
                     ]}
                     onFinish={save}
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
+                        <Col md={4}>
+                            <Form.Item label="A página" name="page">
+                                <Select
+                                    defaultValue={values.page}
+                                    value={values.page}
+                                    onChange={(value) => {
+                                        setFile(undefined);
+                                        setFileList([]);
+                                        setValues({
+                                            ...initialValues,
+                                            page: value
+                                        });
+                                    }}
+                                    options={[
+                                        { value: 'home', label: 'Home' },
+                                        { value: 'article', label: 'Artigos' }
+                                    ]}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col md={4}>
+                            <Form.Item
+                                label="Tipo de Conteúdo"
+                                name="contentType"
+                            >
+                                <Select
+                                    defaultValue={values.contentType}
+                                    value={values.contentType}
+                                    onChange={(value) => {
+                                        setFile(undefined);
+                                        setFileList([]);
+                                        setValues({
+                                            ...initialValues,
+                                            contentType: value,
+                                            page: values.page
+                                        });
+                                    }}
+                                    options={[
+                                        { value: 'text', label: 'Texto' },
+                                        { value: 'slider', label: 'Slider' },
+                                        { value: 'article', label: 'Artigo' }
+                                    ]}
+                                />
+                            </Form.Item>
+                        </Col>
                         <Col md={8}>
                             <Form.Item
                                 label="Titulo"
@@ -180,36 +226,6 @@ export const HomeForm = () => {
                                     value={values.subTitle}
                                     onChange={handleChange}
                                     placeholder="Digite seu subtítulo..."
-                                />
-                            </Form.Item>
-                        </Col>
-                        <Col md={8}>
-                            <Form.Item
-                                label="Tipo de Conteúdo"
-                                name="contentType"
-                            >
-                                <Select
-                                    defaultValue={values.contentType}
-                                    value={values.contentType}
-                                    onChange={(value) => {
-                                        const event = {
-                                            target: {
-                                                name: 'contentType',
-                                                value: value
-                                            }
-                                        };
-                                        setFile(undefined);
-                                        setFileList([]);
-                                        setValues({
-                                            ...initialValues,
-                                            contentType: event.target.value
-                                        });
-                                    }}
-                                    options={[
-                                        { value: 'text', label: 'Texto' },
-                                        { value: 'slider', label: 'Slider' },
-                                        { value: 'article', label: 'Artigo' }
-                                    ]}
                                 />
                             </Form.Item>
                         </Col>
@@ -323,7 +339,7 @@ export const HomeForm = () => {
             title: values.title,
             subTitle: values.subTitle,
             text: values.text,
-            page: 'home',
+            page: values.page,
             contentType: values.contentType
         };
 
