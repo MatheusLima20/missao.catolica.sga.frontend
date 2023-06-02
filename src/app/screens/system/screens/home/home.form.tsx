@@ -19,7 +19,6 @@ import { ContentController } from '../../../../controller/content/content.contro
 import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
-import HTMLReactParser from 'html-react-parser';
 
 type InitialValues = {
     title?: string;
@@ -143,7 +142,6 @@ export const HomeForm = () => {
     return (
         <Row>
             {contextHolder}
-            {HTMLReactParser(values.text ? values.text : '')}
             <Col span={24} className="mb-5">
                 <Form
                     id="form"
