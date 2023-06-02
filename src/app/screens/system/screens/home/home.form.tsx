@@ -19,6 +19,7 @@ import { ContentController } from '../../../../controller/content/content.contro
 import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
+import plugins from 'suneditor/src/plugins';
 
 type InitialValues = {
     title?: string;
@@ -267,8 +268,8 @@ export const HomeForm = () => {
                                         lang={'pt_br'}
                                         placeholder="Digite seu texto..."
                                         setOptions={{
-                                            toolbarWidth: '100%',
-                                            katex: 'katex',
+                                            plugins: plugins,
+
                                             buttonList: [
                                                 // default
                                                 ['undo', 'redo'],
@@ -310,12 +311,7 @@ export const HomeForm = () => {
                                                     'preview',
                                                     'print'
                                                 ],
-                                                [
-                                                    '-right',
-                                                    ':r-More Rich-default.more_plus',
-                                                    'table',
-                                                    'math'
-                                                ],
+                                                ['table'],
                                                 [
                                                     '-right',
                                                     'image',
@@ -374,8 +370,7 @@ export const HomeForm = () => {
                                                             'link',
                                                             'image',
                                                             'video',
-                                                            'audio',
-                                                            'math'
+                                                            'audio'
                                                         ]
                                                     ]
                                                 ],
@@ -419,8 +414,7 @@ export const HomeForm = () => {
                                                             'link',
                                                             'image',
                                                             'video',
-                                                            'audio',
-                                                            'math'
+                                                            'audio'
                                                         ],
                                                         [
                                                             '-right',
@@ -474,8 +468,7 @@ export const HomeForm = () => {
                                                             'link',
                                                             'image',
                                                             'video',
-                                                            'audio',
-                                                            'math'
+                                                            'audio'
                                                         ],
                                                         [
                                                             '-right',
