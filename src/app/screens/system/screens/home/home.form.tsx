@@ -19,6 +19,7 @@ import { ContentController } from '../../../../controller/content/content.contro
 import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
+import HTMLReactParser from 'html-react-parser';
 
 type InitialValues = {
     title?: string;
@@ -45,7 +46,6 @@ const initialValues: InitialValues = {
     imageUrl: undefined,
     video: undefined
 };
-const teste = '<strong> Olá </strong>';
 
 const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
@@ -56,16 +56,26 @@ const getBase64 = (file: RcFile): Promise<string> =>
     });
 
 export const HomeForm = () => {
+    const editor = useRef<SunEditorCore>();
+
+    const getSunEditorInstance = (sunEditor: SunEditorCore) => {
+        editor.current = sunEditor;
+        setTimeout(() => {
+            editor.current?.setOptions({
+                charCounter: true,
+                charCounterType: 'byte',
+                maxCharCount: 2500
+            });
+        }, 500);
+    };
+
     const [file, setFile] = useState<RcFile>();
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [values, setValues] = useState(initialValues);
-
     const [messageApi, contextHolder] = message.useMessage();
-
-    const editor = useRef<SunEditorCore>();
 
     const handleChange = (event: any) => {
         const { name, value } = event.target;
@@ -130,18 +140,10 @@ export const HomeForm = () => {
         }
     };
 
-    const getSunEditorInstance = (sunEditor: SunEditorCore) => {
-        sunEditor.setOptions({
-            charCounter: true,
-            maxCharCount: 2500
-        });
-        editor.current = sunEditor;
-    };
-
     return (
         <Row>
             {contextHolder}
-            {teste}
+            {HTMLReactParser(values.text ? values.text : '')}
             <Col span={24} className="mb-5">
                 <Form
                     id="form"
@@ -258,13 +260,250 @@ export const HomeForm = () => {
                                     ]}
                                 >
                                     <SunEditor
-                                        name="text"
-                                        height="200"
-                                        lang={'pt_br'}
-                                        placeholder="Digite seu texto"
                                         getSunEditorInstance={
                                             getSunEditorInstance
                                         }
+                                        name="text"
+                                        height="200"
+                                        setAllPlugins={true}
+                                        lang={'pt_br'}
+                                        placeholder="Digite seu texto"
+                                        setOptions={{
+                                            toolbarWidth: '100%',
+                                            katex: 'katex',
+                                            buttonList: [
+                                                // default
+                                                ['undo', 'redo'],
+                                                [
+                                                    ':p-More Paragraph-default.more_paragraph',
+                                                    'font',
+                                                    'fontSize',
+                                                    'formatBlock',
+                                                    'paragraphStyle',
+                                                    'blockquote'
+                                                ],
+                                                [
+                                                    'bold',
+                                                    'underline',
+                                                    'italic',
+                                                    'strike',
+                                                    'subscript',
+                                                    'superscript'
+                                                ],
+                                                [
+                                                    'fontColor',
+                                                    'hiliteColor',
+                                                    'textStyle'
+                                                ],
+                                                ['removeFormat'],
+                                                ['outdent', 'indent'],
+                                                [
+                                                    'align',
+                                                    'horizontalRule',
+                                                    'list',
+                                                    'lineHeight'
+                                                ],
+                                                [
+                                                    '-right',
+                                                    ':i-More Misc-default.more_vertical',
+                                                    'fullScreen',
+                                                    'showBlocks',
+                                                    'codeView',
+                                                    'preview',
+                                                    'print',
+                                                    'save',
+                                                    'template'
+                                                ],
+                                                [
+                                                    '-right',
+                                                    ':r-More Rich-default.more_plus',
+                                                    'table',
+                                                    'math',
+                                                    'imageGallery'
+                                                ],
+                                                [
+                                                    '-right',
+                                                    'image',
+                                                    'video',
+                                                    'audio',
+                                                    'link'
+                                                ],
+                                                // (min-width: 992)
+                                                [
+                                                    '%992',
+                                                    [
+                                                        ['undo', 'redo'],
+                                                        [
+                                                            ':p-More Paragraph-default.more_paragraph',
+                                                            'font',
+                                                            'fontSize',
+                                                            'formatBlock',
+                                                            'paragraphStyle',
+                                                            'blockquote'
+                                                        ],
+                                                        [
+                                                            'bold',
+                                                            'underline',
+                                                            'italic',
+                                                            'strike'
+                                                        ],
+                                                        [
+                                                            ':t-More Text-default.more_text',
+                                                            'subscript',
+                                                            'superscript',
+                                                            'fontColor',
+                                                            'hiliteColor',
+                                                            'textStyle'
+                                                        ],
+                                                        ['removeFormat'],
+                                                        ['outdent', 'indent'],
+                                                        [
+                                                            'align',
+                                                            'horizontalRule',
+                                                            'list',
+                                                            'lineHeight'
+                                                        ],
+                                                        [
+                                                            '-right',
+                                                            ':i-More Misc-default.more_vertical',
+                                                            'fullScreen',
+                                                            'showBlocks',
+                                                            'codeView',
+                                                            'preview',
+                                                            'print',
+                                                            'save',
+                                                            'template'
+                                                        ],
+                                                        [
+                                                            '-right',
+                                                            ':r-More Rich-default.more_plus',
+                                                            'table',
+                                                            'link',
+                                                            'image',
+                                                            'video',
+                                                            'audio',
+                                                            'math',
+                                                            'imageGallery'
+                                                        ]
+                                                    ]
+                                                ],
+                                                // (min-width: 767)
+                                                [
+                                                    '%767',
+                                                    [
+                                                        ['undo', 'redo'],
+                                                        [
+                                                            ':p-More Paragraph-default.more_paragraph',
+                                                            'font',
+                                                            'fontSize',
+                                                            'formatBlock',
+                                                            'paragraphStyle',
+                                                            'blockquote'
+                                                        ],
+                                                        [
+                                                            ':t-More Text-default.more_text',
+                                                            'bold',
+                                                            'underline',
+                                                            'italic',
+                                                            'strike',
+                                                            'subscript',
+                                                            'superscript',
+                                                            'fontColor',
+                                                            'hiliteColor',
+                                                            'textStyle'
+                                                        ],
+                                                        ['removeFormat'],
+                                                        ['outdent', 'indent'],
+                                                        [
+                                                            ':e-More Line-default.more_horizontal',
+                                                            'align',
+                                                            'horizontalRule',
+                                                            'list',
+                                                            'lineHeight'
+                                                        ],
+                                                        [
+                                                            ':r-More Rich-default.more_plus',
+                                                            'table',
+                                                            'link',
+                                                            'image',
+                                                            'video',
+                                                            'audio',
+                                                            'math',
+                                                            'imageGallery'
+                                                        ],
+                                                        [
+                                                            '-right',
+                                                            ':i-More Misc-default.more_vertical',
+                                                            'fullScreen',
+                                                            'showBlocks',
+                                                            'codeView',
+                                                            'preview',
+                                                            'print',
+                                                            'save',
+                                                            'template'
+                                                        ]
+                                                    ]
+                                                ],
+                                                // (min-width: 480)
+                                                [
+                                                    '%480',
+                                                    [
+                                                        ['undo', 'redo'],
+                                                        [
+                                                            ':p-More Paragraph-default.more_paragraph',
+                                                            'font',
+                                                            'fontSize',
+                                                            'formatBlock',
+                                                            'paragraphStyle',
+                                                            'blockquote'
+                                                        ],
+                                                        [
+                                                            ':t-More Text-default.more_text',
+                                                            'bold',
+                                                            'underline',
+                                                            'italic',
+                                                            'strike',
+                                                            'subscript',
+                                                            'superscript',
+                                                            'fontColor',
+                                                            'hiliteColor',
+                                                            'textStyle',
+                                                            'removeFormat'
+                                                        ],
+                                                        [
+                                                            ':e-More Line-default.more_horizontal',
+                                                            'outdent',
+                                                            'indent',
+                                                            'align',
+                                                            'horizontalRule',
+                                                            'list',
+                                                            'lineHeight'
+                                                        ],
+                                                        [
+                                                            ':r-More Rich-default.more_plus',
+                                                            'table',
+                                                            'link',
+                                                            'image',
+                                                            'video',
+                                                            'audio',
+                                                            'math',
+                                                            'imageGallery'
+                                                        ],
+                                                        [
+                                                            '-right',
+                                                            ':i-More Misc-default.more_vertical',
+                                                            'fullScreen',
+                                                            'showBlocks',
+                                                            'codeView',
+                                                            'preview',
+                                                            'print',
+                                                            'save',
+                                                            'template'
+                                                        ]
+                                                    ]
+                                                ]
+                                            ]
+                                        }}
                                         onChange={(value: string) => {
                                             setValues({
                                                 ...values,
