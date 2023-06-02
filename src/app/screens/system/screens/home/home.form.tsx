@@ -63,7 +63,7 @@ export const HomeForm = () => {
             editor.current?.setOptions({
                 charCounter: true,
                 charCounterType: 'byte',
-                maxCharCount: 2500
+                maxCharCount: 5000
             });
         }, 500);
     };
@@ -262,10 +262,10 @@ export const HomeForm = () => {
                                             getSunEditorInstance
                                         }
                                         name="text"
-                                        height="200"
+                                        height="400"
                                         setAllPlugins={true}
                                         lang={'pt_br'}
-                                        placeholder="Digite seu texto"
+                                        placeholder="Digite seu texto..."
                                         setOptions={{
                                             toolbarWidth: '100%',
                                             katex: 'katex',
@@ -308,16 +308,13 @@ export const HomeForm = () => {
                                                     'showBlocks',
                                                     'codeView',
                                                     'preview',
-                                                    'print',
-                                                    'save',
-                                                    'template'
+                                                    'print'
                                                 ],
                                                 [
                                                     '-right',
                                                     ':r-More Rich-default.more_plus',
                                                     'table',
-                                                    'math',
-                                                    'imageGallery'
+                                                    'math'
                                                 ],
                                                 [
                                                     '-right',
@@ -368,9 +365,7 @@ export const HomeForm = () => {
                                                             'showBlocks',
                                                             'codeView',
                                                             'preview',
-                                                            'print',
-                                                            'save',
-                                                            'template'
+                                                            'print'
                                                         ],
                                                         [
                                                             '-right',
@@ -380,8 +375,7 @@ export const HomeForm = () => {
                                                             'image',
                                                             'video',
                                                             'audio',
-                                                            'math',
-                                                            'imageGallery'
+                                                            'math'
                                                         ]
                                                     ]
                                                 ],
@@ -426,8 +420,7 @@ export const HomeForm = () => {
                                                             'image',
                                                             'video',
                                                             'audio',
-                                                            'math',
-                                                            'imageGallery'
+                                                            'math'
                                                         ],
                                                         [
                                                             '-right',
@@ -436,9 +429,7 @@ export const HomeForm = () => {
                                                             'showBlocks',
                                                             'codeView',
                                                             'preview',
-                                                            'print',
-                                                            'save',
-                                                            'template'
+                                                            'print'
                                                         ]
                                                     ]
                                                 ],
@@ -484,8 +475,7 @@ export const HomeForm = () => {
                                                             'image',
                                                             'video',
                                                             'audio',
-                                                            'math',
-                                                            'imageGallery'
+                                                            'math'
                                                         ],
                                                         [
                                                             '-right',
@@ -494,15 +484,13 @@ export const HomeForm = () => {
                                                             'showBlocks',
                                                             'codeView',
                                                             'preview',
-                                                            'print',
-                                                            'save',
-                                                            'template'
+                                                            'print'
                                                         ]
                                                     ]
                                                 ]
                                             ]
                                         }}
-                                        onChange={(value: string) => {
+                                        onChange={(value: any) => {
                                             setValues({
                                                 ...values,
                                                 text: value
