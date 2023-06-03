@@ -20,6 +20,7 @@ import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
 import plugins from 'suneditor/src/plugins';
+import { companyCPFCNPJ } from '../../../../util/platform.number/platform.number';
 
 type InitialValues = {
     title?: string;
@@ -125,7 +126,7 @@ export const HomeForm = () => {
         setFileList(newFileList);
     };
 
-    const props: UploadProps = {
+    const uploadProps: UploadProps = {
         maxCount: 1,
         fileList: fileList,
         onRemove: (file) => {
@@ -268,8 +269,8 @@ export const HomeForm = () => {
                                         lang={'pt_br'}
                                         placeholder="Digite seu texto..."
                                         setOptions={{
+                                            imageGalleryUrl: `http://localhost:3001/content-gallery/${companyCPFCNPJ}`,
                                             plugins: plugins,
-
                                             buttonList: [
                                                 // default
                                                 ['undo', 'redo'],
@@ -314,7 +315,7 @@ export const HomeForm = () => {
                                                 ['table'],
                                                 [
                                                     '-right',
-                                                    'image',
+                                                    'imageGallery',
                                                     'video',
                                                     'audio',
                                                     'link'
@@ -368,7 +369,7 @@ export const HomeForm = () => {
                                                             ':r-More Rich-default.more_plus',
                                                             'table',
                                                             'link',
-                                                            'image',
+                                                            'imageGallery',
                                                             'video',
                                                             'audio'
                                                         ]
@@ -412,7 +413,7 @@ export const HomeForm = () => {
                                                             ':r-More Rich-default.more_plus',
                                                             'table',
                                                             'link',
-                                                            'image',
+                                                            'imageGallery',
                                                             'video',
                                                             'audio'
                                                         ],
@@ -466,7 +467,7 @@ export const HomeForm = () => {
                                                             ':r-More Rich-default.more_plus',
                                                             'table',
                                                             'link',
-                                                            'image',
+                                                            'imageGallery',
                                                             'video',
                                                             'audio'
                                                         ],
@@ -498,7 +499,7 @@ export const HomeForm = () => {
                             <Col md={24}>
                                 <Form.Item label="Imagem" name="file">
                                     <Dragger
-                                        {...props}
+                                        {...uploadProps}
                                         name="file"
                                         listType="picture-card"
                                         fileList={fileList}

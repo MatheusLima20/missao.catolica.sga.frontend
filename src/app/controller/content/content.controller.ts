@@ -85,5 +85,23 @@ export const ContentController = {
 
             return { error: true, message };
         }
+    },
+
+    getGallery: async () => {
+        try {
+            const request = await axios.get(
+                `/content-gallery/${companyCPFCNPJ}`
+            );
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message, data: data.data };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
     }
 };

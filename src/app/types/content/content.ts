@@ -11,3 +11,10 @@ export type Content = {
     contentType: string;
     id?: number;
 };
+
+export type Gallery = {
+    src: string;
+    name: string;
+    alt: string;
+    tag: string;
+};
