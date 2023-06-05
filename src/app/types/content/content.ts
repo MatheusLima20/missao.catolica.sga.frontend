@@ -5,7 +5,7 @@ export type Content = {
     path?: string;
     file?: any;
     fileName?: string;
-    imageUrl?: string;
+    url?: string;
     text?: string;
     page?: string;
     contentType: string;

@@ -171,13 +171,7 @@ export const HomeScreen = (props: Props) => {
             const subTitle = value.subTitle ? value.subTitle : '';
             return values.push({
                 alt: alt,
-                jsx: (
-                    <img
-                        src={value.imageUrl}
-                        width="100%"
-                        className="rounded-4"
-                    />
-                ),
+                jsx: <img src={value.url} width="100%" className="rounded-4" />,
                 title: title,
                 subTitle: subTitle
             });
@@ -192,13 +186,7 @@ export const HomeScreen = (props: Props) => {
             const title = value.title ? value.title : '';
             const subTitle = value.subTitle ? value.subTitle : '';
             return values.push({
-                jsx: (
-                    <img
-                        src={value.imageUrl}
-                        width="100%"
-                        className="rounded-3"
-                    />
-                ),
+                jsx: <img src={value.url} width="100%" className="rounded-3" />,
                 title: title,
                 subTitle: subTitle
             });
