@@ -8,7 +8,7 @@ import { companyCPFCNPJ } from '../../util/platform.number/platform.number';
 const cookie = cookies.get('data.user');
 
 export const ContentController = {
-    store: async (content: Content, file: RcFile | undefined) => {
+    store: async (content: Content, file?: RcFile) => {
         const values = content;
 
         try {

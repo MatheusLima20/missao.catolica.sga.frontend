@@ -20,7 +20,7 @@ import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
 import plugins from 'suneditor/src/plugins';
-import { companyCPFCNPJ } from '../../../../util/platform.number/platform.number';
+import { cookies } from '../../../../controller/user/adm.cookies';
 
 type InitialValues = {
     title?: string;
@@ -56,7 +56,11 @@ const getBase64 = (file: RcFile): Promise<string> =>
         reader.onerror = (error) => reject(error);
     });
 
-export const HomeForm = () => {
+const cookie = cookies.get('data.user');
+
+const token = cookie.token;
+
+export const HomeContentForm = () => {
     const editor = useRef<SunEditorCore>();
 
     const getSunEditorInstance = (sunEditor: SunEditorCore) => {
@@ -260,16 +264,17 @@ export const HomeForm = () => {
                                     ]}
                                 >
                                     <SunEditor
-                                        getSunEditorInstance={
-                                            getSunEditorInstance
-                                        }
                                         name="text"
                                         height="400"
                                         setAllPlugins={true}
                                         lang={'pt_br'}
                                         placeholder="Digite seu texto..."
                                         setOptions={{
-                                            imageGalleryUrl: `http://localhost:3001/content-gallery/${companyCPFCNPJ}`,
+                                            imageGalleryHeader: {
+                                                authorization: `Bearer ${token}`
+                                            },
+                                            imageGalleryUrl:
+                                                'http://localhost:3001/content-gallery',
                                             plugins: plugins,
                                             buttonList: [
                                                 // default
@@ -484,6 +489,9 @@ export const HomeForm = () => {
                                                 ]
                                             ]
                                         }}
+                                        getSunEditorInstance={
+                                            getSunEditorInstance
+                                        }
                                         onChange={(value: any) => {
                                             setValues({
                                                 ...values,
