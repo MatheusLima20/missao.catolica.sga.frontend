@@ -89,7 +89,7 @@ export const HomeContentForm = () => {
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
                         <Col md={4}>
-                            <Form.Item label="A página" name="page">
+                            <Form.Item label="Página" name="page">
                                 <Select
                                     defaultValue={values.page}
                                     value={values.page}

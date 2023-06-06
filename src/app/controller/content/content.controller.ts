@@ -89,15 +89,19 @@ export const ContentController = {
 
     getGallery: async () => {
         try {
-            const request = await axios.get(
-                `/content-gallery/${companyCPFCNPJ}`
-            );
+            const token = cookie.token;
+
+            const request = await axios.get('/content-gallery', {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
 
             const data = request.data;
 
             const message = data.message;
 
-            return { error: false, message, data: data.data };
+            return { error: false, message, data: data.result };
         } catch (error: any) {
             const message = await Error.check(error);
 

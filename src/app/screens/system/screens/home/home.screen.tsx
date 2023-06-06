@@ -1,12 +1,16 @@
 import { Card, Col, Row, Tabs } from 'antd';
-import { Content } from 'antd/es/layout/layout';
-import React from 'react';
+import React, { useState } from 'react';
 import { HomeContentForm } from './home.content.form';
 import { SlBookOpen } from 'react-icons/sl';
 import { FaImage } from 'react-icons/fa';
 import { HomeImagesForm } from './home.images.form';
+import { Gallery } from '../../../../types/content/content';
+import { ContentController } from '../../../../controller/content/content.controller';
+import { Content } from 'antd/es/layout/layout';
 
 export const HomeScreen = () => {
+    const [gallery, setGallery] = useState<Gallery[]>([]);
+
     const items = [
         {
             label: (
@@ -24,7 +28,14 @@ export const HomeScreen = () => {
                 </>
             ),
             key: '2',
-            children: <HomeImagesForm />
+            children: (
+                <HomeImagesForm
+                    gallery={gallery}
+                    onSave={() => {
+                        getGallery();
+                    }}
+                />
+            )
         }
     ];
 
@@ -56,4 +67,15 @@ export const HomeScreen = () => {
             </Row>
         </Content>
     );
+
+    async function getGallery() {
+        setGallery([]);
+        const request = await ContentController.getGallery();
+
+        const data: Gallery[] = request.data;
+
+        if (data) {
+            setGallery(data);
+        }
+    }
 };

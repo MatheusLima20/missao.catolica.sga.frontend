@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {
     Button,
+    Card,
     Col,
     Form,
+    Image,
     Input,
     message,
     Modal,
@@ -10,12 +12,13 @@ import {
     UploadFile,
     UploadProps
 } from 'antd';
-import { Content } from '../../../../types/content/content';
+import { Content, Gallery } from '../../../../types/content/content';
 import Dragger from 'antd/es/upload/Dragger';
 import { InboxOutlined } from '@ant-design/icons';
 import { RcFile } from 'antd/es/upload';
 import { ContentController } from '../../../../controller/content/content.controller';
 import 'suneditor/dist/css/suneditor.min.css';
+import Meta from 'antd/es/card/Meta';
 
 type InitialValues = {
     title?: string;
@@ -39,7 +42,24 @@ const getBase64 = (file: RcFile): Promise<string> =>
         reader.onerror = (error) => reject(error);
     });
 
-export const HomeImagesForm = () => {
+interface Props {
+    gallery: Gallery[];
+    onSave: () => void;
+}
+
+export const HomeImagesForm = (props: Props) => {
+    const gallery = props.gallery;
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
     const [file, setFile] = useState<RcFile>();
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
@@ -120,6 +140,7 @@ export const HomeImagesForm = () => {
                     layout="vertical"
                     size="large"
                     requiredMark={false}
+                    autoComplete="on"
                     initialValues={initialValues}
                     fields={[
                         { name: 'title', value: values.title },
@@ -208,9 +229,9 @@ export const HomeImagesForm = () => {
                             </Form.Item>
                         </Col>
 
-                        <Col md={24} className="mt-5">
-                            <Row justify={'center'}>
-                                <Col md={4} className="text-center">
+                        <Col span={24} className="mt-5">
+                            <Row justify={'center'} className="text-center">
+                                <Col md={4}>
                                     <Button type="primary" htmlType="submit">
                                         <strong>Enviar</strong>
                                     </Button>
@@ -224,10 +245,59 @@ export const HomeImagesForm = () => {
                                         <strong>Limpar</strong>
                                     </Button>
                                 </Col>
+                                <Col md={4}>
+                                    <Button
+                                        type="default"
+                                        onClick={() => {
+                                            props.onSave();
+                                            showModal();
+                                        }}
+                                    >
+                                        <strong>Galeria</strong>
+                                    </Button>
+                                </Col>
                             </Row>
                         </Col>
                     </Row>
                 </Form>
+            </Col>
+
+            <Col span={24}>
+                <Modal
+                    title="Galeria de Imagens"
+                    width="100%"
+                    open={isModalOpen}
+                    onCancel={handleOk}
+                    footer={[
+                        <Button key="back" onClick={handleOk}>
+                            Sair
+                        </Button>
+                    ]}
+                >
+                    <Row justify={'center'} gutter={[0, 50]}>
+                        {gallery.map((value, index) => {
+                            return (
+                                <Col md={7} key={index} className="text-center">
+                                    <Card
+                                        hoverable
+                                        style={{ width: 240 }}
+                                        cover={
+                                            <Image
+                                                src={value.src}
+                                                style={{ alignItems: 'center' }}
+                                            />
+                                        }
+                                    >
+                                        <Meta
+                                            title={value.tag}
+                                            description={value.alt}
+                                        ></Meta>
+                                    </Card>
+                                </Col>
+                            );
+                        })}
+                    </Row>
+                </Modal>
             </Col>
         </Row>
     );
