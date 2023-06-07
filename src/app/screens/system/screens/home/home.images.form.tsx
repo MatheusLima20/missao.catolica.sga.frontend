@@ -3,11 +3,13 @@ import {
     Button,
     Card,
     Col,
+    Divider,
     Form,
     Image,
     Input,
     message,
     Modal,
+    Radio,
     Row,
     UploadFile,
     UploadProps
@@ -49,8 +51,8 @@ interface Props {
 
 export const HomeImagesForm = (props: Props) => {
     const gallery = props.gallery;
-
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [tags, setTags] = useState<string[]>([]);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -264,7 +266,35 @@ export const HomeImagesForm = (props: Props) => {
 
             <Col span={24}>
                 <Modal
-                    title="Galeria de Imagens"
+                    title={
+                        <Row gutter={[0, 30]} className="mb-5">
+                            <Col md={24}>
+                                <p>Galeria de Imagens</p>
+                            </Col>
+                            <Col md={24}>
+                                {startOptionsGallery().map((value, index) => {
+                                    const tag = value.tag;
+                                    return (
+                                        <Radio.Button
+                                            key={index}
+                                            checked={
+                                                tags.filter(
+                                                    (value) => value === tag
+                                                ).length !== 0
+                                            }
+                                            onClick={() => {
+                                                selectButtom(tag);
+                                            }}
+                                            value={value.tag}
+                                        >
+                                            {value.tag}
+                                        </Radio.Button>
+                                    );
+                                })}
+                            </Col>
+                            <Divider />
+                        </Row>
+                    }
                     width="100%"
                     open={isModalOpen}
                     onCancel={handleOk}
@@ -275,7 +305,7 @@ export const HomeImagesForm = (props: Props) => {
                     ]}
                 >
                     <Row justify={'center'} gutter={[0, 50]}>
-                        {gallery.map((value, index) => {
+                        {startGallery().map((value, index) => {
                             return (
                                 <Col md={7} key={index} className="text-center">
                                     <Card
@@ -284,7 +314,9 @@ export const HomeImagesForm = (props: Props) => {
                                         cover={
                                             <Image
                                                 src={value.src}
-                                                style={{ alignItems: 'center' }}
+                                                style={{
+                                                    alignItems: 'center'
+                                                }}
                                             />
                                         }
                                     >
@@ -344,5 +376,45 @@ export const HomeImagesForm = (props: Props) => {
                 setFileList([]);
             }
         }, 1000);
+    }
+
+    function startGallery() {
+        const options: any[] = [...tags];
+        let newGallery: any[] = [];
+
+        gallery.map((value) => {
+            if (options.filter((option) => option === value.tag).length) {
+                newGallery.push(value);
+            }
+        });
+        if (!options.length) {
+            newGallery = [...gallery];
+        }
+        console.log(newGallery);
+        return newGallery;
+    }
+
+    function startOptionsGallery() {
+        const options: any[] = [];
+
+        gallery.map((value) => {
+            if (!options.filter((option) => option.tag === value.tag).length) {
+                options.push(value);
+            }
+        });
+
+        return options;
+    }
+
+    function selectButtom(valueTag: string) {
+        const haveTag = tags.filter((tag) => tag === valueTag);
+        const list = [...tags];
+        if (haveTag.length) {
+            const remove = list.indexOf(valueTag);
+            list.splice(remove, 1);
+            setTags(list);
+            return;
+        }
+        setTags([...tags, valueTag]);
     }
 };
