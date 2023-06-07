@@ -1,12 +1,27 @@
 import React, { useRef, useState } from 'react';
-import { Button, Col, Form, Image, Input, message, Row, Select } from 'antd';
-import { Content } from '../../../../types/content/content';
+import {
+    Button,
+    Card,
+    Col,
+    Divider,
+    Form,
+    Image,
+    Input,
+    message,
+    Modal,
+    Radio,
+    Row,
+    Select
+} from 'antd';
+import { Content, Gallery } from '../../../../types/content/content';
 import { ContentController } from '../../../../controller/content/content.controller';
 import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
 import plugins from 'suneditor/src/plugins';
 import { cookies } from '../../../../controller/user/adm.cookies';
+import { FaImages } from 'react-icons/fa';
+import Meta from 'antd/es/card/Meta';
 
 type InitialValues = {
     title?: string;
@@ -38,7 +53,25 @@ const cookie = cookies.get('data.user');
 
 const token = cookie.token;
 
-export const HomeContentForm = () => {
+interface Props {
+    gallery: Gallery[];
+    onClick: () => void;
+}
+
+export const HomeContentForm = (props: Props) => {
+    const gallery = props.gallery;
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [tags, setTags] = useState<string[]>([]);
+
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+
     const editor = useRef<SunEditorCore>();
 
     const getSunEditorInstance = (sunEditor: SunEditorCore) => {
@@ -430,27 +463,42 @@ export const HomeContentForm = () => {
                                     name="url"
                                     rules={[
                                         {
-                                            required: true
+                                            required: true,
+                                            message: 'A url é obrigatória.'
                                         }
                                     ]}
                                 >
                                     <Input
                                         name="url"
                                         value={values.url}
+                                        onClick={() => props.onClick()}
                                         onChange={handleChange}
+                                        size="large"
                                         placeholder="Digite a url..."
+                                        suffix={
+                                            <Button
+                                                size="large"
+                                                onClick={() => {
+                                                    props.onClick();
+                                                    showModal();
+                                                }}
+                                                icon={<FaImages size={30} />}
+                                            />
+                                        }
                                     />
                                 </Form.Item>
                             </Col>
                         )}
 
-                        <Col span={24}>
-                            <Row justify={'center'} className="text-center">
-                                <Col span={24}>
-                                    <Image src={values.url} width={400} />
-                                </Col>
-                            </Row>
-                        </Col>
+                        {values.url && values.url.length !== 0 && (
+                            <Col span={24}>
+                                <Row justify={'center'} className="text-center">
+                                    <Col span={24}>
+                                        <Image src={values.url} width={400} />
+                                    </Col>
+                                </Row>
+                            </Col>
+                        )}
 
                         <Col md={24} className="mt-5">
                             <Row justify={'center'} gutter={[30, 0]}>
@@ -472,6 +520,104 @@ export const HomeContentForm = () => {
                         </Col>
                     </Row>
                 </Form>
+            </Col>
+            <Col span={24}>
+                <Modal
+                    style={{ top: 20 }}
+                    title={
+                        <Row gutter={[0, 30]} className="mb-5">
+                            <Col md={24}>
+                                <p>Galeria de Imagens</p>
+                            </Col>
+                            <Col md={24}>
+                                {startOptionsGallery().map((value, index) => {
+                                    const tag = value.tag;
+                                    return (
+                                        <Radio.Button
+                                            key={index}
+                                            checked={
+                                                tags.filter(
+                                                    (value) => value === tag
+                                                ).length !== 0
+                                            }
+                                            onClick={() => {
+                                                selectButtom(tag);
+                                            }}
+                                            value={value.tag}
+                                        >
+                                            {value.tag}
+                                        </Radio.Button>
+                                    );
+                                })}
+                            </Col>
+                            <Divider />
+                        </Row>
+                    }
+                    width="100%"
+                    open={isModalOpen}
+                    onCancel={handleOk}
+                    footer={[
+                        <Button key="back" onClick={handleOk}>
+                            Sair
+                        </Button>
+                    ]}
+                >
+                    <div style={{ height: 400, overflow: 'auto' }}>
+                        <Row justify={'center'} gutter={[0, 50]}>
+                            {startGallery().map((value, index) => {
+                                return (
+                                    <Col
+                                        md={7}
+                                        key={index}
+                                        className="text-center"
+                                    >
+                                        <Card
+                                            hoverable
+                                            style={{ width: 240 }}
+                                            cover={
+                                                <Image
+                                                    src={value.src}
+                                                    style={{
+                                                        alignItems: 'center'
+                                                    }}
+                                                />
+                                            }
+                                        >
+                                            <Meta
+                                                title={value.tag}
+                                                description={
+                                                    <Row className="w-100">
+                                                        <Col span={24}>
+                                                            {value.alt}
+                                                        </Col>
+                                                        <Col md={24}>
+                                                            <Button
+                                                                type="default"
+                                                                size="large"
+                                                                title="Selecionar"
+                                                                onClick={() => {
+                                                                    setValues({
+                                                                        ...values,
+                                                                        url: value.src
+                                                                    });
+                                                                    handleOk();
+                                                                }}
+                                                            >
+                                                                <strong>
+                                                                    Selecionar
+                                                                </strong>
+                                                            </Button>
+                                                        </Col>
+                                                    </Row>
+                                                }
+                                            ></Meta>
+                                        </Card>
+                                    </Col>
+                                );
+                            })}
+                        </Row>
+                    </div>
+                </Modal>
             </Col>
         </Row>
     );
@@ -512,5 +658,45 @@ export const HomeContentForm = () => {
                 handleReset();
             }
         }, 1000);
+    }
+
+    function startGallery() {
+        const options: any[] = [...tags];
+        let newGallery: any[] = [];
+
+        gallery.map((value) => {
+            if (options.filter((option) => option === value.tag).length) {
+                newGallery.push(value);
+            }
+        });
+        if (!options.length) {
+            newGallery = [...gallery];
+        }
+
+        return newGallery;
+    }
+
+    function startOptionsGallery() {
+        const options: any[] = [];
+
+        gallery.map((value) => {
+            if (!options.filter((option) => option.tag === value.tag).length) {
+                options.push(value);
+            }
+        });
+
+        return options;
+    }
+
+    function selectButtom(valueTag: string) {
+        const haveTag = tags.filter((tag) => tag === valueTag);
+        const list = [...tags];
+        if (haveTag.length) {
+            const remove = list.indexOf(valueTag);
+            list.splice(remove, 1);
+            setTags(list);
+            return;
+        }
+        setTags([...tags, valueTag]);
     }
 };

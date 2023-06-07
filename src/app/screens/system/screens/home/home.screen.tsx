@@ -19,7 +19,14 @@ export const HomeScreen = () => {
                 </>
             ),
             key: '1',
-            children: <HomeContentForm />
+            children: (
+                <HomeContentForm
+                    gallery={gallery}
+                    onClick={() => {
+                        getGallery();
+                    }}
+                />
+            )
         },
         {
             label: (
@@ -31,7 +38,7 @@ export const HomeScreen = () => {
             children: (
                 <HomeImagesForm
                     gallery={gallery}
-                    onSave={() => {
+                    onClick={() => {
                         getGallery();
                     }}
                 />

@@ -46,7 +46,7 @@ const getBase64 = (file: RcFile): Promise<string> =>
 
 interface Props {
     gallery: Gallery[];
-    onSave: () => void;
+    onClick: () => void;
 }
 
 export const HomeImagesForm = (props: Props) => {
@@ -251,7 +251,7 @@ export const HomeImagesForm = (props: Props) => {
                                     <Button
                                         type="default"
                                         onClick={() => {
-                                            props.onSave();
+                                            props.onClick();
                                             showModal();
                                         }}
                                     >
