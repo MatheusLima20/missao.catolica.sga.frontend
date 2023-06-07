@@ -266,6 +266,7 @@ export const HomeImagesForm = (props: Props) => {
 
             <Col span={24}>
                 <Modal
+                    style={{ top: 20 }}
                     title={
                         <Row gutter={[0, 30]} className="mb-5">
                             <Col md={24}>
@@ -304,31 +305,37 @@ export const HomeImagesForm = (props: Props) => {
                         </Button>
                     ]}
                 >
-                    <Row justify={'center'} gutter={[0, 50]}>
-                        {startGallery().map((value, index) => {
-                            return (
-                                <Col md={7} key={index} className="text-center">
-                                    <Card
-                                        hoverable
-                                        style={{ width: 240 }}
-                                        cover={
-                                            <Image
-                                                src={value.src}
-                                                style={{
-                                                    alignItems: 'center'
-                                                }}
-                                            />
-                                        }
+                    <div style={{ height: 400, overflow: 'auto' }}>
+                        <Row justify={'center'} gutter={[0, 50]}>
+                            {startGallery().map((value, index) => {
+                                return (
+                                    <Col
+                                        md={7}
+                                        key={index}
+                                        className="text-center"
                                     >
-                                        <Meta
-                                            title={value.tag}
-                                            description={value.alt}
-                                        ></Meta>
-                                    </Card>
-                                </Col>
-                            );
-                        })}
-                    </Row>
+                                        <Card
+                                            hoverable
+                                            style={{ width: 240 }}
+                                            cover={
+                                                <Image
+                                                    src={value.src}
+                                                    style={{
+                                                        alignItems: 'center'
+                                                    }}
+                                                />
+                                            }
+                                        >
+                                            <Meta
+                                                title={value.tag}
+                                                description={value.alt}
+                                            ></Meta>
+                                        </Card>
+                                    </Col>
+                                );
+                            })}
+                        </Row>
+                    </div>
                 </Modal>
             </Col>
         </Row>
@@ -390,7 +397,7 @@ export const HomeImagesForm = (props: Props) => {
         if (!options.length) {
             newGallery = [...gallery];
         }
-        console.log(newGallery);
+
         return newGallery;
     }
 
