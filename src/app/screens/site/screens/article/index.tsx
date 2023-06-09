@@ -3,6 +3,7 @@ import { ArticleScreen } from './article.screen';
 import { useParams } from 'react-router-dom';
 import { ContentController } from '../../../../controller/content/content.controller';
 import { Content } from '../../../../types/content/content';
+import './article.style.css';
 
 export const Article = () => {
     const { id }: any = useParams<any>();

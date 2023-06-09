@@ -20,14 +20,14 @@ export const ArticleScreen = (props: Props) => {
                 <Col span={24}>
                     <Card className="border-0 shadow-lg p-3 mb-5 bg-body rounded">
                         <Row>
-                            <Col span={24}>
+                            <Col span={22} className="mt-5">
                                 <h2>{article?.title}</h2>
                             </Col>
-                            <Col span={24}>
-                                <h2>{article?.subTitle}</h2>
+                            <Col span={22} className="mb-5 m-3">
+                                <h5>{article?.subTitle}</h5>
                             </Col>
-                            <Col span={24}>
-                                <h2>{HTMLReactParser(text)}</h2>
+                            <Col span={24} className="mt-5">
+                                {HTMLReactParser(text)}
                             </Col>
                         </Row>
                     </Card>

@@ -28,9 +28,7 @@ type InitialValues = {
     subTitle?: string;
     video?: string;
     path?: string;
-    fileName?: string;
     url?: string;
-    text?: string;
     page: string;
     contentType: string;
     id?: number;
@@ -40,13 +38,10 @@ const initialValues: InitialValues = {
     id: 0,
     title: undefined,
     subTitle: undefined,
-    text: undefined,
     path: undefined,
-    fileName: undefined,
     page: 'home',
     contentType: 'text',
-    url: undefined,
-    video: undefined
+    url: undefined
 };
 
 const cookie = cookies.get('data.user');
@@ -63,6 +58,7 @@ export const HomeContentForm = (props: Props) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
+    const [text, setText] = useState<string>();
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -96,7 +92,11 @@ export const HomeContentForm = (props: Props) => {
 
     const handleReset = () => {
         const element = document.getElementById('form') as any;
-        setValues({ ...initialValues });
+        setValues({
+            ...initialValues,
+            page: values.page,
+            contentType: values.contentType
+        });
         element.reset();
     };
 
@@ -116,25 +116,31 @@ export const HomeContentForm = (props: Props) => {
                         { name: 'subTitle', value: values.subTitle },
                         { name: 'contentType', value: values.contentType },
                         { name: 'page', value: values.page },
-                        { name: 'url', value: values.url }
+                        { name: 'url', value: values.url },
+                        { name: 'text', value: text }
                     ]}
                     onFinish={save}
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
                         <Col md={4}>
-                            <Form.Item label="Página" name="page">
+                            <Form.Item label="Página" name={'page'}>
                                 <Select
                                     defaultValue={values.page}
                                     value={values.page}
                                     onChange={(value) => {
-                                        setValues({
-                                            ...initialValues,
-                                            page: value
-                                        });
+                                        const event = {
+                                            target: {
+                                                value: value,
+                                                name: 'page'
+                                            }
+                                        };
+
+                                        handleChange(event);
                                     }}
                                     options={[
                                         { value: 'home', label: 'Home' },
-                                        { value: 'article', label: 'Artigos' }
+                                        { value: 'article', label: 'Artigo' },
+                                        { value: 'about', label: 'Sobre' }
                                     ]}
                                 />
                             </Form.Item>
@@ -148,11 +154,18 @@ export const HomeContentForm = (props: Props) => {
                                     defaultValue={values.contentType}
                                     value={values.contentType}
                                     onChange={(value) => {
-                                        setValues({
-                                            ...initialValues,
-                                            contentType: value,
-                                            page: values.page
-                                        });
+                                        const event = {
+                                            target: {
+                                                value: value,
+                                                name: 'contentType'
+                                            }
+                                        };
+
+                                        if (value === 'slider') {
+                                            setText(undefined);
+                                        }
+
+                                        handleChange(event);
                                     }}
                                     options={[
                                         { value: 'text', label: 'Texto' },
@@ -207,7 +220,7 @@ export const HomeContentForm = (props: Props) => {
                             <Col md={24}>
                                 <Form.Item
                                     label="Texto"
-                                    name="text"
+                                    name={'text'}
                                     rules={[
                                         {
                                             required: true,
@@ -446,10 +459,7 @@ export const HomeContentForm = (props: Props) => {
                                             getSunEditorInstance
                                         }
                                         onChange={(value: any) => {
-                                            setValues({
-                                                ...values,
-                                                text: value
-                                            });
+                                            setText(value);
                                         }}
                                     />
                                 </Form.Item>
@@ -490,7 +500,7 @@ export const HomeContentForm = (props: Props) => {
                             </Col>
                         )}
 
-                        {values.url && values.url.length !== 0 && (
+                        {values.contentType !== 'text' && (
                             <Col span={24}>
                                 <Row justify={'center'} className="text-center">
                                     <Col span={24}>
@@ -633,10 +643,10 @@ export const HomeContentForm = (props: Props) => {
         const dataValues: Content = {
             title: values.title,
             subTitle: values.subTitle,
-            text: values.text,
+            text: text,
             page: values.page,
             contentType: values.contentType,
-            url: values.url
+            url: values.contentType !== 'text' ? values.url : undefined
         };
 
         const request = await ContentController.store(dataValues);
@@ -656,6 +666,7 @@ export const HomeContentForm = (props: Props) => {
             });
             if (!error) {
                 handleReset();
+                setText(undefined);
             }
         }, 1000);
     }
@@ -685,7 +696,9 @@ export const HomeContentForm = (props: Props) => {
             }
         });
 
-        return options;
+        return options.sort((a, b) =>
+            a.tag.toUpperCase().localeCompare(b.tag.toUpperCase())
+        );
     }
 
     function selectButtom(valueTag: string) {

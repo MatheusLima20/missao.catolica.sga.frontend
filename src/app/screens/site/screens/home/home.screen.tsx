@@ -81,22 +81,22 @@ export const HomeScreen = (props: Props) => {
                         >
                             {initArticles().map((article, index) => {
                                 const id = article.id;
-                                const title = article.title;
-                                const subTitle = article.subTitle;
+                                const title: string = article.title;
+                                const subTitle: string = article.subTitle;
                                 return (
                                     <Col key={index} md={12} className="mb-5">
-                                        <Button
-                                            type="link"
-                                            href={`/articles/${title}/${id}`}
+                                        <Card
+                                            bordered={false}
+                                            hoverable={true}
+                                            className="w-100"
+                                            style={{
+                                                ...gridStyle,
+                                                height: 200
+                                            }}
                                         >
-                                            <Card
-                                                bordered={false}
-                                                hoverable={true}
-                                                className="w-100"
-                                                style={{
-                                                    ...gridStyle,
-                                                    height: 200
-                                                }}
+                                            <Button
+                                                type="link"
+                                                href={`/articles/${title}/${id}`}
                                             >
                                                 <Row
                                                     align={'middle'}
@@ -108,24 +108,37 @@ export const HomeScreen = (props: Props) => {
                                                     </Col>
                                                     <Col md={12}>
                                                         <Row
-                                                            className="text-start"
+                                                            className="text-start text-black"
                                                             justify={'start'}
                                                         >
-                                                            <Col>
-                                                                <h4>
-                                                                    <strong>
-                                                                        {title}
-                                                                    </strong>
-                                                                </h4>
-                                                                <h6>
-                                                                    {subTitle}
-                                                                </h6>
+                                                            <Col span={24}>
+                                                                <div>
+                                                                    <h4>
+                                                                        <strong>
+                                                                            {title.substring(
+                                                                                0,
+                                                                                25
+                                                                            )}
+                                                                        </strong>
+                                                                    </h4>
+                                                                    <p
+                                                                        style={{
+                                                                            whiteSpace:
+                                                                                'pre-line'
+                                                                        }}
+                                                                    >
+                                                                        {subTitle.substring(
+                                                                            0,
+                                                                            150
+                                                                        )}
+                                                                    </p>
+                                                                </div>
                                                             </Col>
                                                         </Row>
                                                     </Col>
                                                 </Row>
-                                            </Card>
-                                        </Button>
+                                            </Button>
+                                        </Card>
                                     </Col>
                                 );
                             })}

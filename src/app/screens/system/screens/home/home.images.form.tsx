@@ -410,7 +410,9 @@ export const HomeImagesForm = (props: Props) => {
             }
         });
 
-        return options;
+        return options.sort((a, b) =>
+            a.tag.toUpperCase().localeCompare(b.tag.toUpperCase())
+        );
     }
 
     function selectButtom(valueTag: string) {
