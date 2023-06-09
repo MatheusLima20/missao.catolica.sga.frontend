@@ -69,6 +69,22 @@ export const ContentController = {
         }
     },
 
+    getByArticle: async (id: number) => {
+        try {
+            const request = await axios.get(`/article/${id}`);
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message, data: data.data };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
     getByPage: async (type: string, page: string) => {
         try {
             const request = await axios.get(
