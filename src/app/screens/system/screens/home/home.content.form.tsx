@@ -241,6 +241,8 @@ export const HomeContentForm = (props: Props) => {
                                             },
                                             imageGalleryUrl:
                                                 'http://localhost:3001/content-gallery',
+                                            defaultStyle:
+                                                'font-family: verdana; font-size: 12px;',
                                             plugins: plugins,
                                             buttonList: [
                                                 // default
