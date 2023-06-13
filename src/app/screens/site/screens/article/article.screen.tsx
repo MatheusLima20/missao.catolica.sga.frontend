@@ -3,38 +3,11 @@ import { Col, Row } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { Card } from 'react-bootstrap';
 import { Content as Article } from '../../../../types/content/content';
-import HTMLReactParser, {
-    attributesToProps,
-    domToReact
-} from 'html-react-parser';
+import HTMLReactParser from 'html-react-parser';
 
 interface Props {
     article: Article;
 }
-
-const options = {
-    replace: ({ attribs, children, name }: any) => {
-        if (!attribs) {
-            return;
-        }
-
-        if (name === 'p' && children[0].name === 'br') {
-            return <>{domToReact(children, options)}</>;
-        }
-
-        if (name === 'br') {
-            return;
-        }
-
-        if (attribs && name !== 'img') {
-            const Compoent = name;
-            const props = attributesToProps(attribs);
-            return (
-                <Compoent {...props}>{domToReact(children, options)}</Compoent>
-            );
-        }
-    }
-};
 
 export const ArticleScreen = (props: Props) => {
     const article = props.article;
@@ -54,7 +27,7 @@ export const ArticleScreen = (props: Props) => {
                                 <h5>{article?.subTitle}</h5>
                             </Col>
                             <Col span={24} className="mt-5">
-                                {HTMLReactParser(text, options)}
+                                {HTMLReactParser(text)}
                             </Col>
                         </Row>
                     </Card>
