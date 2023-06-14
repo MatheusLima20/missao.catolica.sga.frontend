@@ -242,8 +242,9 @@ export const HomeContentForm = (props: Props) => {
                                             imageGalleryUrl:
                                                 'http://localhost:3001/content-gallery',
                                             defaultStyle:
-                                                'font-family: verdana; font-size: 12px;',
+                                                'font-family: verdana; font-size: 14px;',
                                             plugins: plugins,
+                                            fontSize: [8, 10, 14, 18, 24, 36],
                                             buttonList: [
                                                 // default
                                                 ['undo', 'redo'],
@@ -273,8 +274,7 @@ export const HomeContentForm = (props: Props) => {
                                                 [
                                                     'align',
                                                     'horizontalRule',
-                                                    'list',
-                                                    'lineHeight'
+                                                    'list'
                                                 ],
                                                 [
                                                     '-right',
@@ -325,8 +325,7 @@ export const HomeContentForm = (props: Props) => {
                                                         [
                                                             'align',
                                                             'horizontalRule',
-                                                            'list',
-                                                            'lineHeight'
+                                                            'list'
                                                         ],
                                                         [
                                                             '-right',
@@ -379,8 +378,7 @@ export const HomeContentForm = (props: Props) => {
                                                             ':e-More Line-default.more_horizontal',
                                                             'align',
                                                             'horizontalRule',
-                                                            'list',
-                                                            'lineHeight'
+                                                            'list'
                                                         ],
                                                         [
                                                             ':r-More Rich-default.more_plus',
@@ -433,8 +431,7 @@ export const HomeContentForm = (props: Props) => {
                                                             'indent',
                                                             'align',
                                                             'horizontalRule',
-                                                            'list',
-                                                            'lineHeight'
+                                                            'list'
                                                         ],
                                                         [
                                                             ':r-More Rich-default.more_plus',

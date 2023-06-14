@@ -26,7 +26,11 @@ export const ArticleScreen = (props: Props) => {
                             <Col span={22} className="mb-5 m-3">
                                 <h5>{article?.subTitle}</h5>
                             </Col>
-                            <Col span={24} className="mt-5">
+                            <Col
+                                span={24}
+                                className="mt-5"
+                                style={{ lineHeight: 1.35 }}
+                            >
                                 {HTMLReactParser(text)}
                             </Col>
                         </Row>

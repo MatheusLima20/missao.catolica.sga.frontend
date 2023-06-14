@@ -9,6 +9,7 @@ import {
     Input,
     message,
     Modal,
+    Popconfirm,
     Radio,
     Row,
     UploadFile,
@@ -21,6 +22,7 @@ import { RcFile } from 'antd/es/upload';
 import { ContentController } from '../../../../controller/content/content.controller';
 import 'suneditor/dist/css/suneditor.min.css';
 import Meta from 'antd/es/card/Meta';
+import { AiFillDelete } from 'react-icons/ai';
 
 type InitialValues = {
     title?: string;
@@ -329,7 +331,34 @@ export const HomeImagesForm = (props: Props) => {
                                             <Meta
                                                 title={value.tag}
                                                 description={value.alt}
-                                            ></Meta>
+                                            />
+                                            <Row
+                                                className="mt-3"
+                                                justify={'center'}
+                                                gutter={[30, 0]}
+                                            >
+                                                <Col>
+                                                    <Popconfirm
+                                                        title="Deletar Imagem"
+                                                        description="Quer realmente deletar esta imagem?"
+                                                        placement="bottom"
+                                                        onConfirm={() => {
+                                                            console.log('ok');
+                                                        }}
+                                                        okText="Sim"
+                                                        cancelText="Não"
+                                                    >
+                                                        <Button
+                                                            size="large"
+                                                            title="Deletar"
+                                                        >
+                                                            <AiFillDelete
+                                                                size={25}
+                                                            />
+                                                        </Button>
+                                                    </Popconfirm>
+                                                </Col>
+                                            </Row>
                                         </Card>
                                     </Col>
                                 );
