@@ -13,6 +13,7 @@ export type Content = {
 };
 
 export type Gallery = {
+    id: number;
     src: string;
     name: string;
     alt: string;

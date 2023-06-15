@@ -343,7 +343,11 @@ export const HomeImagesForm = (props: Props) => {
                                                         description="Quer realmente deletar esta imagem?"
                                                         placement="bottom"
                                                         onConfirm={() => {
-                                                            console.log('ok');
+                                                            handleOk();
+                                                            deleteImage(
+                                                                value.id
+                                                            );
+                                                            props.onClick();
                                                         }}
                                                         okText="Sim"
                                                         cancelText="Não"
@@ -412,6 +416,25 @@ export const HomeImagesForm = (props: Props) => {
                 setFileList([]);
             }
         }, 1000);
+    }
+
+    async function deleteImage(id: number) {
+        messageApi.open({
+            key: 'platform.registration',
+            type: 'loading',
+            content: 'Carregando...',
+            duration: 3
+        });
+        const request = await ContentController.deleteImage(id);
+
+        const message = request.message;
+        const error = request.error;
+        messageApi.open({
+            key: 'platform.registration',
+            type: error ? 'error' : 'success',
+            content: message,
+            duration: 7
+        });
     }
 
     function startGallery() {

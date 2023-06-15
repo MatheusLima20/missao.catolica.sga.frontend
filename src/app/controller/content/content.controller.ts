@@ -123,5 +123,27 @@ export const ContentController = {
 
             return { error: true, message };
         }
+    },
+
+    deleteImage: async (id: number) => {
+        try {
+            const cookie = cookies.get('data.user');
+
+            const token = cookie.token;
+
+            const request = await axios.delete(`/content-archive/${id}`, {
+                headers: { authorization: `Bearer ${token}` }
+            });
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
     }
 };
