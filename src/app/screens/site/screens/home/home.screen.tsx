@@ -1,21 +1,22 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import { AnimationOnScroll } from 'react-animation-on-scroll';
 import './home.css';
 import { Content as ContentLayout } from 'antd/es/layout/layout';
 import { Button, Card, Col, Row } from 'antd';
-import { MdOutlineConnectWithoutContact } from 'react-icons/md';
 import { CarouselType } from '../../../../types/carousel.types';
 import { Content } from '../../../../types/content/content';
+import ReactPlayer from 'react-player';
 
 interface Props {
     sliders: Content[];
     articles: Content[];
+    videos: Content[];
 }
 
 export const HomeScreen = (props: Props) => {
     const articles = props.articles;
     const sliders = props.sliders;
+    const videos = props.videos;
 
     const gridStyle: React.CSSProperties = {
         textAlign: 'center'
@@ -145,38 +146,88 @@ export const HomeScreen = (props: Props) => {
                         </Row>
                     </Card>
 
-                    <AnimationOnScroll
-                        initiallyVisible={false}
-                        animatePreScroll={false}
-                        animateIn="animate__fadeIn"
-                        animateOut="animate__fadeOut"
-                    >
-                        <Card hoverable={true} className="mt-5 rounde-3 m-4">
-                            <Row justify={'space-between'} className="m-2">
-                                <Col md={18}>
+                    <Card
+                        className="border-0 mb-5 mt-5"
+                        hoverable={false}
+                        title={
+                            <Row className="mt-5 text-center">
+                                <Col md={24}>
                                     <h2>
-                                        <strong>
-                                            Tudo o que você precisa.
-                                        </strong>
+                                        <strong>Videos</strong>
                                     </h2>
-
-                                    <h5>
-                                        Nossa formação faz você conhecer a fé
-                                        como ela é.
-                                    </h5>
-                                </Col>
-                                <Col md={7}>
-                                    <Row justify={'center'}>
-                                        <Col span={24}>
-                                            <MdOutlineConnectWithoutContact
-                                                size={200}
-                                            />
-                                        </Col>
-                                    </Row>
                                 </Col>
                             </Row>
-                        </Card>
-                    </AnimationOnScroll>
+                        }
+                    >
+                        <Row
+                            className="mb-5"
+                            align={'middle'}
+                            justify={'center'}
+                            gutter={[20, 20]}
+                        >
+                            {initVideos().map((video, index) => {
+                                const id = video.id;
+                                const title: string = video.title;
+                                const subTitle: string = video.subTitle;
+                                return (
+                                    <Col key={index} md={12} className="mb-5">
+                                        <Card
+                                            bordered={false}
+                                            hoverable={true}
+                                            className="w-100"
+                                            style={{
+                                                ...gridStyle,
+                                                height: 450
+                                            }}
+                                        >
+                                            <Button
+                                                type="link"
+                                                href={`/articles/${title}/${id}`}
+                                            >
+                                                <Row
+                                                    align={'middle'}
+                                                    justify={'center'}
+                                                    gutter={[20, 20]}
+                                                >
+                                                    <Col>{video.jsx}</Col>
+                                                    <Col md={24}>
+                                                        <Row
+                                                            className="text-center text-black"
+                                                            justify={'center'}
+                                                        >
+                                                            <Col span={24}>
+                                                                <div>
+                                                                    <h4>
+                                                                        <strong>
+                                                                            {title.substring(
+                                                                                0,
+                                                                                25
+                                                                            )}
+                                                                        </strong>
+                                                                    </h4>
+                                                                    <p
+                                                                        style={{
+                                                                            whiteSpace:
+                                                                                'pre-line'
+                                                                        }}
+                                                                    >
+                                                                        {subTitle.substring(
+                                                                            0,
+                                                                            150
+                                                                        )}
+                                                                    </p>
+                                                                </div>
+                                                            </Col>
+                                                        </Row>
+                                                    </Col>
+                                                </Row>
+                                            </Button>
+                                        </Card>
+                                    </Col>
+                                );
+                            })}
+                        </Row>
+                    </Card>
                 </Col>
             </Row>
         </ContentLayout>
@@ -208,6 +259,30 @@ export const HomeScreen = (props: Props) => {
             return values.push({
                 id: value.id,
                 jsx: <img src={value.url} width="100%" className="rounded-3" />,
+                title: title,
+                subTitle: subTitle
+            });
+        });
+        return values;
+    }
+
+    function initVideos() {
+        const values: any[] = [];
+
+        videos.map((value) => {
+            const title = value.title ? value.title : '';
+            const subTitle = value.subTitle ? value.subTitle : '';
+            const url = value.url;
+            return values.push({
+                id: value.id,
+                jsx: (
+                    <ReactPlayer
+                        url={url}
+                        width={400}
+                        height={300}
+                        controls={false}
+                    />
+                ),
                 title: title,
                 subTitle: subTitle
             });

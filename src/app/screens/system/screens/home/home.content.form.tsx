@@ -140,6 +140,7 @@ export const HomeContentForm = (props: Props) => {
                                     options={[
                                         { value: 'home', label: 'Home' },
                                         { value: 'article', label: 'Artigo' },
+                                        { value: 'video', label: 'Vídeos' },
                                         { value: 'about', label: 'Sobre' }
                                     ]}
                                 />
@@ -170,6 +171,7 @@ export const HomeContentForm = (props: Props) => {
                                     options={[
                                         { value: 'text', label: 'Texto' },
                                         { value: 'slider', label: 'Slider' },
+                                        { value: 'video', label: 'Vídeo' },
                                         { value: 'article', label: 'Artigo' }
                                     ]}
                                 />
@@ -468,7 +470,7 @@ export const HomeContentForm = (props: Props) => {
                         {values.contentType !== 'text' && (
                             <Col md={24}>
                                 <Form.Item
-                                    label="Imagem"
+                                    label="URL Imagem/Video"
                                     name="url"
                                     rules={[
                                         {

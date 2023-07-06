@@ -8,16 +8,19 @@ import { Col, Row } from 'antd';
 const navigateMenu: MenuNavigation[] = [
     {
         title: 'Missão',
-        subTitles: [{ name: 'Retiros', href: '/retreats' }]
+        subTitles: [
+            { name: 'Eventos', href: '/events' },
+            { name: 'Pregações', href: '/preaching' }
+        ]
     },
     {
         title: 'Artigos',
-        subTitles: [{ name: 'Doutrinário', href: '/articles' }]
+        subTitles: [{ name: 'Artigos', href: '/articles' }]
     },
     {
         title: 'Sobre',
         subTitles: [
-            { name: 'Politica de privacidade', href: '/about' },
+            { name: 'Politica de privacidade', href: '/privacy-policy' },
             { name: 'Nossa história', href: '/about' }
         ]
     }

@@ -6,13 +6,15 @@ import { ContentController } from '../../../../controller/content/content.contro
 export const Home = () => {
     const [sliders, setSliders] = useState<Content[]>([]);
     const [articles, setArticles] = useState<Content[]>([]);
+    const [videos, setVideos] = useState<Content[]>([]);
 
     useEffect(() => {
         getSliders();
         getArticles();
+        getVideos();
     }, []);
 
-    return <HomeScreen sliders={sliders} articles={articles} />;
+    return <HomeScreen sliders={sliders} articles={articles} videos={videos} />;
 
     async function getSliders() {
         const request = await ContentController.getByPage('slider', 'home');
@@ -30,6 +32,15 @@ export const Home = () => {
 
         if (data) {
             setArticles(data);
+        }
+    }
+    async function getVideos() {
+        const request = await ContentController.getByPage('video', 'video');
+
+        const data: Content[] = request.data;
+
+        if (data) {
+            setVideos(data);
         }
     }
 };
