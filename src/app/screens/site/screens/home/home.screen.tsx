@@ -60,7 +60,7 @@ export const HomeScreen = (props: Props) => {
             </Row>
 
             <Row justify={'center'}>
-                <Col span={24}>
+                <Col span={20}>
                     <Card
                         className="border-0 mb-5 mt-5"
                         hoverable={false}
@@ -97,7 +97,10 @@ export const HomeScreen = (props: Props) => {
                                         >
                                             <Button
                                                 type="link"
-                                                href={`/articles/${title}/${id}`}
+                                                href={`/articles/${title.replaceAll(
+                                                    ' ',
+                                                    '-'
+                                                )}/${id}`}
                                             >
                                                 <Row
                                                     align={'middle'}
@@ -182,7 +185,10 @@ export const HomeScreen = (props: Props) => {
                                         >
                                             <Button
                                                 type="link"
-                                                href={`/articles/${title}/${id}`}
+                                                href={`/articles/${title.replaceAll(
+                                                    ' ',
+                                                    '-'
+                                                )}/${id}`}
                                             >
                                                 <Row
                                                     align={'middle'}

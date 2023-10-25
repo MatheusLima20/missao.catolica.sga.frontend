@@ -9,8 +9,9 @@ const navigateMenu: MenuNavigation[] = [
     {
         title: 'Missão',
         subTitles: [
-            { name: 'Eventos', href: '/events' },
-            { name: 'Pregações', href: '/preaching' }
+            { name: 'Catequese', href: '/catechism' },
+            { name: 'Exegética', href: '/catechism' },
+            { name: 'Retiros', href: '/exegetics' }
         ]
     },
     {
