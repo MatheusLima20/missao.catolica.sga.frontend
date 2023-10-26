@@ -79,7 +79,7 @@ export const HomeContentForm = (props: Props) => {
             editor.current?.setOptions({
                 charCounter: true,
                 charCounterType: 'byte',
-                maxCharCount: 5000,
+                maxCharCount: 20000,
                 value: text
             });
         }, 500);
@@ -101,6 +101,7 @@ export const HomeContentForm = (props: Props) => {
             page: values.page,
             contentType: values.contentType
         });
+        setText('');
         element.reset();
     };
 

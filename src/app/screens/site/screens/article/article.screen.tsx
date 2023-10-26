@@ -31,7 +31,7 @@ export const ArticleScreen = (props: Props) => {
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col md={20} className="mb-5 m-3 text-center">
+                            <Col md={20} className="m-3 text-center">
                                 <Row justify={'center'}>
                                     <Col className="text-start">
                                         <h5>{article?.subTitle}</h5>
@@ -48,15 +48,11 @@ export const ArticleScreen = (props: Props) => {
                                         </h6>
                                     </Col>
                                     <Col md={20} className="text-start">
-                                        <h6>{article?.creatorName}</h6>
+                                        <h6>Por: {article?.creatorName}</h6>
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col
-                                md={20}
-                                className="mt-5"
-                                style={{ lineHeight: 1.35 }}
-                            >
+                            <Col md={20} style={{ lineHeight: 1.35 }}>
                                 {HTMLReactParser(text)}
                             </Col>
                         </Row>

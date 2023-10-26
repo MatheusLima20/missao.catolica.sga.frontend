@@ -5,3 +5,9 @@
 .__se__float-right {
     float: right;
 }
+
+.__se__float-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
