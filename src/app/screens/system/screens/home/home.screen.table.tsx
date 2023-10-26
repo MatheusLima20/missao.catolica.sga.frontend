@@ -46,7 +46,7 @@ interface Props {
     loading: boolean;
 }
 
-export const HomeScreenTable = () => {
+export const HomeScreenTable = (props: Props) => {
     const [content, setContent] = useState<ContentData[]>([]);
     const [date, setDate] = useState('');
 
@@ -212,7 +212,15 @@ export const HomeScreenTable = () => {
                         href="#form"
                         title="Editar"
                         onClick={() => {
-                            //
+                            props.getRowValues({
+                                id: record.id,
+                                title: record.title,
+                                text: record.text,
+                                subTitle: record.subTitle,
+                                contentType: record.contentType,
+                                page: record.page,
+                                url: record.url
+                            } as DataType);
                         }}
                     >
                         <FiEdit size={20} />
@@ -232,7 +240,6 @@ export const HomeScreenTable = () => {
 
     const onChange: DatePickerProps['onChange'] = (date, dateString) => {
         setDate(dateString);
-        console.log(dateString);
     };
 
     useEffect(() => {
@@ -247,7 +254,7 @@ export const HomeScreenTable = () => {
         };
 
         getArticles();
-    }, [date]);
+    }, [date, props.loading]);
 
     return (
         <Content>
@@ -269,7 +276,7 @@ export const HomeScreenTable = () => {
                             pageSize: 5,
                             showTotal: () => (
                                 <div className="text-black">
-                                    <strong>Conteudos: {content.length}</strong>
+                                    <strong>Conteúdos: {content.length}</strong>
                                 </div>
                             ),
                             pageSizeOptions: [5, 10, 20]

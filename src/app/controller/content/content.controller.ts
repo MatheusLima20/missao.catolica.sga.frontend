@@ -68,17 +68,34 @@ export const ContentController = {
         }
     },
 
-    patch: async (dataUser: any) => {
-        const values = dataUser;
+    patch: async (content: ContentData, file?: RcFile) => {
+        const values = content;
 
         try {
-            const cookie = cookies.get('data.user');
-
             const token = cookie.token;
 
-            const request = await axios.patch('/physical-person', values, {
-                headers: { authorization: `Bearer ${token}` }
+            const formData = new FormData();
+
+            Object.keys(values).forEach((key: string) => {
+                if ((values as any)[key]) {
+                    formData.append(key, (values as any)[key]);
+                }
             });
+
+            if (file) {
+                formData.append('file', file);
+            }
+
+            const request = await axios.patch(
+                `/content/${content.id}`,
+                formData,
+                {
+                    headers: {
+                        'content-type': 'multipart/form-data',
+                        authorization: `Bearer ${token}`
+                    }
+                }
+            );
 
             const data = request.data;
 

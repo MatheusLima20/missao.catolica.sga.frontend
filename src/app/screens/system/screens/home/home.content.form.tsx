@@ -59,7 +59,9 @@ export const HomeContentForm = (props: Props) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [tags, setTags] = useState<string[]>([]);
-    const [text, setText] = useState<string>();
+    const [text, setText] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    const [restartSunEditor, setRestartSunEditor] = useState<boolean>(false);
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -77,7 +79,8 @@ export const HomeContentForm = (props: Props) => {
             editor.current?.setOptions({
                 charCounter: true,
                 charCounterType: 'byte',
-                maxCharCount: 5000
+                maxCharCount: 5000,
+                value: text
             });
         }, 500);
     };
@@ -164,7 +167,7 @@ export const HomeContentForm = (props: Props) => {
                                         };
 
                                         if (value === 'slider') {
-                                            setText(undefined);
+                                            setText('');
                                         }
 
                                         handleChange(event);
@@ -219,26 +222,30 @@ export const HomeContentForm = (props: Props) => {
                             </Form.Item>
                         </Col>
 
-                        {values.contentType !== 'slider' && (
-                            <Col md={24}>
-                                <Form.Item
-                                    label="Texto"
-                                    name={'text'}
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message:
-                                                'Por favor, digite o texto!'
-                                        }
-                                    ]}
-                                >
+                        <Col md={24}>
+                            <Form.Item
+                                label="Texto"
+                                name={'text'}
+                                rules={[
+                                    {
+                                        required:
+                                            values.contentType !== 'slider',
+                                        message: 'Por favor, digite o texto!'
+                                    }
+                                ]}
+                            >
+                                {!restartSunEditor && (
                                     <SunEditor
                                         name="text"
                                         height="400"
+                                        disable={
+                                            values.contentType === 'slider'
+                                        }
                                         setAllPlugins={true}
                                         lang={'pt_br'}
                                         placeholder="Digite seu texto..."
                                         setOptions={{
+                                            value: text,
                                             imageGalleryHeader: {
                                                 authorization: `Bearer ${token}`
                                             },
@@ -464,43 +471,45 @@ export const HomeContentForm = (props: Props) => {
                                             setText(value);
                                         }}
                                     />
-                                </Form.Item>
-                            </Col>
-                        )}
+                                )}
+                            </Form.Item>
+                        </Col>
 
-                        {values.contentType !== 'text' && (
-                            <Col md={24}>
-                                <Form.Item
-                                    label="URL Imagem/Video"
+                        <Col md={24}>
+                            <Form.Item
+                                label="URL Imagem/Video"
+                                name="url"
+                                rules={[
+                                    {
+                                        required: values.contentType !== 'text',
+                                        message: 'A url é obrigatória.'
+                                    }
+                                ]}
+                            >
+                                <Input
                                     name="url"
-                                    rules={[
-                                        {
-                                            required: true,
-                                            message: 'A url é obrigatória.'
-                                        }
-                                    ]}
-                                >
-                                    <Input
-                                        name="url"
-                                        value={values.url}
-                                        onClick={() => props.onClick()}
-                                        onChange={handleChange}
-                                        size="large"
-                                        placeholder="Digite a url..."
-                                        suffix={
-                                            <Button
-                                                size="large"
-                                                onClick={() => {
-                                                    props.onClick();
-                                                    showModal();
-                                                }}
-                                                icon={<FaImages size={30} />}
-                                            />
-                                        }
-                                    />
-                                </Form.Item>
-                            </Col>
-                        )}
+                                    disabled={values.contentType === 'text'}
+                                    value={values.url}
+                                    onClick={() => props.onClick()}
+                                    onChange={handleChange}
+                                    size="large"
+                                    placeholder="Digite a url..."
+                                    suffix={
+                                        <Button
+                                            disabled={
+                                                values.contentType === 'text'
+                                            }
+                                            size="large"
+                                            onClick={() => {
+                                                props.onClick();
+                                                showModal();
+                                            }}
+                                            icon={<FaImages size={30} />}
+                                        />
+                                    }
+                                />
+                            </Form.Item>
+                        </Col>
 
                         {values.contentType !== 'text' && (
                             <Col span={24}>
@@ -534,7 +543,25 @@ export const HomeContentForm = (props: Props) => {
                 </Form>
             </Col>
             <Col span={24}>
-                <HomeScreenTable />
+                <HomeScreenTable
+                    loading={loading}
+                    getRowValues={(value: ContentData) => {
+                        setValues({
+                            id: value.id as any,
+                            contentType: value.contentType,
+                            page: value.page as any,
+                            subTitle: value.subTitle as any,
+                            title: value.title as any,
+                            url: value.url as any
+                        });
+                        setRestartSunEditor(true);
+                        const newText = value.text ? value.text : '';
+                        setText(newText);
+                        setTimeout(() => {
+                            setRestartSunEditor(false);
+                        }, 500);
+                    }}
+                />
             </Col>
             <Col span={24}>
                 <Modal
@@ -645,6 +672,8 @@ export const HomeContentForm = (props: Props) => {
             duration: 7
         });
 
+        setLoading(true);
+
         const dataValues: ContentData = {
             title: values.title,
             subTitle: values.subTitle,
@@ -669,9 +698,10 @@ export const HomeContentForm = (props: Props) => {
                 content: message,
                 duration: 7
             });
+            setLoading(false);
             if (!error) {
                 handleReset();
-                setText(undefined);
+                setText('');
             }
         }, 1000);
     }
