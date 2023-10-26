@@ -68,7 +68,7 @@ export const ContentController = {
         }
     },
 
-    patch: async (content: ContentData, file?: RcFile) => {
+    patch: async (content: ContentData, id: number, file?: RcFile) => {
         const values = content;
 
         try {
@@ -86,16 +86,12 @@ export const ContentController = {
                 formData.append('file', file);
             }
 
-            const request = await axios.patch(
-                `/content/${content.id}`,
-                formData,
-                {
-                    headers: {
-                        'content-type': 'multipart/form-data',
-                        authorization: `Bearer ${token}`
-                    }
+            const request = await axios.patch(`/content/${id}`, formData, {
+                headers: {
+                    'content-type': 'multipart/form-data',
+                    authorization: `Bearer ${token}`
                 }
-            );
+            });
 
             const data = request.data;
 

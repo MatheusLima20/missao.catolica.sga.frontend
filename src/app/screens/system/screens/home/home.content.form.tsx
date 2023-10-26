@@ -683,7 +683,18 @@ export const HomeContentForm = (props: Props) => {
             url: values.contentType !== 'text' ? values.url : undefined
         };
 
-        const request = await ContentController.store(dataValues);
+        let request: any;
+
+        if (!values.id) {
+            request = await ContentController.store(dataValues);
+        } else {
+            request = await ContentController.patch(
+                {
+                    ...dataValues
+                },
+                values.id
+            );
+        }
 
         const error = request.error;
 

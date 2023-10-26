@@ -19,6 +19,7 @@
         "bootstrap": "^5.2.3",
         "clean-install": "^1.0.0",
         "codemirror": "^6.0.1",
+        "dayjs": "^1.11.10",
         "html-react-parser": "^4.0.0",
         "react": "^18.2.0",
         "react-animation-on-scroll": "^5.1.0",

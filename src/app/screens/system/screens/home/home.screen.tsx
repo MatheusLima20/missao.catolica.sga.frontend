@@ -66,7 +66,7 @@ export const HomeScreen = () => {
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <Tabs defaultActiveKey="2" items={items} />
+                                <Tabs defaultActiveKey="1" items={items} />
                             </Col>
                         </Row>
                     </Card>

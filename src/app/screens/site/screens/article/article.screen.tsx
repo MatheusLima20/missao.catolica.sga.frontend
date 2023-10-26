@@ -20,7 +20,7 @@ export const ArticleScreen = (props: Props) => {
                 <Col span={24}>
                     <Card className="border-0 shadow-lg p-3 mb-5 bg-body rounded">
                         <Row justify={'center'}>
-                            <Col span={24} className="mt-5 text-center">
+                            <Col span={18} className="mt-5 text-center">
                                 <Row justify={'center'}>
                                     <Col className="text-start">
                                         <h2>
@@ -29,7 +29,7 @@ export const ArticleScreen = (props: Props) => {
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col span={24} className="mb-5 m-3 text-center">
+                            <Col md={18} className="mb-5 m-3 text-center">
                                 <Row justify={'center'}>
                                     <Col className="text-start">
                                         <h5>{article?.subTitle}</h5>
@@ -37,7 +37,7 @@ export const ArticleScreen = (props: Props) => {
                                 </Row>
                             </Col>
                             <Col
-                                span={24}
+                                md={18}
                                 className="mt-5"
                                 style={{ lineHeight: 1.35 }}
                             >

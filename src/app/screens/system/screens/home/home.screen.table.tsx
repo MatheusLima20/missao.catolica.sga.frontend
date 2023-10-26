@@ -24,6 +24,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import { FiEdit } from 'react-icons/fi';
 import { ContentData } from '../../../../types/content/content';
 import locale from 'antd/es/date-picker/locale/pt_BR';
+import dayjs from 'dayjs';
 
 interface DataType {
     key: number;
@@ -204,6 +205,33 @@ export const HomeScreenTable = (props: Props) => {
             ...getColumnSearchProps('contentType', 'Tipo de Conteudo')
         },
         {
+            key: 'createdAt',
+            title: 'Criado Em',
+            dataIndex: 'createdAt',
+            sorter: (a, b) => {
+                const dateA = a.createdAt
+                    .substring(0, 9)
+                    .split('/')
+                    .reverse()
+                    .join('-');
+
+                const dateB = b.createdAt
+                    .substring(0, 9)
+                    .split('/')
+                    .reverse()
+                    .join('-');
+
+                const dateNumberA = Number.parseInt(dateA.replaceAll('-', ''));
+                const dateNumberB = Number.parseInt(dateB.replaceAll('-', ''));
+                const result = dateNumberB - dateNumberA;
+                return result;
+            },
+            sortOrder:
+                sortedInfo.columnKey === 'createdAt' ? sortedInfo.order : null,
+            ellipsis: true,
+            ...getColumnSearchProps('createdAt', 'Data')
+        },
+        {
             key: 'action',
             title: 'Ações',
             render: (record: DataType) => (
@@ -294,6 +322,7 @@ export const HomeScreenTable = (props: Props) => {
         const values: DataType[] = [];
 
         valuesData.map((value, index) => {
+            const createdAt = dayjs(value.createdAt).format('DD/MM/YYYY');
             return values.push({
                 key: index,
                 id: value.id as any,
@@ -305,7 +334,7 @@ export const HomeScreenTable = (props: Props) => {
                 fileName: value.fileName as any,
                 url: value.url,
                 video: value.video,
-                createdAt: value.createdAt as any
+                createdAt: createdAt
             });
         });
 
