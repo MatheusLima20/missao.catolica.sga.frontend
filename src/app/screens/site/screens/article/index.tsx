@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ArticleScreen } from './article.screen';
 import { useParams } from 'react-router-dom';
 import { ContentController } from '../../../../controller/content/content.controller';
-import { Content } from '../../../../types/content/content';
+import { ContentData } from '../../../../types/content/content';
 import './article.style.css';
 
 export const Article = () => {
@@ -15,7 +15,7 @@ export const Article = () => {
 
             const request = await ContentController.getByArticle(idNumber);
 
-            const data: Content = request.data;
+            const data: ContentData = request.data;
 
             if (data) {
                 setArticle(data);

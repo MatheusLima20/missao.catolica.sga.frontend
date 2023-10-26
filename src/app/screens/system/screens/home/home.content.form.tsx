@@ -13,7 +13,7 @@ import {
     Row,
     Select
 } from 'antd';
-import { Content, Gallery } from '../../../../types/content/content';
+import { ContentData, Gallery } from '../../../../types/content/content';
 import { ContentController } from '../../../../controller/content/content.controller';
 import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
@@ -22,6 +22,7 @@ import plugins from 'suneditor/src/plugins';
 import { cookies } from '../../../../controller/user/adm.cookies';
 import { FaImages } from 'react-icons/fa';
 import Meta from 'antd/es/card/Meta';
+import { HomeScreenTable } from './home.screen.table';
 
 type InitialValues = {
     title?: string;
@@ -533,6 +534,9 @@ export const HomeContentForm = (props: Props) => {
                 </Form>
             </Col>
             <Col span={24}>
+                <HomeScreenTable />
+            </Col>
+            <Col span={24}>
                 <Modal
                     style={{ top: 20 }}
                     title={
@@ -641,7 +645,7 @@ export const HomeContentForm = (props: Props) => {
             duration: 7
         });
 
-        const dataValues: Content = {
+        const dataValues: ContentData = {
             title: values.title,
             subTitle: values.subTitle,
             text: text,

@@ -1,6 +1,6 @@
 import { RcFile } from 'antd/es/upload';
 import axios from '../../config/axios';
-import { Content } from '../../types/content/content';
+import { ContentData } from '../../types/content/content';
 import { Error } from '../errors/check.errors';
 import { cookies } from '../user/adm.cookies';
 import { companyCPFCNPJ } from '../../util/platform.number/platform.number';
@@ -8,7 +8,30 @@ import { companyCPFCNPJ } from '../../util/platform.number/platform.number';
 const cookie = cookies.get('data.user');
 
 export const ContentController = {
-    store: async (content: Content, file?: RcFile) => {
+    get: async (date: string) => {
+        try {
+            const token = cookie.token;
+
+            const request = await axios.get(`/content/${date}`, {
+                headers: {
+                    'content-type': 'multipart/form-data',
+                    authorization: `Bearer ${token}`
+                }
+            });
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message, data: data.data };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
+    store: async (content: ContentData, file?: RcFile) => {
         const values = content;
 
         try {

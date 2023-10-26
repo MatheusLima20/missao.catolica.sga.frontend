@@ -15,7 +15,7 @@ import {
     UploadFile,
     UploadProps
 } from 'antd';
-import { Content, Gallery } from '../../../../types/content/content';
+import { ContentData, Gallery } from '../../../../types/content/content';
 import Dragger from 'antd/es/upload/Dragger';
 import { InboxOutlined } from '@ant-design/icons';
 import { RcFile } from 'antd/es/upload';
@@ -391,7 +391,7 @@ export const HomeImagesForm = (props: Props) => {
             duration: 7
         });
 
-        const dataValues: Content = {
+        const dataValues: ContentData = {
             title: values.title,
             contentType: values.contentType
         };

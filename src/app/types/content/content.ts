@@ -1,4 +1,4 @@
-export type Content = {
+export type ContentData = {
     title?: string;
     subTitle?: string;
     video?: string;
@@ -10,6 +10,7 @@ export type Content = {
     page?: string;
     contentType: string;
     id?: number;
+    createdAt?: string;
 };
 
 export type Gallery = {

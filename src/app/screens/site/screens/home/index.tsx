@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { HomeScreen } from './home.screen';
-import { Content } from '../../../../types/content/content';
+import { ContentData } from '../../../../types/content/content';
 import { ContentController } from '../../../../controller/content/content.controller';
 
 export const Home = () => {
-    const [sliders, setSliders] = useState<Content[]>([]);
-    const [articles, setArticles] = useState<Content[]>([]);
-    const [videos, setVideos] = useState<Content[]>([]);
+    const [sliders, setSliders] = useState<ContentData[]>([]);
+    const [articles, setArticles] = useState<ContentData[]>([]);
+    const [videos, setVideos] = useState<ContentData[]>([]);
 
     useEffect(() => {
         getSliders();
@@ -19,7 +19,7 @@ export const Home = () => {
     async function getSliders() {
         const request = await ContentController.getByPage('slider', 'home');
 
-        const data: Content[] = request.data;
+        const data: ContentData[] = request.data;
 
         if (data) {
             setSliders(data);
@@ -28,7 +28,7 @@ export const Home = () => {
     async function getArticles() {
         const request = await ContentController.getByPage('article', 'article');
 
-        const data: Content[] = request.data;
+        const data: ContentData[] = request.data;
 
         if (data) {
             setArticles(data);
@@ -37,7 +37,7 @@ export const Home = () => {
     async function getVideos() {
         const request = await ContentController.getByPage('video', 'video');
 
-        const data: Content[] = request.data;
+        const data: ContentData[] = request.data;
 
         if (data) {
             setVideos(data);

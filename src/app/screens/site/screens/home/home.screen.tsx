@@ -4,13 +4,13 @@ import './home.css';
 import { Content as ContentLayout } from 'antd/es/layout/layout';
 import { Button, Card, Col, Row } from 'antd';
 import { CarouselType } from '../../../../types/carousel.types';
-import { Content } from '../../../../types/content/content';
+import { ContentData } from '../../../../types/content/content';
 import ReactPlayer from 'react-player';
 
 interface Props {
-    sliders: Content[];
-    articles: Content[];
-    videos: Content[];
+    sliders: ContentData[];
+    articles: ContentData[];
+    videos: ContentData[];
 }
 
 export const HomeScreen = (props: Props) => {

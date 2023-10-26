@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Row } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { Card } from 'react-bootstrap';
-import { Content as Article } from '../../../../types/content/content';
+import { ContentData as Article } from '../../../../types/content/content';
 import HTMLReactParser from 'html-react-parser';
 
 interface Props {
