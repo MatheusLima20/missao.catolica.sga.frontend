@@ -37,7 +37,7 @@ function App() {
             theme={{
                 token: {
                     colorPrimary: '#010064',
-                    colorBgLayout: '#fff',
+                    colorBgLayout: '#010064',
                     colorTextSecondary: '#fff'
                 }
             }}

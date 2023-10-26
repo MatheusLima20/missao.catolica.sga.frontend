@@ -25,7 +25,7 @@ export const HomeScreen = (props: Props) => {
     return (
         <ContentLayout className="mt-5">
             <Row justify={'center'} className="border-0">
-                <Col span={18}>
+                <Col span={20}>
                     <Carousel pause={'hover'} fade>
                         {initSliders().map((values, index) => {
                             return (
@@ -62,7 +62,7 @@ export const HomeScreen = (props: Props) => {
             <Row justify={'center'}>
                 <Col span={20}>
                     <Card
-                        className="border-0 mb-5 mt-5"
+                        className="border-0 mb-5 "
                         hoverable={false}
                         title={
                             <Row className="mt-5 text-center">

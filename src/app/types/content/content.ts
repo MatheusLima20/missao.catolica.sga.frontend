@@ -11,6 +11,8 @@ export type ContentData = {
     contentType: string;
     id?: number;
     createdAt?: string;
+    updatedAt?: string;
+    creatorName?: string;
 };
 
 export type Gallery = {
