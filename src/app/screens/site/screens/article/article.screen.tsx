@@ -19,12 +19,22 @@ export const ArticleScreen = (props: Props) => {
             <Row className="m-2 mt-5">
                 <Col span={24}>
                     <Card className="border-0 shadow-lg p-3 mb-5 bg-body rounded">
-                        <Row>
-                            <Col span={22} className="mt-5">
-                                <h2>{article?.title}</h2>
+                        <Row justify={'center'}>
+                            <Col span={24} className="mt-5 text-center">
+                                <Row justify={'center'}>
+                                    <Col className="text-start">
+                                        <h2>
+                                            <strong>{article?.title}</strong>
+                                        </h2>
+                                    </Col>
+                                </Row>
                             </Col>
-                            <Col span={22} className="mb-5 m-3">
-                                <h5>{article?.subTitle}</h5>
+                            <Col span={24} className="mb-5 m-3 text-center">
+                                <Row justify={'center'}>
+                                    <Col className="text-start">
+                                        <h5>{article?.subTitle}</h5>
+                                    </Col>
+                                </Row>
                             </Col>
                             <Col
                                 span={24}
