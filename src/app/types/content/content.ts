@@ -8,6 +8,7 @@ export type ContentData = {
     url?: string;
     text?: string;
     page?: string;
+    visible: boolean;
     contentType: string;
     id?: number;
     createdAt?: string;

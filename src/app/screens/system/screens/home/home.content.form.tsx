@@ -11,7 +11,8 @@ import {
     Modal,
     Radio,
     Row,
-    Select
+    Select,
+    Switch
 } from 'antd';
 import { ContentData, Gallery } from '../../../../types/content/content';
 import { ContentController } from '../../../../controller/content/content.controller';
@@ -23,6 +24,7 @@ import { cookies } from '../../../../controller/user/adm.cookies';
 import { FaImages } from 'react-icons/fa';
 import Meta from 'antd/es/card/Meta';
 import { HomeScreenTable } from './home.screen.table';
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 
 type InitialValues = {
     title?: string;
@@ -33,6 +35,7 @@ type InitialValues = {
     page: string;
     contentType: string;
     id?: number;
+    visible: boolean;
 };
 
 const initialValues: InitialValues = {
@@ -42,7 +45,8 @@ const initialValues: InitialValues = {
     path: undefined,
     page: 'home',
     contentType: 'text',
-    url: undefined
+    url: undefined,
+    visible: false
 };
 
 const cookie = cookies.get('data.user');
@@ -127,7 +131,7 @@ export const HomeContentForm = (props: Props) => {
                     onFinish={save}
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
-                        <Col md={4}>
+                        <Col md={5}>
                             <Form.Item label="Página" name={'page'}>
                                 <Select
                                     defaultValue={values.page}
@@ -151,7 +155,7 @@ export const HomeContentForm = (props: Props) => {
                                 />
                             </Form.Item>
                         </Col>
-                        <Col md={4}>
+                        <Col md={5}>
                             <Form.Item
                                 label="Tipo de Conteúdo"
                                 name="contentType"
@@ -182,7 +186,7 @@ export const HomeContentForm = (props: Props) => {
                                 />
                             </Form.Item>
                         </Col>
-                        <Col md={8}>
+                        <Col md={14}>
                             <Form.Item
                                 label="Titulo"
                                 name="title"
@@ -202,7 +206,7 @@ export const HomeContentForm = (props: Props) => {
                                 />
                             </Form.Item>
                         </Col>
-                        <Col md={8}>
+                        <Col md={20}>
                             <Form.Item
                                 label="Subtítulo"
                                 name="subTitle"
@@ -219,6 +223,38 @@ export const HomeContentForm = (props: Props) => {
                                     value={values.subTitle}
                                     onChange={handleChange}
                                     placeholder="Digite seu subtítulo..."
+                                />
+                            </Form.Item>
+                        </Col>
+
+                        <Col md={4}>
+                            <Form.Item
+                                label="Ativo"
+                                name="visible"
+                                rules={[
+                                    {
+                                        required:
+                                            values.contentType === 'article',
+                                        message: 'Digite o subtítulo.'
+                                    }
+                                ]}
+                            >
+                                <Switch
+                                    size="default"
+                                    checked={values.visible}
+                                    checkedChildren={
+                                        <BsFillEyeFill size={20} />
+                                    }
+                                    unCheckedChildren={
+                                        <BsFillEyeSlashFill size={20} />
+                                    }
+                                    onChange={(value) => {
+                                        setValues({
+                                            ...values,
+                                            visible: value
+                                        });
+                                    }}
+                                    defaultChecked={false}
                                 />
                             </Form.Item>
                         </Col>
@@ -553,7 +589,8 @@ export const HomeContentForm = (props: Props) => {
                             page: value.page as any,
                             subTitle: value.subTitle as any,
                             title: value.title as any,
-                            url: value.url as any
+                            url: value.url as any,
+                            visible: value.visible
                         });
                         setRestartSunEditor(true);
                         const newText = value.text ? value.text : '';
@@ -680,6 +717,7 @@ export const HomeContentForm = (props: Props) => {
             subTitle: values.subTitle,
             text: text,
             page: values.page,
+            visible: values.visible,
             contentType: values.contentType,
             url: values.contentType !== 'text' ? values.url : undefined
         };

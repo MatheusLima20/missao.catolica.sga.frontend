@@ -393,7 +393,8 @@ export const HomeImagesForm = (props: Props) => {
 
         const dataValues: ContentData = {
             title: values.title,
-            contentType: values.contentType
+            contentType: values.contentType,
+            visible: true
         };
 
         const request = await ContentController.store(dataValues, file);

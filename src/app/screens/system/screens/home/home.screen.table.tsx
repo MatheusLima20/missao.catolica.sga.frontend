@@ -25,12 +25,14 @@ import { FiEdit } from 'react-icons/fi';
 import { ContentData } from '../../../../types/content/content';
 import locale from 'antd/es/date-picker/locale/pt_BR';
 import dayjs from 'dayjs';
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 
 interface DataType {
     key: number;
     id: number;
     title: string;
     subTitle: string;
+    visible: boolean;
     video?: string;
     fileName?: string;
     url?: string;
@@ -156,7 +158,9 @@ export const HomeScreenTable = (props: Props) => {
     const columns: ColumnsType<DataType> = [
         {
             key: 'title',
+            fixed: 'left',
             title: 'Title',
+            width: 220,
             dataIndex: 'title',
             sorter: (a, b) => {
                 return a.title.localeCompare(b.title);
@@ -170,6 +174,7 @@ export const HomeScreenTable = (props: Props) => {
             key: 'subTitle',
             title: 'SubTitulo',
             dataIndex: 'subTitle',
+            width: 200,
             sorter: (a, b) => {
                 return a.subTitle.localeCompare(b.subTitle);
             },
@@ -182,6 +187,7 @@ export const HomeScreenTable = (props: Props) => {
             key: 'page',
             title: 'Pagina',
             dataIndex: 'page',
+            width: 150,
             sorter: (a, b) => {
                 return a.page.localeCompare(b.page);
             },
@@ -194,6 +200,7 @@ export const HomeScreenTable = (props: Props) => {
             key: 'contentType',
             title: 'Tipo',
             dataIndex: 'contentType',
+            width: 150,
             sorter: (a, b) => {
                 return a.contentType.localeCompare(b.contentType);
             },
@@ -205,9 +212,29 @@ export const HomeScreenTable = (props: Props) => {
             ...getColumnSearchProps('contentType', 'Tipo de Conteudo')
         },
         {
+            key: 'visible',
+            title: 'Visivel',
+            dataIndex: 'visible',
+            width: 200,
+            render: (visible: boolean) => {
+                return (
+                    <Row>
+                        <Col>
+                            {visible ? (
+                                <BsFillEyeFill size={20} />
+                            ) : (
+                                <BsFillEyeSlashFill size={20} />
+                            )}
+                        </Col>
+                    </Row>
+                );
+            }
+        },
+        {
             key: 'createdAt',
             title: 'Criado Em',
             dataIndex: 'createdAt',
+            width: 200,
             sorter: (a, b) => {
                 const dateA = a.createdAt
                     .substring(0, 9)
@@ -233,7 +260,9 @@ export const HomeScreenTable = (props: Props) => {
         },
         {
             key: 'action',
+            fixed: 'right',
             title: 'Ações',
+            width: 200,
             render: (record: DataType) => (
                 <Space size="middle">
                     <Button
@@ -247,6 +276,7 @@ export const HomeScreenTable = (props: Props) => {
                                 subTitle: record.subTitle,
                                 contentType: record.contentType,
                                 page: record.page,
+                                visible: record.visible,
                                 url: record.url
                             } as DataType);
                         }}
@@ -309,7 +339,7 @@ export const HomeScreenTable = (props: Props) => {
                             ),
                             pageSizeOptions: [5, 10, 20]
                         }}
-                        scroll={{ y: 520 }}
+                        scroll={{ y: 520, x: 500 }}
                     />
                 </Col>
             </Row>
@@ -322,14 +352,17 @@ export const HomeScreenTable = (props: Props) => {
         const values: DataType[] = [];
 
         valuesData.map((value, index) => {
+            const title = value?.title ? value.title : '';
+            const subTitle = value?.subTitle ? value.subTitle : '';
             const createdAt = dayjs(value.createdAt).format('DD/MM/YYYY');
             return values.push({
                 key: index,
                 id: value.id as any,
-                title: value.title as any,
-                subTitle: value.subTitle as any,
+                title: title,
+                subTitle: subTitle,
                 text: value.text as any,
                 contentType: value.contentType,
+                visible: value.visible,
                 page: value.page as any,
                 fileName: value.fileName as any,
                 url: value.url,
