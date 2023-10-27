@@ -5,6 +5,7 @@ import { Card } from 'react-bootstrap';
 import { ContentData as Article } from '../../../../types/content/content';
 import HTMLReactParser from 'html-react-parser';
 import dayjs from 'dayjs';
+import ReactPlayer from 'react-player';
 require('dayjs/locale/pt-br');
 
 interface Props {
@@ -15,6 +16,8 @@ export const ArticleScreen = (props: Props) => {
     const article = props.article;
 
     const text = article ? (article.text as any) : '';
+
+    const video = article?.url;
 
     return (
         <Content>
@@ -41,6 +44,20 @@ export const ArticleScreen = (props: Props) => {
                                     </Col>
                                 </Row>
                             </Col>
+                            {video && (
+                                <Col md={24} className="m-3 text-center">
+                                    <Row justify={'center'}>
+                                        <Col md={20}>
+                                            <ReactPlayer
+                                                url={video}
+                                                width={'100%'}
+                                                height={400}
+                                                controls={false}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            )}
                             <Col md={18} className="mb-5 m-3">
                                 <Row justify={'start'}>
                                     <Col md={20} className="text-start">

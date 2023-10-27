@@ -2,10 +2,12 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './home.css';
 import { Content as ContentLayout } from 'antd/es/layout/layout';
-import { Button, Card, Col, Row } from 'antd';
+import { Card, Col, Row } from 'antd';
 import { CarouselType } from '../../../../types/carousel.types';
 import { ContentData } from '../../../../types/content/content';
 import ReactPlayer from 'react-player';
+import { HomeArticlesScreen } from './home.articles.screen';
+import { HomeVideosScreen } from './home.videos.screen';
 
 interface Props {
     sliders: ContentData[];
@@ -18,12 +20,8 @@ export const HomeScreen = (props: Props) => {
     const sliders = props.sliders;
     const videos = props.videos;
 
-    const gridStyle: React.CSSProperties = {
-        textAlign: 'center'
-    };
-
     return (
-        <ContentLayout className="mt-5">
+        <ContentLayout>
             <Row justify={'center'} className="border-0">
                 <Col span={20}>
                     <Carousel pause={'hover'} fade>
@@ -62,7 +60,7 @@ export const HomeScreen = (props: Props) => {
             <Row justify={'center'}>
                 <Col span={20}>
                     <Card
-                        className="border-0 mb-5 "
+                        className="border-0 mb-5 mt-5"
                         hoverable={false}
                         title={
                             <Row className="mt-5 text-center">
@@ -74,80 +72,7 @@ export const HomeScreen = (props: Props) => {
                             </Row>
                         }
                     >
-                        <Row
-                            className="mb-5"
-                            align={'middle'}
-                            justify={'center'}
-                            gutter={[20, 20]}
-                        >
-                            {initArticles().map((article, index) => {
-                                const id = article.id;
-                                const title: string = article.title;
-                                const subTitle: string = article.subTitle;
-                                return (
-                                    <Col key={index} md={12} className="mb-5">
-                                        <Card
-                                            bordered={false}
-                                            hoverable={true}
-                                            className=" border"
-                                            style={{
-                                                ...gridStyle,
-                                                height: 'auto'
-                                            }}
-                                        >
-                                            <Button
-                                                type="link"
-                                                style={{ height: 'auto' }}
-                                                href={`/articles/${title.replaceAll(
-                                                    ' ',
-                                                    '-'
-                                                )}/${id}`}
-                                            >
-                                                <Row
-                                                    align={'middle'}
-                                                    justify={'center'}
-                                                    gutter={[20, 20]}
-                                                >
-                                                    <Col md={10}>
-                                                        {article.jsx}
-                                                    </Col>
-                                                    <Col md={12}>
-                                                        <Row
-                                                            className="text-start text-black"
-                                                            justify={'start'}
-                                                        >
-                                                            <Col span={24}>
-                                                                <div>
-                                                                    <h4>
-                                                                        <strong>
-                                                                            {title.substring(
-                                                                                0,
-                                                                                20
-                                                                            )}
-                                                                        </strong>
-                                                                    </h4>
-                                                                    <p
-                                                                        style={{
-                                                                            whiteSpace:
-                                                                                'pre-line'
-                                                                        }}
-                                                                    >
-                                                                        {subTitle.substring(
-                                                                            0,
-                                                                            150
-                                                                        )}
-                                                                    </p>
-                                                                </div>
-                                                            </Col>
-                                                        </Row>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </Card>
-                                    </Col>
-                                );
-                            })}
-                        </Row>
+                        <HomeArticlesScreen articles={initArticles()} />
                     </Card>
 
                     <Card
@@ -169,75 +94,7 @@ export const HomeScreen = (props: Props) => {
                             justify={'center'}
                             gutter={[20, 20]}
                         >
-                            {initVideos().map((video, index) => {
-                                const id = video.id;
-                                const title: string = video.title;
-                                const subTitle: string = video.subTitle;
-                                return (
-                                    <Col key={index} md={12} className="mb-5">
-                                        <Card
-                                            bordered={false}
-                                            hoverable={true}
-                                            className="w-100"
-                                            style={{
-                                                ...gridStyle,
-                                                height: 'auto'
-                                            }}
-                                        >
-                                            <Button
-                                                type="link"
-                                                style={{
-                                                    height: 'auto'
-                                                }}
-                                                href={`/articles/${title.replaceAll(
-                                                    ' ',
-                                                    '-'
-                                                )}/${id}`}
-                                            >
-                                                <Row
-                                                    align={'middle'}
-                                                    justify={'center'}
-                                                    gutter={[20, 20]}
-                                                >
-                                                    <Col md={24}>
-                                                        {video.jsx}
-                                                    </Col>
-                                                    <Col md={24}>
-                                                        <Row
-                                                            className="text-center text-black"
-                                                            justify={'center'}
-                                                        >
-                                                            <Col span={24}>
-                                                                <div>
-                                                                    <h4>
-                                                                        <strong>
-                                                                            {title.substring(
-                                                                                0,
-                                                                                25
-                                                                            )}
-                                                                        </strong>
-                                                                    </h4>
-                                                                    <p
-                                                                        style={{
-                                                                            whiteSpace:
-                                                                                'pre-line'
-                                                                        }}
-                                                                    >
-                                                                        {subTitle.substring(
-                                                                            0,
-                                                                            150
-                                                                        )}
-                                                                    </p>
-                                                                </div>
-                                                            </Col>
-                                                        </Row>
-                                                    </Col>
-                                                </Row>
-                                            </Button>
-                                        </Card>
-                                    </Col>
-                                );
-                            })}
+                            <HomeVideosScreen videos={initVideos()} />
                         </Row>
                     </Card>
                 </Col>
