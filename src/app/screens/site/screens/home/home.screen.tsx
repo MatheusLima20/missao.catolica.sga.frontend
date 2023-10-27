@@ -89,14 +89,15 @@ export const HomeScreen = (props: Props) => {
                                         <Card
                                             bordered={false}
                                             hoverable={true}
-                                            className="w-100"
+                                            className=" border"
                                             style={{
                                                 ...gridStyle,
-                                                height: 200
+                                                height: 'auto'
                                             }}
                                         >
                                             <Button
                                                 type="link"
+                                                style={{ height: 'auto' }}
                                                 href={`/articles/${title.replaceAll(
                                                     ' ',
                                                     '-'
@@ -121,7 +122,7 @@ export const HomeScreen = (props: Props) => {
                                                                         <strong>
                                                                             {title.substring(
                                                                                 0,
-                                                                                25
+                                                                                20
                                                                             )}
                                                                         </strong>
                                                                     </h4>
@@ -180,11 +181,14 @@ export const HomeScreen = (props: Props) => {
                                             className="w-100"
                                             style={{
                                                 ...gridStyle,
-                                                height: 450
+                                                height: 'auto'
                                             }}
                                         >
                                             <Button
                                                 type="link"
+                                                style={{
+                                                    height: 'auto'
+                                                }}
                                                 href={`/articles/${title.replaceAll(
                                                     ' ',
                                                     '-'
@@ -195,7 +199,9 @@ export const HomeScreen = (props: Props) => {
                                                     justify={'center'}
                                                     gutter={[20, 20]}
                                                 >
-                                                    <Col>{video.jsx}</Col>
+                                                    <Col md={24}>
+                                                        {video.jsx}
+                                                    </Col>
                                                     <Col md={24}>
                                                         <Row
                                                             className="text-center text-black"
@@ -281,14 +287,7 @@ export const HomeScreen = (props: Props) => {
             const url = value.url;
             return values.push({
                 id: value.id,
-                jsx: (
-                    <ReactPlayer
-                        url={url}
-                        width={400}
-                        height={300}
-                        controls={false}
-                    />
-                ),
+                jsx: <ReactPlayer url={url} width={'100%'} controls={false} />,
                 title: title,
                 subTitle: subTitle
             });
