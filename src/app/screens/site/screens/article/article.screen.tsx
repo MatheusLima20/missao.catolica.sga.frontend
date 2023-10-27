@@ -20,7 +20,10 @@ export const ArticleScreen = (props: Props) => {
         <Content>
             <Row justify={'center'} className="mt-5">
                 <Col md={22}>
-                    <Card className="border-0 shadow-lg p-3 mb-5 bg-body rounded">
+                    <Card
+                        style={{ backgroundColor: '#efcfa6' }}
+                        className="border-0 shadow-lg p-3 mb-5 rounded"
+                    >
                         <Row justify={'center'}>
                             <Col span={20} className="mt-5 text-center">
                                 <Row justify={'center'}>
