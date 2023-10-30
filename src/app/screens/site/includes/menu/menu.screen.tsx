@@ -17,7 +17,7 @@ export const MenuScreen = (props: Props) => {
     } = theme.useToken();
 
     return (
-        <Row justify={'center'}>
+        <Row justify={'end'}>
             <Col md={14}>
                 <Menu />
             </Col>
@@ -28,7 +28,7 @@ export const MenuScreen = (props: Props) => {
         const token = cookies.get('data.user').token;
 
         return (
-            <Row className="m-2">
+            <Row justify={'end'} className="mt-2">
                 <Col md={24}>
                     <Row justify={'end'} align={'stretch'}>
                         <Col>

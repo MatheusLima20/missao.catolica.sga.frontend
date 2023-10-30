@@ -14,7 +14,7 @@ export const MenuScreen = (props: Props) => {
     } = theme.useToken();
 
     return (
-        <Row justify={'center'}>
+        <Row justify={'end'}>
             <Col md={14}>
                 <Menu />
             </Col>

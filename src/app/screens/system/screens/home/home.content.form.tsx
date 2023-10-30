@@ -152,6 +152,7 @@ export const HomeContentForm = (props: Props) => {
                                                 });
                                                 break;
                                             case 'homily':
+                                            case 'video':
                                                 setValues({
                                                     ...values,
                                                     page: value,
@@ -171,6 +172,7 @@ export const HomeContentForm = (props: Props) => {
                                         { value: 'home', label: 'Home' },
                                         { value: 'article', label: 'Artigo' },
                                         { value: 'homily', label: 'Homilia' },
+                                        { value: 'video', label: 'Formação' },
                                         { value: 'about', label: 'Sobre' },
                                         {
                                             value: 'privacy-policy',
@@ -186,7 +188,6 @@ export const HomeContentForm = (props: Props) => {
                                 name="contentType"
                             >
                                 <Select
-                                    disabled={true}
                                     defaultValue={values.contentType}
                                     value={values.contentType}
                                     onChange={(value) => {
@@ -207,7 +208,7 @@ export const HomeContentForm = (props: Props) => {
                                         { value: 'text', label: 'Texto' },
                                         { value: 'slider', label: 'Slider' },
                                         { value: 'article', label: 'Artigo' },
-                                        { value: 'homily', label: 'Homilia' }
+                                        { value: 'video', label: 'video' }
                                     ]}
                                 />
                             </Form.Item>

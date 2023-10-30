@@ -24,7 +24,7 @@ export const ContentScreen = (props: Props) => {
     return (
         <Content>
             <Row justify={'center'} className="mt-5">
-                <Col md={22}>
+                <Col md={20}>
                     <Card
                         style={{ backgroundColor: '#efcfa6' }}
                         className="border-0 shadow-lg p-3 mb-5 rounded"

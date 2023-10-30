@@ -48,11 +48,11 @@ export const HomeScreen = () => {
 
     return (
         <Content>
-            <Row>
-                <Col span={24} className="mt-5">
+            <Row justify={'center'}>
+                <Col span={20} className="mt-5">
                     <Card
                         bordered={false}
-                        className="shadow-lg mb-5 bg-body-tertiary rounded m-4"
+                        className="shadow-lg mb-5 bg-body-tertiary rounded"
                     >
                         <Row
                             justify={'center'}

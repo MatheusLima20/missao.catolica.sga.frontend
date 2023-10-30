@@ -46,7 +46,7 @@ export const Menu = () => {
 
             {screenMobile && (
                 <Row justify={'end'}>
-                    <Col pull={3} md={2} className="mt-3">
+                    <Col md={2} className="mt-3">
                         <MenuMobileScreen navigateMenu={navigateMenu} />
                     </Col>
                 </Row>
