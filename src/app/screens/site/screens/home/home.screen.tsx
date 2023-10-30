@@ -21,8 +21,8 @@ export const HomeScreen = (props: Props) => {
     const videos = props.videos;
 
     return (
-        <ContentLayout>
-            <Row justify={'center'} className="border-0">
+        <ContentLayout className="mt-5">
+            <Row justify={'center'} className="border-0 ">
                 <Col span={20}>
                     <Carousel pause={'hover'} fade>
                         {initSliders().map((values, index) => {

@@ -208,7 +208,7 @@ export const HomeContentForm = (props: Props) => {
                                         { value: 'text', label: 'Texto' },
                                         { value: 'slider', label: 'Slider' },
                                         { value: 'article', label: 'Artigo' },
-                                        { value: 'video', label: 'video' }
+                                        { value: 'video', label: 'Video' }
                                     ]}
                                 />
                             </Form.Item>
@@ -553,7 +553,10 @@ export const HomeContentForm = (props: Props) => {
                             >
                                 <Input
                                     name="url"
-                                    disabled={values.contentType !== 'video'}
+                                    disabled={
+                                        values.contentType !== 'video' &&
+                                        values.contentType !== 'slider'
+                                    }
                                     value={values.url}
                                     onClick={() => props.onClick()}
                                     onChange={handleChange}
@@ -562,7 +565,8 @@ export const HomeContentForm = (props: Props) => {
                                     suffix={
                                         <Button
                                             disabled={
-                                                values.contentType === 'text'
+                                                values.contentType === 'text' ||
+                                                values.contentType === 'video'
                                             }
                                             size="large"
                                             onClick={() => {
