@@ -70,15 +70,16 @@ export const ContentController = {
 
     patch: async (content: ContentData, id: number, file?: RcFile) => {
         const values = content;
-
+        console.log(values.visible);
         try {
             const token = cookie.token;
 
             const formData = new FormData();
 
-            Object.keys(values).forEach((key: string) => {
+            Object.keys(values).forEach((key: any) => {
                 if ((values as any)[key]) {
-                    formData.append(key, (values as any)[key]);
+                    const value = (values as any)[key];
+                    formData.append(key, value);
                 }
             });
 

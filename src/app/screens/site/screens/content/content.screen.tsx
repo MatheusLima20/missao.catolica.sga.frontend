@@ -12,12 +12,14 @@ interface Props {
     article: Article;
 }
 
-export const ArticleScreen = (props: Props) => {
+export const ContentScreen = (props: Props) => {
     const article = props.article;
 
     const text = article ? (article.text as any) : '';
 
     const video = article?.url;
+
+    const type = article?.contentType;
 
     return (
         <Content>
@@ -44,7 +46,7 @@ export const ArticleScreen = (props: Props) => {
                                     </Col>
                                 </Row>
                             </Col>
-                            {video && (
+                            {type === 'video' && (
                                 <Col md={24} className="m-3 text-center">
                                     <Row justify={'center'}>
                                         <Col md={20}>

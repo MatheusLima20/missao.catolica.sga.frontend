@@ -33,7 +33,6 @@ interface DataType {
     title: string;
     subTitle: string;
     visible: boolean;
-    video?: string;
     fileName?: string;
     url?: string;
     text: string;
@@ -366,7 +365,6 @@ export const HomeScreenTable = (props: Props) => {
                 page: value.page as any,
                 fileName: value.fileName as any,
                 url: value.url,
-                video: value.video,
                 createdAt: createdAt
             });
         });

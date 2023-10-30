@@ -82,7 +82,7 @@ export const HomeScreen = (props: Props) => {
                             <Row className="mt-5 text-center">
                                 <Col md={24}>
                                     <h2>
-                                        <strong>Videos</strong>
+                                        <strong>Homilias</strong>
                                     </h2>
                                 </Col>
                             </Row>

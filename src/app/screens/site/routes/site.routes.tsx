@@ -4,7 +4,7 @@ import { Home } from '../screens/home';
 import { Footer } from '../includes/footer';
 import { Header } from '../includes/head';
 import { PlatformRegistration } from '../screens/platoform.registration';
-import { Article } from '../screens/article';
+import { Content } from '../screens/content';
 
 export const SiteRoutes = () => {
     return (
@@ -12,7 +12,11 @@ export const SiteRoutes = () => {
             <Header />
             <Routes>
                 <Route path="*" element={<Home />} />
-                <Route path="/articles/:title/:id" element={<Article />} />
+                <Route path="/artigo/:title/:id" element={<Content />} />
+                <Route
+                    path="/homilia-diaria/:title/:id"
+                    element={<Content />}
+                />
                 <Route
                     path="/platform-register"
                     element={<PlatformRegistration />}

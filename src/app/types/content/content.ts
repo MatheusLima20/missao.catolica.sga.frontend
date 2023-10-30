@@ -1,7 +1,6 @@
 export type ContentData = {
     title?: string;
     subTitle?: string;
-    video?: string;
     path?: string;
     file?: any;
     fileName?: string;

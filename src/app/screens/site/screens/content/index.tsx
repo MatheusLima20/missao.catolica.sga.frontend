@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { ArticleScreen } from './article.screen';
+import { ContentScreen } from './content.screen';
 import { useParams } from 'react-router-dom';
 import { ContentController } from '../../../../controller/content/content.controller';
 import { ContentData } from '../../../../types/content/content';
-import './article.style.css';
+import './content.style.css';
 
-export const Article = () => {
+export const Content = () => {
     const { id }: any = useParams<any>();
     const [article, setArticle] = useState<any>();
 
@@ -25,5 +25,5 @@ export const Article = () => {
         getArticle();
     }, [id]);
 
-    return <ArticleScreen article={article} />;
+    return <ContentScreen article={article} />;
 };

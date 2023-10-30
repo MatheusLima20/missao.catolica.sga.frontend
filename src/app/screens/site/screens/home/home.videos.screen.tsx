@@ -26,7 +26,8 @@ export const HomeVideosScreen = (props: Props) => {
                             className="w-100"
                             style={{
                                 textAlign: 'center',
-                                height: 'auto'
+                                height: 'auto',
+                                minHeight: 550
                             }}
                         >
                             <Button
@@ -34,7 +35,7 @@ export const HomeVideosScreen = (props: Props) => {
                                 style={{
                                     height: 'auto'
                                 }}
-                                href={`/articles/${title.replaceAll(
+                                href={`/homilia-diaria/${title.replaceAll(
                                     ' ',
                                     '-'
                                 )}/${id}`}

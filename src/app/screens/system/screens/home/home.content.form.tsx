@@ -29,7 +29,6 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 type InitialValues = {
     title?: string;
     subTitle?: string;
-    video?: string;
     path?: string;
     url?: string;
     page: string;
@@ -180,7 +179,6 @@ export const HomeContentForm = (props: Props) => {
                                     options={[
                                         { value: 'text', label: 'Texto' },
                                         { value: 'slider', label: 'Slider' },
-                                        { value: 'video', label: 'Vídeo' },
                                         { value: 'article', label: 'Artigo' }
                                     ]}
                                 />
@@ -717,7 +715,7 @@ export const HomeContentForm = (props: Props) => {
             subTitle: values.subTitle,
             text: text,
             page: values.page,
-            visible: values.visible,
+            visible: String(values.visible) as any,
             contentType: values.contentType,
             url: values.contentType !== 'text' ? values.url : undefined
         };
@@ -741,6 +739,8 @@ export const HomeContentForm = (props: Props) => {
 
         const type = error ? 'error' : 'success';
 
+        setRestartSunEditor(true);
+
         setTimeout(() => {
             messageApi.open({
                 key: 'content.registration',
@@ -751,7 +751,7 @@ export const HomeContentForm = (props: Props) => {
             setLoading(false);
             if (!error) {
                 handleReset();
-                setText('');
+                setRestartSunEditor(false);
             }
         }, 1000);
     }

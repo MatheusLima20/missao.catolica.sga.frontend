@@ -26,13 +26,14 @@ export const HomeArticlesScreen = (props: Props) => {
                             className=" border"
                             style={{
                                 textAlign: 'center',
-                                height: 'auto'
+                                height: 'auto',
+                                minHeight: 200
                             }}
                         >
                             <Button
                                 type="link"
                                 style={{ height: 'auto' }}
-                                href={`/articles/${title.replaceAll(
+                                href={`/artigo/${title.replaceAll(
                                     ' ',
                                     '-'
                                 )}/${id}`}
