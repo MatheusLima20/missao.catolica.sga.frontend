@@ -4,7 +4,7 @@ interface Props {
     videos: any[];
 }
 
-export const HomeVideosScreen = (props: Props) => {
+export const HomeHomilyScreen = (props: Props) => {
     const videos: any[] = props.videos;
 
     return (

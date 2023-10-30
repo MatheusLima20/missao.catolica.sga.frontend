@@ -43,7 +43,7 @@ const initialValues: InitialValues = {
     subTitle: undefined,
     path: undefined,
     page: 'home',
-    contentType: 'text',
+    contentType: 'slider',
     url: undefined,
     visible: false
 };
@@ -136,20 +136,46 @@ export const HomeContentForm = (props: Props) => {
                                     defaultValue={values.page}
                                     value={values.page}
                                     onChange={(value) => {
-                                        const event = {
-                                            target: {
-                                                value: value,
-                                                name: 'page'
-                                            }
-                                        };
-
-                                        handleChange(event);
+                                        switch (value) {
+                                            case 'home':
+                                                setValues({
+                                                    ...values,
+                                                    page: value,
+                                                    contentType: 'slider'
+                                                });
+                                                break;
+                                            case 'article':
+                                                setValues({
+                                                    ...values,
+                                                    page: value,
+                                                    contentType: 'article'
+                                                });
+                                                break;
+                                            case 'homily':
+                                                setValues({
+                                                    ...values,
+                                                    page: value,
+                                                    contentType: 'video'
+                                                });
+                                                break;
+                                            default:
+                                                setValues({
+                                                    ...values,
+                                                    page: value,
+                                                    contentType: 'text'
+                                                });
+                                                break;
+                                        }
                                     }}
                                     options={[
                                         { value: 'home', label: 'Home' },
                                         { value: 'article', label: 'Artigo' },
-                                        { value: 'video', label: 'Vídeos' },
-                                        { value: 'about', label: 'Sobre' }
+                                        { value: 'homily', label: 'Homilia' },
+                                        { value: 'about', label: 'Sobre' },
+                                        {
+                                            value: 'privacy-policy',
+                                            label: 'Politica de Privacidade'
+                                        }
                                     ]}
                                 />
                             </Form.Item>
@@ -160,6 +186,7 @@ export const HomeContentForm = (props: Props) => {
                                 name="contentType"
                             >
                                 <Select
+                                    disabled={true}
                                     defaultValue={values.contentType}
                                     value={values.contentType}
                                     onChange={(value) => {
@@ -179,7 +206,8 @@ export const HomeContentForm = (props: Props) => {
                                     options={[
                                         { value: 'text', label: 'Texto' },
                                         { value: 'slider', label: 'Slider' },
-                                        { value: 'article', label: 'Artigo' }
+                                        { value: 'article', label: 'Artigo' },
+                                        { value: 'homily', label: 'Homilia' }
                                     ]}
                                 />
                             </Form.Item>
@@ -191,7 +219,8 @@ export const HomeContentForm = (props: Props) => {
                                 rules={[
                                     {
                                         required:
-                                            values.contentType === 'article',
+                                            values.contentType === 'article' ||
+                                            values.contentType === 'video',
                                         message: 'Digite o título.'
                                     }
                                 ]}
@@ -211,7 +240,8 @@ export const HomeContentForm = (props: Props) => {
                                 rules={[
                                     {
                                         required:
-                                            values.contentType === 'article',
+                                            values.contentType === 'article' ||
+                                            values.contentType === 'video',
                                         message: 'Digite o subtítulo.'
                                     }
                                 ]}
@@ -516,14 +546,13 @@ export const HomeContentForm = (props: Props) => {
                                 name="url"
                                 rules={[
                                     {
-                                        required: values.contentType !== 'text',
-                                        message: 'A url é obrigatória.'
+                                        required: values.contentType !== 'text'
                                     }
                                 ]}
                             >
                                 <Input
                                     name="url"
-                                    disabled={values.contentType === 'text'}
+                                    disabled={values.contentType !== 'video'}
                                     value={values.url}
                                     onClick={() => props.onClick()}
                                     onChange={handleChange}
@@ -546,15 +575,22 @@ export const HomeContentForm = (props: Props) => {
                             </Form.Item>
                         </Col>
 
-                        {values.contentType !== 'text' && (
-                            <Col span={24}>
-                                <Row justify={'center'} className="text-center">
-                                    <Col span={24}>
-                                        <Image src={values.url} width={400} />
-                                    </Col>
-                                </Row>
-                            </Col>
-                        )}
+                        {values.contentType !== 'text' &&
+                            values.contentType !== 'video' && (
+                                <Col span={24}>
+                                    <Row
+                                        justify={'center'}
+                                        className="text-center"
+                                    >
+                                        <Col span={24}>
+                                            <Image
+                                                src={values.url}
+                                                width={400}
+                                            />
+                                        </Col>
+                                    </Row>
+                                </Col>
+                            )}
 
                         <Col md={24} className="mt-5">
                             <Row justify={'center'} gutter={[30, 0]}>
@@ -708,6 +744,17 @@ export const HomeContentForm = (props: Props) => {
             duration: 7
         });
 
+        const isYoutube = isYoutubeVideo(values.url);
+
+        if (values.contentType === 'video' && !isYoutube) {
+            messageApi.open({
+                key: 'content.registration',
+                type: 'error',
+                content: 'O video tem que ser do youtube.',
+                duration: 7
+            });
+            return;
+        }
         setLoading(true);
 
         const dataValues: ContentData = {
@@ -796,5 +843,16 @@ export const HomeContentForm = (props: Props) => {
             return;
         }
         setTags([...tags, valueTag]);
+    }
+
+    function isYoutubeVideo(url: any) {
+        if (!url) {
+            return;
+        }
+        const v =
+            /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        const isYoutube = url.match(v) ? true : false;
+        console.log(isYoutube);
+        return isYoutube;
     }
 };

@@ -7,7 +7,7 @@ import { CarouselType } from '../../../../types/carousel.types';
 import { ContentData } from '../../../../types/content/content';
 import ReactPlayer from 'react-player';
 import { HomeArticlesScreen } from './home.articles.screen';
-import { HomeVideosScreen } from './home.videos.screen';
+import { HomeHomilyScreen } from './home.homily.screen';
 
 interface Props {
     sliders: ContentData[];
@@ -94,7 +94,7 @@ export const HomeScreen = (props: Props) => {
                             justify={'center'}
                             gutter={[20, 20]}
                         >
-                            <HomeVideosScreen videos={initVideos()} />
+                            <HomeHomilyScreen videos={initVideos()} />
                         </Row>
                     </Card>
                 </Col>

@@ -11,7 +11,7 @@ export const Home = () => {
     useEffect(() => {
         getSliders();
         getArticles();
-        getVideos();
+        getHomily();
     }, []);
 
     return <HomeScreen sliders={sliders} articles={articles} videos={videos} />;
@@ -34,8 +34,8 @@ export const Home = () => {
             setArticles(data);
         }
     }
-    async function getVideos() {
-        const request = await ContentController.getByPage('video', 'video');
+    async function getHomily() {
+        const request = await ContentController.getByPage('video', 'homily');
 
         const data: ContentData[] = request.data;
 
