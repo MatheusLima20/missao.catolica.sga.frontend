@@ -14,12 +14,12 @@ interface Menu {
 
 export const LoggedScreen = () => {
     const menu: Menu[] = [
+        { name: 'Ir para o Site', icon: <BsGlobe size={20} />, href: '/' },
         {
-            name: 'Home System',
+            name: 'Gerenciar Site',
             icon: <AiOutlineCloudServer size={20} />,
             href: '/system'
         },
-        { name: 'Home Site', icon: <BsGlobe size={20} />, href: '/' },
         { name: 'Sair', icon: <BiLogOut size={20} />, action: () => logout() }
     ];
 
