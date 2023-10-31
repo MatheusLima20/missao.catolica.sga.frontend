@@ -25,6 +25,7 @@ import { FaImages } from 'react-icons/fa';
 import Meta from 'antd/es/card/Meta';
 import { HomeScreenTable } from './home.screen.table';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
+import { verifyUrl } from '../../../../util/verify.url/verify.url';
 
 type InitialValues = {
     title?: string;
@@ -749,7 +750,7 @@ export const HomeContentForm = (props: Props) => {
             duration: 7
         });
 
-        const isYoutube = isYoutubeVideo(values.url);
+        const isYoutube = verifyUrl.isYoutubeVideo(values.url);
 
         if (values.contentType === 'video' && !isYoutube) {
             messageApi.open({
@@ -848,16 +849,5 @@ export const HomeContentForm = (props: Props) => {
             return;
         }
         setTags([...tags, valueTag]);
-    }
-
-    function isYoutubeVideo(url: any) {
-        if (!url) {
-            return;
-        }
-        const v =
-            /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-        const isYoutube = url.match(v) ? true : false;
-        console.log(isYoutube);
-        return isYoutube;
     }
 };

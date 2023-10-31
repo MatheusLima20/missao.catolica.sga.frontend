@@ -8,6 +8,7 @@ import { ContentData } from '../../../../types/content/content';
 import ReactPlayer from 'react-player';
 import { HomeArticlesScreen } from './home.articles.screen';
 import { HomeHomilyScreen } from './home.homily.screen';
+import { verifyUrl } from '../../../../util/verify.url/verify.url';
 
 interface Props {
     sliders: ContentData[];
@@ -109,9 +110,19 @@ export const HomeScreen = (props: Props) => {
             const alt = value.fileName ? value.fileName : '';
             const title = value.title ? value.title : '';
             const subTitle = value.subTitle ? value.subTitle : '';
+            const jsx = verifyUrl.isYoutubeVideo(value.url) ? (
+                <ReactPlayer
+                    url={value.url}
+                    width={'100%'}
+                    height={645}
+                    controls={true}
+                />
+            ) : (
+                <img src={value.url} width="100%" className="rounded-4" />
+            );
             return values.push({
                 alt: alt,
-                jsx: <img src={value.url} width="100%" className="rounded-4" />,
+                jsx: jsx,
                 title: title,
                 subTitle: subTitle
             });
@@ -144,7 +155,7 @@ export const HomeScreen = (props: Props) => {
             const url = value.url;
             return values.push({
                 id: value.id,
-                jsx: <ReactPlayer url={url} width={'100%'} controls={false} />,
+                jsx: <ReactPlayer url={url} width={'100%'} controls={true} />,
                 title: title,
                 subTitle: subTitle
             });
