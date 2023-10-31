@@ -5,6 +5,8 @@ import { Footer } from '../includes/footer';
 import { Header } from '../includes/head';
 import { PlatformRegistration } from '../screens/platoform.registration';
 import { Content } from '../screens/content';
+import { About } from '../screens/about';
+import { PrivacyPolicy } from '../screens/privacy.policy';
 
 export const SiteRoutes = () => {
     return (
@@ -21,6 +23,8 @@ export const SiteRoutes = () => {
                     path="/platform-register"
                     element={<PlatformRegistration />}
                 />
+                <Route path="/about" element={<About />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </Routes>
             <Footer />
         </>
