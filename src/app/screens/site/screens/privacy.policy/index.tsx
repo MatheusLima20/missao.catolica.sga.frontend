@@ -13,7 +13,7 @@ export const PrivacyPolicy = () => {
     return <PrivacyPolicyScreen data={content} />;
 
     async function getPrivacyPolicy() {
-        const request = await ContentController.getByPage(
+        const request = await ContentController.getByTagAndType(
             'text',
             'privacy-policy'
         );

@@ -362,7 +362,7 @@ export const HomeScreenTable = (props: Props) => {
                 text: value.text as any,
                 contentType: value.contentType,
                 visible: value.visible,
-                page: value.page as any,
+                page: value.tag as any,
                 fileName: value.fileName as any,
                 url: value.url,
                 createdAt: createdAt

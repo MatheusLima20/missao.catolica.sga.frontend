@@ -17,7 +17,10 @@ export const Home = () => {
     return <HomeScreen sliders={sliders} articles={articles} videos={videos} />;
 
     async function getSliders() {
-        const request = await ContentController.getByPage('slider', 'home');
+        const request = await ContentController.getByTagAndType(
+            'slider',
+            'caution'
+        );
 
         const data: ContentData[] = request.data;
 
@@ -26,7 +29,10 @@ export const Home = () => {
         }
     }
     async function getArticles() {
-        const request = await ContentController.getByPage('article', 'article');
+        const request = await ContentController.getByTagAndType(
+            'article',
+            'article'
+        );
 
         const data: ContentData[] = request.data;
 
@@ -35,7 +41,10 @@ export const Home = () => {
         }
     }
     async function getHomily() {
-        const request = await ContentController.getByPage('video', 'homily');
+        const request = await ContentController.getByTagAndType(
+            'video',
+            'homily'
+        );
 
         const data: ContentData[] = request.data;
 

@@ -32,7 +32,7 @@ type InitialValues = {
     subTitle?: string;
     path?: string;
     url?: string;
-    page: string;
+    tag: string;
     contentType: string;
     id?: number;
     visible: boolean;
@@ -43,7 +43,7 @@ const initialValues: InitialValues = {
     title: undefined,
     subTitle: undefined,
     path: undefined,
-    page: 'home',
+    tag: 'Avisos',
     contentType: 'slider',
     url: undefined,
     visible: false
@@ -102,7 +102,7 @@ export const HomeContentForm = (props: Props) => {
         const element = document.getElementById('form') as any;
         setValues({
             ...initialValues,
-            page: values.page,
+            tag: values.tag,
             contentType: values.contentType
         });
         setText('');
@@ -124,7 +124,7 @@ export const HomeContentForm = (props: Props) => {
                         { name: 'title', value: values.title },
                         { name: 'subTitle', value: values.subTitle },
                         { name: 'contentType', value: values.contentType },
-                        { name: 'page', value: values.page },
+                        { name: 'tag', value: values.tag },
                         { name: 'url', value: values.url },
                         { name: 'text', value: text }
                     ]}
@@ -132,23 +132,23 @@ export const HomeContentForm = (props: Props) => {
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
                         <Col md={5}>
-                            <Form.Item label="Página" name={'page'}>
+                            <Form.Item label="Assunto" name={'tag'}>
                                 <Select
-                                    defaultValue={values.page}
-                                    value={values.page}
+                                    defaultValue={values.tag}
+                                    value={values.tag}
                                     onChange={(value) => {
                                         switch (value) {
-                                            case 'home':
+                                            case 'caution':
                                                 setValues({
                                                     ...values,
-                                                    page: value,
+                                                    tag: value,
                                                     contentType: 'slider'
                                                 });
                                                 break;
                                             case 'article':
                                                 setValues({
                                                     ...values,
-                                                    page: value,
+                                                    tag: value,
                                                     contentType: 'article'
                                                 });
                                                 break;
@@ -156,21 +156,21 @@ export const HomeContentForm = (props: Props) => {
                                             case 'video':
                                                 setValues({
                                                     ...values,
-                                                    page: value,
+                                                    tag: value,
                                                     contentType: 'video'
                                                 });
                                                 break;
                                             default:
                                                 setValues({
                                                     ...values,
-                                                    page: value,
+                                                    tag: value,
                                                     contentType: 'text'
                                                 });
                                                 break;
                                         }
                                     }}
                                     options={[
-                                        { value: 'home', label: 'Home' },
+                                        { value: 'caution', label: 'Avisos' },
                                         { value: 'article', label: 'Artigo' },
                                         { value: 'homily', label: 'Homilia' },
                                         { value: 'video', label: 'Formação' },
@@ -626,7 +626,7 @@ export const HomeContentForm = (props: Props) => {
                         setValues({
                             id: value.id as any,
                             contentType: value.contentType,
-                            page: value.page as any,
+                            tag: value.tag as any,
                             subTitle: value.subTitle as any,
                             title: value.title as any,
                             url: value.url as any,
@@ -767,7 +767,7 @@ export const HomeContentForm = (props: Props) => {
             title: values.title,
             subTitle: values.subTitle,
             text: text,
-            page: values.page,
+            tag: values.tag,
             visible: String(values.visible) as any,
             contentType: values.contentType,
             url: values.contentType !== 'text' ? values.url : undefined

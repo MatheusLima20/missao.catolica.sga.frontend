@@ -122,10 +122,10 @@ export const ContentController = {
         }
     },
 
-    getByPage: async (type: string, page: string) => {
+    getByTagAndType: async (type: string, tag: string) => {
         try {
             const request = await axios.get(
-                `/content/${type}/${page}/${companyCPFCNPJ}`
+                `/content/${type}/${tag}/${companyCPFCNPJ}`
             );
 
             const data = request.data;

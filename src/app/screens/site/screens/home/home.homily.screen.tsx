@@ -30,7 +30,7 @@ export const HomeHomilyScreen = (props: Props) => {
                         >
                             <Card
                                 hoverable
-                                style={{ minHeight: 550 }}
+                                style={{ minHeight: 550, width: '100%' }}
                                 cover={video.jsx}
                             >
                                 <Meta

@@ -17,7 +17,10 @@ export const About = () => {
     );
 
     async function getAbout() {
-        const request = await ContentController.getByPage('text', 'about');
+        const request = await ContentController.getByTagAndType(
+            'text',
+            'about'
+        );
 
         const data: ContentData[] = request.data;
 

@@ -6,7 +6,6 @@ export const verifyUrl = {
         const v =
             /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
         const isYoutube = url.match(v) ? true : false;
-        console.log(isYoutube);
         return isYoutube;
     }
 };

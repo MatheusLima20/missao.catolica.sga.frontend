@@ -27,7 +27,7 @@ import { AiFillDelete } from 'react-icons/ai';
 type InitialValues = {
     title?: string;
     fileName?: string;
-    contentType: string;
+    tag: string;
     id?: number;
 };
 
@@ -35,7 +35,7 @@ const initialValues: InitialValues = {
     id: 0,
     title: undefined,
     fileName: undefined,
-    contentType: ''
+    tag: ''
 };
 
 const getBase64 = (file: RcFile): Promise<string> =>
@@ -148,7 +148,7 @@ export const HomeImagesForm = (props: Props) => {
                     initialValues={initialValues}
                     fields={[
                         { name: 'title', value: values.title },
-                        { name: 'contentType', value: values.contentType }
+                        { name: 'contentType', value: values.tag }
                     ]}
                     onFinish={save}
                 >
@@ -161,7 +161,7 @@ export const HomeImagesForm = (props: Props) => {
                                     {
                                         required: true,
                                         message: 'Digite o título.',
-                                        max: 20,
+                                        max: 30,
                                         min: 3
                                     }
                                 ]}
@@ -176,8 +176,8 @@ export const HomeImagesForm = (props: Props) => {
                         </Col>
                         <Col md={12}>
                             <Form.Item
-                                label="Tipo"
-                                name="contentType"
+                                label="Tag"
+                                name="tag"
                                 rules={[
                                     {
                                         required: true,
@@ -188,8 +188,8 @@ export const HomeImagesForm = (props: Props) => {
                                 ]}
                             >
                                 <Input
-                                    name="contentType"
-                                    value={values.contentType}
+                                    name="tag"
+                                    value={values.tag}
                                     onChange={handleChange}
                                     placeholder="Digite seu tipo..."
                                 />
@@ -375,7 +375,7 @@ export const HomeImagesForm = (props: Props) => {
     );
 
     async function save() {
-        if (values.contentType !== 'text' && !fileList.length) {
+        if (values.tag !== 'text' && !fileList.length) {
             messageApi.open({
                 key: 'platform.registration',
                 type: 'error',
@@ -393,7 +393,8 @@ export const HomeImagesForm = (props: Props) => {
 
         const dataValues: ContentData = {
             title: values.title,
-            contentType: values.contentType,
+            contentType: 'image',
+            tag: values.tag,
             visible: true
         };
 

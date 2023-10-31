@@ -6,7 +6,7 @@ export type ContentData = {
     fileName?: string;
     url?: string;
     text?: string;
-    page?: string;
+    tag?: string;
     visible: boolean;
     contentType: string;
     id?: number;
