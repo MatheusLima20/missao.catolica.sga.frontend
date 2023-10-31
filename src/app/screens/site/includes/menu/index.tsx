@@ -16,7 +16,10 @@ const navigateMenu: MenuNavigation[] = [
     },*/
     {
         title: 'Conteúdos',
-        subTitles: [{ name: 'Artigos', href: '/articles' }]
+        subTitles: [
+            { name: 'Artigos', href: '/#articles' },
+            { name: 'Homilias', href: '/#homily' }
+        ]
     },
     {
         title: 'Sobre',
