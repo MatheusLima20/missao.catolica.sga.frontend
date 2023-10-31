@@ -41,7 +41,8 @@ export const FooterScreen = (props: Props) => {
                                                     <a href={value.href}>
                                                         <span
                                                             style={{
-                                                                color: colorTextSecondary
+                                                                color: colorTextSecondary,
+                                                                fontSize: 14
                                                             }}
                                                         >
                                                             <TbPoint

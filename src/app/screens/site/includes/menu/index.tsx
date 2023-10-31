@@ -6,16 +6,16 @@ import { MenuNavigation } from '../../../../types/includes/include.types';
 import { Col, Row } from 'antd';
 
 const navigateMenu: MenuNavigation[] = [
-    {
+    /* {
         title: 'Missão',
         subTitles: [
             { name: 'Catequese', href: '/catechism' },
             { name: 'Exegética', href: '/catechism' },
             { name: 'Retiros', href: '/exegetics' }
         ]
-    },
+    },*/
     {
-        title: 'Artigos',
+        title: 'Conteúdos',
         subTitles: [{ name: 'Artigos', href: '/articles' }]
     },
     {

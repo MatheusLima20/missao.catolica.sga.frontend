@@ -127,7 +127,7 @@ export const HomeScreen = (props: Props) => {
             const subTitle = value.subTitle ? value.subTitle : '';
             return values.push({
                 id: value.id,
-                jsx: <img src={value.url} width="100%" className="rounded-3" />,
+                jsx: <img alt={value.contentType} src={value.url} />,
                 title: title,
                 subTitle: subTitle
             });
