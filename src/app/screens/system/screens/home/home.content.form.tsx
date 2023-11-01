@@ -43,7 +43,7 @@ const initialValues: InitialValues = {
     title: undefined,
     subTitle: undefined,
     path: undefined,
-    tag: 'Avisos',
+    tag: 'caution',
     contentType: 'slider',
     url: undefined,
     visible: false

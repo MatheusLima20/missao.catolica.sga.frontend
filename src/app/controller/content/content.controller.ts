@@ -70,7 +70,7 @@ export const ContentController = {
 
     patch: async (content: ContentData, id: number, file?: RcFile) => {
         const values = content;
-        console.log(values.visible);
+
         try {
             const token = cookie.token;
 

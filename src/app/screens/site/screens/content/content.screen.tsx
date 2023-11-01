@@ -62,10 +62,10 @@ export const ContentScreen = (props: Props) => {
                             )}
                             <Col md={18} className="mb-5 m-3">
                                 <Row justify={'start'}>
-                                    <Col md={20} className="text-start">
+                                    <Col span={20} className="text-start">
                                         <h6>Por: {article?.creatorName}</h6>
                                     </Col>
-                                    <Col md={20} className="text-start">
+                                    <Col span={20} className="text-start">
                                         <h6>
                                             {formatDate(
                                                 article?.createdAt as any

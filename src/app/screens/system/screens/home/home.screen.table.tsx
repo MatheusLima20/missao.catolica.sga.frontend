@@ -183,19 +183,6 @@ export const HomeScreenTable = (props: Props) => {
             ...getColumnSearchProps('subTitle', 'Sub Titulo')
         },
         {
-            key: 'page',
-            title: 'Pagina',
-            dataIndex: 'page',
-            width: 150,
-            sorter: (a, b) => {
-                return a.page.localeCompare(b.page);
-            },
-            sortOrder:
-                sortedInfo.columnKey === 'page' ? sortedInfo.order : null,
-            ellipsis: true,
-            ...getColumnSearchProps('page', 'Página')
-        },
-        {
             key: 'contentType',
             title: 'Tipo',
             dataIndex: 'contentType',
