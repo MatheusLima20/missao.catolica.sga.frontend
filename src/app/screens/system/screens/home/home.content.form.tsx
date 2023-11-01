@@ -317,7 +317,7 @@ export const HomeContentForm = (props: Props) => {
                                                 authorization: `Bearer ${token}`
                                             },
                                             imageGalleryUrl:
-                                                'http://localhost:3001/content-gallery',
+                                                'https://school.flatheadinteractive.com/content-gallery',
                                             defaultStyle:
                                                 'font-family: verdana; font-size: 14px;',
                                             plugins: plugins,
