@@ -24,7 +24,7 @@ export const HomeScreen = (props: Props) => {
     return (
         <ContentLayout className="mt-5">
             <Row justify={'center'} className="border-0 ">
-                <Col span={20}>
+                <Col md={20}>
                     <Carousel pause={'hover'} fade>
                         {initSliders().map((values, index) => {
                             return (
@@ -59,7 +59,7 @@ export const HomeScreen = (props: Props) => {
             </Row>
 
             <Row justify={'center'}>
-                <Col span={20}>
+                <Col md={20}>
                     <Card
                         className="border-0 mb-5 mt-5"
                         hoverable={false}
@@ -89,14 +89,7 @@ export const HomeScreen = (props: Props) => {
                             </Row>
                         }
                     >
-                        <Row
-                            className="mb-5"
-                            align={'middle'}
-                            justify={'center'}
-                            gutter={[20, 20]}
-                        >
-                            <HomeHomilyScreen videos={initVideos()} />
-                        </Row>
+                        <HomeHomilyScreen videos={initVideos()} />
                     </Card>
                 </Col>
             </Row>
@@ -155,7 +148,7 @@ export const HomeScreen = (props: Props) => {
             const url = value.url;
             return values.push({
                 id: value.id,
-                jsx: <ReactPlayer url={url} width={'100%'} controls={true} />,
+                jsx: <ReactPlayer url={url} width={'100%'} />,
                 title: title,
                 subTitle: subTitle
             });

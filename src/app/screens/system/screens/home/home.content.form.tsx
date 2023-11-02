@@ -26,6 +26,7 @@ import Meta from 'antd/es/card/Meta';
 import { HomeScreenTable } from './home.screen.table';
 import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
 import { verifyUrl } from '../../../../util/verify.url/verify.url';
+import { baseURL } from '../../../../config/axios';
 
 type InitialValues = {
     title?: string;
@@ -316,8 +317,7 @@ export const HomeContentForm = (props: Props) => {
                                             imageGalleryHeader: {
                                                 authorization: `Bearer ${token}`
                                             },
-                                            imageGalleryUrl:
-                                                'https://school.flatheadinteractive.com/content-gallery',
+                                            imageGalleryUrl: `${baseURL}/content-gallery`,
                                             defaultStyle:
                                                 'font-family: verdana; font-size: 14px;',
                                             plugins: plugins,
