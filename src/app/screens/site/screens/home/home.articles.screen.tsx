@@ -16,16 +16,15 @@ export const HomeArticlesScreen = (props: Props) => {
                     {articles.map((article, index) => {
                         const id = article.id;
                         const title: string = article.title;
+                        const titleUrl = StringFomatter.removeSpecialCharacters(
+                            StringFomatter.removeSpecialString(title)
+                        )
+                            .replaceAll(' ', '-')
+                            .toLocaleLowerCase();
                         const subTitle: string = article.subTitle;
                         return (
                             <Col key={index} md={8}>
-                                <a
-                                    href={`/artigo/${StringFomatter.removeSpecialCharacters(
-                                        title
-                                            .replaceAll(' ', '-')
-                                            .toLocaleLowerCase()
-                                    )}/${id}`}
-                                >
+                                <a href={`/artigo/${titleUrl}/${id}`}>
                                     <Card
                                         hoverable
                                         style={{ minHeight: 350 }}

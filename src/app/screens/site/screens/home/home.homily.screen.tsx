@@ -1,5 +1,6 @@
 import { Card, Col, Row } from 'antd';
 import Meta from 'antd/es/card/Meta';
+import { StringFomatter } from '../../../../util/string.formatter/string.fomatter';
 
 interface Props {
     videos: any[];
@@ -15,15 +16,15 @@ export const HomeHomilyScreen = (props: Props) => {
                     {videos.map((video, index) => {
                         const id = video.id;
                         const title: string = video.title;
+                        const titleUrl = StringFomatter.removeSpecialCharacters(
+                            StringFomatter.removeSpecialString(title)
+                        )
+                            .replaceAll(' ', '-')
+                            .toLocaleLowerCase();
                         const subTitle: string = video.subTitle;
                         return (
                             <Col key={index} md={12}>
-                                <a
-                                    href={`/homilia-diaria/${title.replaceAll(
-                                        ' ',
-                                        '-'
-                                    )}/${id}`}
-                                >
+                                <a href={`/homilia-diaria/${titleUrl}/${id}`}>
                                     <Card
                                         hoverable
                                         style={{
