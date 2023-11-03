@@ -35,13 +35,13 @@ export const ContentScreen = (props: Props) => {
                 <Helmet>
                     <meta charSet="utf-8" />
                     <title>{title}</title>
-                    <link
-                        rel="canonical"
-                        href={`${baseURL}/${title}/${article?.id}`}
+                    <meta property="og:title" content={title} />
+                    <meta property="og:description" content={subTitle} />
+                    <meta
+                        property="og:url"
+                        content={`${baseURL}/${title}/${article?.id}`}
                     />
-                    <meta name="description" content={subTitle} />
-                    <link rel="apple-touch-icon" href={url} />
-                    <img src={url} className="App-logo" alt="logo" />
+                    <meta property="og:image" content={url} />
                 </Helmet>
             </div>
             <Row justify={'center'} className="mt-5">
