@@ -33,8 +33,8 @@ export const LoginScreen = () => {
 
     return (
         <Row
-            className="p-5"
-            style={{ width: 300, backgroundColor: colorBgBase }}
+            className="p-5 rounded"
+            style={{ width: 400, backgroundColor: colorBgBase }}
         >
             {contextHolder}
             <Col span={24}>
@@ -91,13 +91,14 @@ export const LoginScreen = () => {
                         </Row>
 
                         <Row justify={'center'} gutter={[10, 20]}>
-                            {/**
-                 * <Row>
-                <p>
-                  Esqueceu a Senha? <a href="/"> Clique aqui.</a>
-                </p>
-              </Row>
-                 */}
+                            <Col span={24}>
+                                <p>
+                                    Deseja evangelizar?{' '}
+                                    <a href="/register"> clique aqui.</a> Para
+                                    cadastrar.
+                                </p>
+                            </Col>
+
                             <Col>
                                 <Button
                                     className="border-0"

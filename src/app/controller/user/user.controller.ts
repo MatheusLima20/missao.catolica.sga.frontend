@@ -52,6 +52,24 @@ export const UserController = {
         }
     },
 
+    storeEditor: async (dataUser: UserCustomer) => {
+        const values = dataUser;
+
+        try {
+            const request = await axios.post('/editor', values);
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
     storePlatform: async (dataUser: UserMain) => {
         const values = dataUser;
 

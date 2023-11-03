@@ -52,7 +52,7 @@ export const LoggedScreen = () => {
     function logout() {
         cookies.remove('data.user');
         setTimeout(() => {
-            document.location = '/logout';
+            document.location = '/';
         }, 500);
     }
 };
