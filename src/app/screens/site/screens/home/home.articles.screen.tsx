@@ -1,5 +1,6 @@
 import { Card, Col, Row } from 'antd';
 import Meta from 'antd/es/card/Meta';
+import { StringFomatter } from '../../../../util/string.formatter/string.fomatter';
 
 interface Props {
     articles: any[];
@@ -19,9 +20,10 @@ export const HomeArticlesScreen = (props: Props) => {
                         return (
                             <Col key={index} md={8}>
                                 <a
-                                    href={`/artigo/${title.replaceAll(
-                                        ' ',
-                                        '-'
+                                    href={`/artigo/${StringFomatter.removeSpecialCharacters(
+                                        title
+                                            .replaceAll(' ', '-')
+                                            .toLocaleLowerCase()
                                     )}/${id}`}
                                 >
                                     <Card

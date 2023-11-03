@@ -101,13 +101,13 @@ export const HomeContentForm = (props: Props) => {
 
     const handleReset = () => {
         const element = document.getElementById('form') as any;
+        element.reset();
         setValues({
             ...initialValues,
             tag: values.tag,
             contentType: values.contentType
         });
         setText('');
-        element.reset();
     };
 
     return (

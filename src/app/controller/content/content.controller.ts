@@ -151,7 +151,6 @@ export const ContentController = {
             });
 
             const data = request.data;
-            console.log(data);
             const message = data.message;
 
             return { error: false, message, data: data.result };
