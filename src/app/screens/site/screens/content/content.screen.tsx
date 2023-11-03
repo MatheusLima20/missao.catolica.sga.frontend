@@ -6,6 +6,8 @@ import { ContentData as Article } from '../../../../types/content/content';
 import HTMLReactParser from 'html-react-parser';
 import dayjs from 'dayjs';
 import ReactPlayer from 'react-player';
+import { Helmet } from 'react-helmet';
+import { baseURL } from '../../../../config/axios';
 require('dayjs/locale/pt-br');
 
 interface Props {
@@ -21,8 +23,27 @@ export const ContentScreen = (props: Props) => {
 
     const type = article?.contentType;
 
+    const title = article?.title;
+
+    const subTitle = article?.subTitle;
+
+    const url = article?.url;
+
     return (
         <Content>
+            <div className="application">
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{title}</title>
+                    <link
+                        rel="canonical"
+                        href={`${baseURL}/${title}/${article?.id}`}
+                    />
+                    <meta name="description" content={subTitle} />
+                    <link rel="apple-touch-icon" href={url} />
+                    <img src={url} className="App-logo" alt="logo" />
+                </Helmet>
+            </div>
             <Row justify={'center'} className="mt-5">
                 <Col md={20}>
                     <Card
