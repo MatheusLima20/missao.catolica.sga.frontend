@@ -146,7 +146,8 @@ export const HomeScreen = (props: Props) => {
                 jsx: <img alt={value.contentType} src={value.url} />,
                 title: title,
                 subTitle: subTitle,
-                tag: value.tag
+                tag: value.tag,
+                createdAt: value.createdAt
             });
         });
         return values;

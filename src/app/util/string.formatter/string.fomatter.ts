@@ -12,7 +12,7 @@ export const StringFomatter = {
     },
     formatDate: (date: string) => {
         const dateDayjs = dayjs(date).locale('pt-br').format('DD MMMM YYYY');
-
+        console.log(date);
         return dateDayjs;
     }
 };
