@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ResultSearchScreen } from './search.result.screen';
 import { ContentController } from '../../../../controller/content/content.controller';
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Result, Row, Spin, message } from 'antd';
 import Search from 'antd/es/input/Search';
 import { Content } from 'antd/es/layout/layout';
 import { ContentData } from '../../../../types/content/content';
@@ -9,12 +9,17 @@ import ReactPlayer from 'react-player';
 import { verifyUrl } from '../../../../util/verify.url/verify.url';
 
 export const SearchScreen = () => {
+    const [messageApi, contextHolder] = message.useMessage();
+
     const [articles, setArticles] = useState<ContentData[]>([]);
+
+    const [loading, setLoading] = useState<boolean>(false);
 
     const [search, setSearch] = useState<string>('');
 
     return (
         <Content className="mt-5">
+            {contextHolder}
             <Row justify={'center'}>
                 <Col md={20}>
                     <Card
@@ -40,8 +45,22 @@ export const SearchScreen = () => {
                                     enterButton
                                 />
                             </Col>
-                            <Col>
-                                <ResultSearchScreen articles={initArticles()} />
+                            <Col className="text-center" span={24}>
+                                {articles.length !== 0 && !loading && (
+                                    <ResultSearchScreen
+                                        articles={initArticles()}
+                                    />
+                                )}
+
+                                {loading && (
+                                    <Spin size="large" tip="Carregando..." />
+                                )}
+                                {articles.length === 0 && !loading && (
+                                    <Result
+                                        title="Nenhum dado encontrado."
+                                        subTitle="Digite novamente para pesquisar."
+                                    />
+                                )}
                             </Col>
                         </Row>
                     </Card>
@@ -51,6 +70,20 @@ export const SearchScreen = () => {
     );
 
     async function getSearch() {
+        setLoading(true);
+
+        if (search.length < 3) {
+            messageApi.open({
+                key: 'search',
+                type: 'info',
+                content:
+                    'São necessário pelo menos quatro caracteres para pesquisar.',
+                duration: 7
+            });
+            setLoading(false);
+            return;
+        }
+
         const request = await ContentController.getBySearch(search);
 
         const data: ContentData[] = request.data;
@@ -58,6 +91,9 @@ export const SearchScreen = () => {
         if (data) {
             setArticles(data);
         }
+        setTimeout(() => {
+            setLoading(false);
+        }, 500);
     }
 
     function initArticles() {
@@ -81,7 +117,8 @@ export const SearchScreen = () => {
                 jsx: jsx,
                 title: title,
                 subTitle: subTitle,
-                tag: value.tag
+                tag: value.tag,
+                createdAt: value.createdAt
             });
         });
         return values;
