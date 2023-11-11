@@ -84,7 +84,7 @@ export const SearchScreen = () => {
             return;
         }
 
-        const request = await ContentController.getBySearch(search);
+        const request = await ContentController.getBySearch(search.trim());
 
         const data: ContentData[] = request.data;
 
