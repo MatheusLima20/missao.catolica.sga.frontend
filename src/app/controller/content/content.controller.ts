@@ -140,6 +140,42 @@ export const ContentController = {
         }
     },
 
+    getByType: async (type: string) => {
+        try {
+            const request = await axios.get(
+                `/content/${type}/${companyCPFCNPJ}`
+            );
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message, data: data.data };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
+    getBySearch: async (search: string) => {
+        try {
+            const request = await axios.get(
+                `/search-content/${search}/${companyCPFCNPJ}`
+            );
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message, data: data.data };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
     getGallery: async () => {
         try {
             const token = cookie.token;

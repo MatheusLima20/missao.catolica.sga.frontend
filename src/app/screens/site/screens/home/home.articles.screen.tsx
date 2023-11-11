@@ -1,4 +1,4 @@
-import { Card, Col, Row } from 'antd';
+import { Card, Col, Row, Space, Tag } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import { StringFomatter } from '../../../../util/string.formatter/string.fomatter';
 
@@ -16,6 +16,7 @@ export const HomeArticlesScreen = (props: Props) => {
                     {articles.map((article, index) => {
                         const id = article.id;
                         const title: string = article.title;
+                        const tag: string = article.tag;
                         const titleUrl = StringFomatter.removeSpecialCharacters(
                             StringFomatter.removeSpecialString(title)
                         )
@@ -32,16 +33,45 @@ export const HomeArticlesScreen = (props: Props) => {
                                     >
                                         <Meta
                                             title={
-                                                <h5>
-                                                    <strong
-                                                        style={{
-                                                            whiteSpace:
-                                                                'pre-line'
-                                                        }}
+                                                <div>
+                                                    <Space
+                                                        className="mb-3 text-start"
+                                                        size={[5, 8]}
+                                                        wrap
                                                     >
-                                                        {title}
-                                                    </strong>
-                                                </h5>
+                                                        <Tag color="red">
+                                                            <span
+                                                                style={{
+                                                                    fontSize: 15,
+                                                                    textAlign:
+                                                                        'start'
+                                                                }}
+                                                            >
+                                                                {tag}
+                                                            </span>
+                                                        </Tag>
+                                                        <span
+                                                            style={{
+                                                                fontSize: 12
+                                                            }}
+                                                        >
+                                                            {StringFomatter.formatDate(
+                                                                article?.createdAt as any
+                                                            )}
+                                                        </span>
+                                                    </Space>
+
+                                                    <h5>
+                                                        <strong
+                                                            style={{
+                                                                whiteSpace:
+                                                                    'pre-line'
+                                                            }}
+                                                        >
+                                                            {title}
+                                                        </strong>
+                                                    </h5>
+                                                </div>
                                             }
                                             description={subTitle}
                                         />

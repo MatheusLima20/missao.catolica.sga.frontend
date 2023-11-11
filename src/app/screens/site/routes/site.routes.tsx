@@ -8,6 +8,7 @@ import { Content } from '../screens/content';
 import { About } from '../screens/about';
 import { PrivacyPolicy } from '../screens/privacy.policy';
 import { Register } from '../screens/register';
+import { Search } from '../screens/search';
 
 export const SiteRoutes = () => {
     return (
@@ -20,6 +21,7 @@ export const SiteRoutes = () => {
                     path="/homilia-diaria/:title/:id"
                     element={<Content />}
                 />
+                <Route path="/search" element={<Search />} />
                 <Route
                     path="/platform-register"
                     element={<PlatformRegistration />}

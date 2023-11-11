@@ -4,10 +4,10 @@ import { Content } from 'antd/es/layout/layout';
 import { Card } from 'react-bootstrap';
 import { ContentData as Article } from '../../../../types/content/content';
 import HTMLReactParser from 'html-react-parser';
-import dayjs from 'dayjs';
 import ReactPlayer from 'react-player';
 import { Helmet } from 'react-helmet';
 import { baseURL } from '../../../../config/axios';
+import { StringFomatter } from '../../../../util/string.formatter/string.fomatter';
 require('dayjs/locale/pt-br');
 
 interface Props {
@@ -88,7 +88,7 @@ export const ContentScreen = (props: Props) => {
                                     </Col>
                                     <Col span={20} className="text-start">
                                         <h6>
-                                            {formatDate(
+                                            {StringFomatter.formatDate(
                                                 article?.createdAt as any
                                             )}
                                         </h6>
@@ -104,12 +104,4 @@ export const ContentScreen = (props: Props) => {
             </Row>
         </Content>
     );
-
-    function formatDate(date: string) {
-        const dateDayjs = dayjs(date).locale('pt-br').format('DD MMMM YYYY');
-
-        const formatDate = dateDayjs.replaceAll(' ', '_');
-
-        return formatDate;
-    }
 };

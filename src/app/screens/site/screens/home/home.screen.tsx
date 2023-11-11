@@ -2,13 +2,14 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './home.css';
 import { Content as ContentLayout } from 'antd/es/layout/layout';
-import { Card, Col, Row } from 'antd';
+import { Button, Card, Col, Row } from 'antd';
 import { CarouselType } from '../../../../types/carousel.types';
 import { ContentData } from '../../../../types/content/content';
 import ReactPlayer from 'react-player';
 import { HomeArticlesScreen } from './home.articles.screen';
 import { HomeHomilyScreen } from './home.homily.screen';
 import { verifyUrl } from '../../../../util/verify.url/verify.url';
+import { BiSearch } from 'react-icons/bi';
 
 interface Props {
     sliders: ContentData[];
@@ -64,11 +65,22 @@ export const HomeScreen = (props: Props) => {
                         className="border-0 mb-5 mt-5"
                         hoverable={false}
                         title={
-                            <Row className="mt-5 text-center">
-                                <Col md={24}>
+                            <Row
+                                justify={'space-between'}
+                                className="mt-5 text-center"
+                            >
+                                <Col md={20}>
                                     <h2>
                                         <strong>Artigos</strong>
                                     </h2>
+                                </Col>
+                                <Col md={4}>
+                                    <Button
+                                        href="/search"
+                                        icon={<BiSearch size={20} />}
+                                    >
+                                        <strong>Pesquisar</strong>
+                                    </Button>
                                 </Col>
                             </Row>
                         }
@@ -133,7 +145,8 @@ export const HomeScreen = (props: Props) => {
                 id: value.id,
                 jsx: <img alt={value.contentType} src={value.url} />,
                 title: title,
-                subTitle: subTitle
+                subTitle: subTitle,
+                tag: value.tag
             });
         });
         return values;
@@ -150,7 +163,9 @@ export const HomeScreen = (props: Props) => {
                 id: value.id,
                 jsx: <ReactPlayer url={url} width={'100%'} />,
                 title: title,
-                subTitle: subTitle
+                subTitle: subTitle,
+                tag: value.tag,
+                createdAt: value.createdAt
             });
         });
         return values;

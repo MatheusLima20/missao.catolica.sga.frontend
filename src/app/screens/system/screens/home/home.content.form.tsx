@@ -133,58 +133,6 @@ export const HomeContentForm = (props: Props) => {
                 >
                     <Row justify={'center'} gutter={[20, 0]}>
                         <Col md={5}>
-                            <Form.Item label="Assunto" name={'tag'}>
-                                <Select
-                                    defaultValue={values.tag}
-                                    value={values.tag}
-                                    onChange={(value) => {
-                                        switch (value) {
-                                            case 'caution':
-                                                setValues({
-                                                    ...values,
-                                                    tag: value,
-                                                    contentType: 'slider'
-                                                });
-                                                break;
-                                            case 'article':
-                                                setValues({
-                                                    ...values,
-                                                    tag: value,
-                                                    contentType: 'article'
-                                                });
-                                                break;
-                                            case 'homily':
-                                            case 'video':
-                                                setValues({
-                                                    ...values,
-                                                    tag: value,
-                                                    contentType: 'video'
-                                                });
-                                                break;
-                                            default:
-                                                setValues({
-                                                    ...values,
-                                                    tag: value,
-                                                    contentType: 'text'
-                                                });
-                                                break;
-                                        }
-                                    }}
-                                    options={[
-                                        { value: 'caution', label: 'Avisos' },
-                                        { value: 'article', label: 'Artigo' },
-                                        { value: 'homily', label: 'Homilia' },
-                                        { value: 'video', label: 'Formação' },
-                                        { value: 'about', label: 'Sobre' },
-                                        {
-                                            value: 'privacy-policy',
-                                            label: 'Politica de Privacidade'
-                                        }
-                                    ]}
-                                />
-                            </Form.Item>
-                        </Col>
-                        <Col md={5}>
                             <Form.Item
                                 label="Tipo de Conteúdo"
                                 name="contentType"
@@ -211,6 +159,55 @@ export const HomeContentForm = (props: Props) => {
                                         { value: 'slider', label: 'Slider' },
                                         { value: 'article', label: 'Artigo' },
                                         { value: 'video', label: 'Video' }
+                                    ]}
+                                />
+                            </Form.Item>
+                        </Col>
+                        <Col md={5}>
+                            <Form.Item label="Assunto" name={'tag'}>
+                                <Select
+                                    defaultValue={values.tag}
+                                    value={values.tag}
+                                    onChange={(value) => {
+                                        const event = {
+                                            target: {
+                                                value: value,
+                                                name: 'tag'
+                                            }
+                                        };
+
+                                        handleChange(event);
+                                    }}
+                                    options={[
+                                        { value: 'caution', label: 'Avisos' },
+                                        { value: 'Doutrina', label: 'Dotrina' },
+                                        {
+                                            value: 'Espiritualidade',
+                                            label: 'Espiritualidade'
+                                        },
+                                        {
+                                            value: 'Liturgia',
+                                            label: 'Liturgia'
+                                        },
+                                        {
+                                            value: 'Formação',
+                                            label: 'Formação'
+                                        },
+                                        {
+                                            value: 'Santos e Mártires',
+                                            label: 'Santos e Mártires'
+                                        },
+                                        {
+                                            value: 'História da Igreja',
+                                            label: 'História da Igreja'
+                                        },
+                                        { value: 'homily', label: 'Homilia' },
+                                        { value: 'video', label: 'Formação' },
+                                        { value: 'about', label: 'Sobre' },
+                                        {
+                                            value: 'privacy-policy',
+                                            label: 'Politica de Privacidade'
+                                        }
                                     ]}
                                 />
                             </Form.Item>

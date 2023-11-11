@@ -36,7 +36,7 @@ interface DataType {
     fileName?: string;
     url?: string;
     text: string;
-    page: string;
+    tag: string;
     contentType: string;
     createdAt: string;
 }
@@ -261,7 +261,7 @@ export const HomeScreenTable = (props: Props) => {
                                 text: record.text,
                                 subTitle: record.subTitle,
                                 contentType: record.contentType,
-                                page: record.page,
+                                tag: record.tag,
                                 visible: record.visible,
                                 url: record.url
                             } as DataType);
@@ -349,7 +349,7 @@ export const HomeScreenTable = (props: Props) => {
                 text: value.text as any,
                 contentType: value.contentType,
                 visible: value.visible,
-                page: value.tag as any,
+                tag: value.tag as any,
                 fileName: value.fileName as any,
                 url: value.url,
                 createdAt: createdAt

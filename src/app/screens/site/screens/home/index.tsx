@@ -29,10 +29,7 @@ export const Home = () => {
         }
     }
     async function getArticles() {
-        const request = await ContentController.getByTagAndType(
-            'article',
-            'article'
-        );
+        const request = await ContentController.getByType('article');
 
         const data: ContentData[] = request.data;
 

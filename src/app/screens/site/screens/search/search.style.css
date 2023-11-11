@@ -1,0 +1,19 @@
+.__se__float-left {
+    float: left;
+    margin-right: 5px;
+}
+
+.__se__float-right {
+    float: right;
+    margin-left: 5px;
+}
+
+.__se__float-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    border-radius: 20px;
+}
