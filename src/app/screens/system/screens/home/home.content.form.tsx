@@ -180,6 +180,10 @@ export const HomeContentForm = (props: Props) => {
                                     }}
                                     options={[
                                         { value: 'caution', label: 'Avisos' },
+                                        {
+                                            value: 'Cristologia',
+                                            label: 'Cristologia'
+                                        },
                                         { value: 'Doutrina', label: 'Dotrina' },
                                         {
                                             value: 'Espiritualidade',
@@ -192,6 +196,10 @@ export const HomeContentForm = (props: Props) => {
                                         {
                                             value: 'Formação',
                                             label: 'Formação'
+                                        },
+                                        {
+                                            value: 'Mariologia',
+                                            label: 'Mariologia'
                                         },
                                         {
                                             value: 'Santos e Mártires',
