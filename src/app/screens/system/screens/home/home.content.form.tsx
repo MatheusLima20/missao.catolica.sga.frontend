@@ -84,7 +84,7 @@ export const HomeContentForm = (props: Props) => {
             editor.current?.setOptions({
                 charCounter: true,
                 charCounterType: 'byte',
-                maxCharCount: 90000,
+                maxCharCount: 100000,
                 value: text
             });
         }, 500);
