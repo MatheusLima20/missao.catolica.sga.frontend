@@ -84,7 +84,7 @@ export const HomeContentForm = (props: Props) => {
             editor.current?.setOptions({
                 charCounter: true,
                 charCounterType: 'byte',
-                maxCharCount: 20000,
+                maxCharCount: 90000,
                 value: text
             });
         }, 500);
@@ -179,6 +179,10 @@ export const HomeContentForm = (props: Props) => {
                                         handleChange(event);
                                     }}
                                     options={[
+                                        {
+                                            value: 'Apologética',
+                                            label: 'Apologética'
+                                        },
                                         { value: 'caution', label: 'Avisos' },
                                         {
                                             value: 'Cristologia',
