@@ -106,6 +106,22 @@ export const ContentController = {
         }
     },
 
+    patchViewsAmount: async (id: number) => {
+        try {
+            const request = await axios.patch(`/content-views/${id}`);
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
     getByArticle: async (id: number) => {
         try {
             const request = await axios.get(`/article/${id}`);

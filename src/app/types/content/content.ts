@@ -9,6 +9,7 @@ export type ContentData = {
     tag?: string;
     visible: boolean;
     contentType: string;
+    viewsAmount?: number;
     id?: number;
     createdAt?: string;
     updatedAt?: string;

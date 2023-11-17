@@ -22,6 +22,14 @@ export const Content = () => {
             }
         };
 
+        const storeView = async () => {
+            const idNumber = Number.parseInt(id);
+
+            await ContentController.patchViewsAmount(idNumber);
+        };
+
+        storeView();
+
         getArticle();
     }, [id]);
 

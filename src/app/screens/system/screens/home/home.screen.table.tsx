@@ -37,6 +37,7 @@ interface DataType {
     url?: string;
     text: string;
     tag: string;
+    viewsAmount?: number;
     contentType: string;
     createdAt: string;
 }
@@ -183,25 +184,22 @@ export const HomeScreenTable = (props: Props) => {
             ...getColumnSearchProps('subTitle', 'Sub Titulo')
         },
         {
-            key: 'contentType',
-            title: 'Tipo',
-            dataIndex: 'contentType',
+            key: 'tag',
+            title: 'Tag',
+            dataIndex: 'tag',
             width: 150,
             sorter: (a, b) => {
-                return a.contentType.localeCompare(b.contentType);
+                return a.tag.localeCompare(b.tag);
             },
-            sortOrder:
-                sortedInfo.columnKey === 'contentType'
-                    ? sortedInfo.order
-                    : null,
+            sortOrder: sortedInfo.columnKey === 'tag' ? sortedInfo.order : null,
             ellipsis: true,
-            ...getColumnSearchProps('contentType', 'Tipo de Conteudo')
+            ...getColumnSearchProps('tag', 'Tag...')
         },
         {
             key: 'visible',
             title: 'Visivel',
             dataIndex: 'visible',
-            width: 200,
+            width: 150,
             render: (visible: boolean) => {
                 return (
                     <Row>
@@ -214,6 +212,17 @@ export const HomeScreenTable = (props: Props) => {
                         </Col>
                     </Row>
                 );
+            }
+        },
+        {
+            key: 'viewsAmount',
+            title: 'Visualizações',
+            dataIndex: 'viewsAmount',
+            width: 150,
+            sorter: (a, b) => {
+                const viewA: number = a.viewsAmount ? a.viewsAmount : 0;
+                const viewB: number = b.viewsAmount ? b.viewsAmount : 0;
+                return viewA - viewB;
             }
         },
         {
@@ -351,6 +360,7 @@ export const HomeScreenTable = (props: Props) => {
                 visible: value.visible,
                 tag: value.tag as any,
                 fileName: value.fileName as any,
+                viewsAmount: value.viewsAmount as any,
                 url: value.url,
                 createdAt: createdAt
             });
