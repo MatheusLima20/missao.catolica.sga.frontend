@@ -214,7 +214,7 @@ export const HomeContentForm = (props: Props) => {
                                             label: 'História da Igreja'
                                         },
                                         { value: 'homily', label: 'Homilia' },
-                                        { value: 'video', label: 'Formação' },
+                                        { value: 'video', label: 'Video' },
                                         { value: 'about', label: 'Sobre' },
                                         {
                                             value: 'privacy-policy',
@@ -328,7 +328,7 @@ export const HomeContentForm = (props: Props) => {
                                             },
                                             imageGalleryUrl: `${baseURL}/content-gallery`,
                                             defaultStyle:
-                                                'font-family: verdana; font-size: 14px;',
+                                                'font-family: verdana; font-size: 18px;',
                                             plugins: plugins,
                                             fontSize: [8, 10, 14, 18, 24, 36],
                                             buttonList: [
