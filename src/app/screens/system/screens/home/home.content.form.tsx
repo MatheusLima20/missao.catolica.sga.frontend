@@ -288,7 +288,7 @@ export const HomeContentForm = (props: Props) => {
                                     unCheckedChildren={
                                         <BsFillEyeSlashFill size={20} />
                                     }
-                                    onChange={(value) => {
+                                    onChange={(value: any) => {
                                         setValues({
                                             ...values,
                                             visible: value
