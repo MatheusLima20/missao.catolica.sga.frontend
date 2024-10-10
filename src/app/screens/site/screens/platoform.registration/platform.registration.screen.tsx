@@ -1,4 +1,3 @@
-import React from 'react';
 import { PlatformRegistrationForm } from './platform.registration.form';
 import { Card, Col, Row } from 'antd';
 import { Content } from 'antd/es/layout/layout';

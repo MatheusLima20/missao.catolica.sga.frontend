@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Accordion, Offcanvas } from 'react-bootstrap';
 import { CgMenu } from 'react-icons/cg';
 import { MenuNavigation } from '../../../../types/includes/include.types';

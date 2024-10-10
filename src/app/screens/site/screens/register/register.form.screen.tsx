@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Alert, Button, Card, Col, Form, Input, message, Row } from 'antd';
 import { UserController } from '../../../../controller/user/user.controller';
 import { BiUserCircle } from 'react-icons/bi';

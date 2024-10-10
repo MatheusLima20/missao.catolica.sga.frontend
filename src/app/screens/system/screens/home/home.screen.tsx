@@ -1,5 +1,5 @@
 import { Card, Col, Row, Tabs } from 'antd';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { HomeContentForm } from './home.content.form';
 import { SlBookOpen } from 'react-icons/sl';
 import { FaImage } from 'react-icons/fa';

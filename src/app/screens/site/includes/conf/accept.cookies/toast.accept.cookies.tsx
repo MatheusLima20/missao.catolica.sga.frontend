@@ -1,5 +1,4 @@
 import { Button } from 'antd';
-import React from 'react';
 import { Col, Row, Toast, ToastContainer } from 'react-bootstrap';
 import './accept.cookies.css';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { PrivacyPolicyScreen } from './privacy.policy.screen';
 import { ContentController } from '../../../../controller/content/content.controller';
 import { ContentData } from '../../../../types/content/content';

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Container, Row } from 'react-bootstrap';
 import { cookies } from '../../../../../controller/user/adm.cookies';
 import { ToastAcceptCookies } from './toast.accept.cookies';

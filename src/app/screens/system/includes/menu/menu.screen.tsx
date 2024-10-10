@@ -1,5 +1,4 @@
 import { Col, Dropdown, MenuProps, Row, theme } from 'antd';
-import React from 'react';
 import { MenuNavigation } from '../../../../types/includes/include.types';
 import { TbUserCircle } from 'react-icons/tb';
 import { Logged } from '../../../logged.menu';

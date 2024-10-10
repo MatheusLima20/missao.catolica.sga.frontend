@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { HomeScreen } from './home.screen';
 import { ContentData } from '../../../../types/content/content';
 import { ContentController } from '../../../../controller/content/content.controller';

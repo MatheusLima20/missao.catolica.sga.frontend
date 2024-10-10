@@ -1,4 +1,3 @@
-import React from 'react';
 import './search.style.css';
 import { SearchScreen } from './search.screen';
 

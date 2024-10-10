@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
     Button,
     Card,
@@ -19,6 +19,7 @@ import { ContentController } from '../../../../controller/content/content.contro
 import SunEditor from 'suneditor-react';
 import SunEditorCore from 'suneditor/src/lib/core';
 import 'suneditor/dist/css/suneditor.min.css';
+import { pt_br } from 'suneditor/src/lang';
 import plugins from 'suneditor/src/plugins';
 import { cookies } from '../../../../controller/user/adm.cookies';
 import { FaImages } from 'react-icons/fa';
@@ -319,7 +320,7 @@ export const HomeContentForm = (props: Props) => {
                                             values.contentType === 'slider'
                                         }
                                         setAllPlugins={true}
-                                        lang={'pt_br'}
+                                        lang={pt_br}
                                         placeholder="Digite seu texto..."
                                         setOptions={{
                                             value: text,

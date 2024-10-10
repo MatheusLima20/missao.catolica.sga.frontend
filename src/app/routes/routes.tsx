@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { SiteNavigation } from '../screens/site/site.navigation';
 import { UserDataLogged } from '../types/user/user';

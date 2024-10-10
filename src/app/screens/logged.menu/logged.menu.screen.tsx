@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Container, ListGroup, Row } from 'react-bootstrap';
 import { BiLogOut } from 'react-icons/bi';
 import { AiOutlineCloudServer } from 'react-icons/ai';

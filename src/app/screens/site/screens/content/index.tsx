@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ContentScreen } from './content.screen';
 import { useParams } from 'react-router-dom';
 import { ContentController } from '../../../../controller/content/content.controller';

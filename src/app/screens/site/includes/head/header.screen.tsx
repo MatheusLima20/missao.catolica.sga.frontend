@@ -1,5 +1,4 @@
 import { Col, Row, theme } from 'antd';
-import React from 'react';
 import { Images } from '../../../../config/images';
 import { Menu } from '../menu';
 import './header.css';

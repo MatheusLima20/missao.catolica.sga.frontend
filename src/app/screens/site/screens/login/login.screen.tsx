@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Col, Form, Input, Row, message, theme } from 'antd';
 import { UserLogin } from '../../../../types/user/user';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';

@@ -1,79 +1,49 @@
 {
-    "name": "missao.catolica.sga.frontend",
-    "version": "1.0.0",
+    "name": "missao.catolica",
     "private": true,
-    "dependencies": {
-        "@react-aria/ssr": "^3.4.1",
-        "@testing-library/jest-dom": "^5.16.5",
-        "@testing-library/react": "^13.4.0",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.5.2",
-        "@types/node": "^16.18.3",
-        "@types/react": "^18.0.25",
-        "@types/react-bootstrap": "^0.32.32",
-        "@types/react-dom": "^18.0.9",
-        "@types/react-helmet": "^6.1.8",
-        "@types/react-router-dom": "^5.3.3",
-        "animate.css": "^4.1.1",
-        "antd": "^5.0.7",
-        "axios": "^1.2.1",
-        "bootstrap": "^5.2.3",
-        "clean-install": "^1.0.0",
-        "codemirror": "^6.0.1",
-        "dayjs": "^1.11.10",
-        "html-react-parser": "^4.0.0",
-        "react": "^18.2.0",
-        "react-animation-on-scroll": "^5.1.0",
-        "react-bootstrap": "^2.6.0",
-        "react-chartjs-2": "^5.1.0",
-        "react-dom": "^18.2.0",
-        "react-helmet": "^6.1.0",
-        "react-icons": "^4.6.0",
-        "react-player": "^2.12.0",
-        "react-router-dom": "^6.4.3",
-        "react-scripts": "^5.0.1",
-        "react-to-print": "^2.14.11",
-        "react-use-cookie": "^1.4.0",
-        "suneditor": "^2.45.1",
-        "suneditor-react": "^3.6.1",
-        "typescript": "^4.9.3",
-        "web-vitals": "^2.1.4"
-    },
+    "version": "0.0.0",
+    "type": "module",
     "scripts": {
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "dev": "vite",
+        "build": "tsc -b && vite build",
+        "lint": "eslint .",
+        "preview": "vite preview"
     },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "dependencies": {
+        "animate": "^1.0.0",
+        "animate.css": "^4.1.1",
+        "antd": "^5.21.3",
+        "axios": "^1.7.7",
+        "bootstrap": "^5.3.3",
+        "html-react-parser": "^5.1.18",
+        "i": "^0.3.7",
+        "npm": "^10.9.0",
+        "react": "^18.3.1",
+        "react-animation-on-scroll": "^5.1.0",
+        "react-bootstrap": "^2.10.5",
+        "react-dom": "^18.3.1",
+        "react-helmet": "^6.1.0",
+        "react-icons": "^5.3.0",
+        "react-player": "^2.16.0",
+        "react-router-dom": "^6.26.2",
+        "react-use-cookie": "^1.6.1",
+        "suneditor": "^2.47.0",
+        "suneditor-react": "^3.6.1",
+        "vite-plugin-commonjs": "^0.10.3"
     },
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.59.2",
-        "@typescript-eslint/parser": "^5.59.2",
-        "eslint": "^8.39.0",
-        "eslint-config-airbnb": "^19.0.4",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-import": "^2.27.5",
-        "eslint-plugin-jsx-a11y": "^6.7.1",
-        "eslint-plugin-prettier": "^4.2.1",
-        "eslint-plugin-react": "^7.32.2",
-        "eslint-plugin-react-hooks": "^4.6.0",
-        "prettier": "^2.8.8"
+        "@eslint/js": "^9.11.1",
+        "@types/node": "^22.7.5",
+        "@types/react": "^18.3.10",
+        "@types/react-dom": "^18.3.0",
+        "@types/react-helmet": "^6.1.11",
+        "@vitejs/plugin-react": "^4.3.2",
+        "eslint": "^9.11.1",
+        "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+        "eslint-plugin-react-refresh": "^0.4.12",
+        "globals": "^15.9.0",
+        "typescript": "^5.5.3",
+        "typescript-eslint": "^8.7.0",
+        "vite": "^5.4.8"
     }
 }

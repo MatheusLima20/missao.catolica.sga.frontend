@@ -1,5 +1,4 @@
 import { Card, Col, Row } from 'antd';
-import React from 'react';
 import { ContentData } from '../../../../types/content/content';
 import HTMLReactParser from 'html-react-parser';
 

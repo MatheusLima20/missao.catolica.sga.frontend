@@ -1,4 +1,3 @@
-import React from 'react';
 import { Col, Row } from 'antd';
 import { Content } from 'antd/es/layout/layout';
 import { Card } from 'react-bootstrap';

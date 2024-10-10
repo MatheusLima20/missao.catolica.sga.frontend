@@ -1,4 +1,3 @@
-import React from 'react';
 import './about.css';
 import { ContentData } from '../../../../types/content/content';
 import { Card, Col, Row } from 'antd';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ResultSearchScreen } from './search.result.screen';
 import { ContentController } from '../../../../controller/content/content.controller';
 import { Card, Col, Result, Row, Spin, message } from 'antd';

@@ -10,7 +10,7 @@ import {
     Table,
     TableProps
 } from 'antd';
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ContentController } from '../../../../controller/content/content.controller';
 import { Content } from 'antd/es/layout/layout';
 import {
@@ -61,10 +61,10 @@ export const HomeScreenTable = (props: Props) => {
     const searchInput = useRef<InputRef>(null);
 
     const handleSearch = (
-        selectedKeys: string[],
+        _selectedKeys: string[],
         confirm: (param?: FilterConfirmProps) => void,
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        dataIndex: DataIndex
+        _dataIndex: DataIndex
     ) => {
         confirm();
     };
@@ -284,14 +284,14 @@ export const HomeScreenTable = (props: Props) => {
     ];
 
     const handleChange: TableProps<DataType>['onChange'] = (
-        pagination,
-        filters,
+        _pagination,
+        _filters,
         sorter
     ) => {
         setSortedInfo(sorter as SorterResult<DataType>);
     };
 
-    const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+    const onChange: DatePickerProps['onChange'] = (_date, dateString: any) => {
         setDate(dateString);
     };
 

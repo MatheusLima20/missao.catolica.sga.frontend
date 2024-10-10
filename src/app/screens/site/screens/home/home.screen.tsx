@@ -1,4 +1,3 @@
-import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './home.css';
 import { Content as ContentLayout } from 'antd/es/layout/layout';

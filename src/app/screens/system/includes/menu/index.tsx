@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { MenuMobileScreen } from './menu.mobile.screen';
 import { MenuScreen } from './menu.screen';
 import './menu.css';
