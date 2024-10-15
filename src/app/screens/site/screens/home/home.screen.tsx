@@ -23,7 +23,7 @@ export const HomeScreen = (props: Props) => {
     return (
         <ContentLayout className="mt-5">
             <Row justify={'center'}>
-                <Col md={20}>
+                <Col md={20} xs={24} xl={20}>
                     <Carousel
                         adaptiveHeight
                         arrows
@@ -34,10 +34,10 @@ export const HomeScreen = (props: Props) => {
                         {initSliders().map((values, index) => {
                             return (
                                 <Row justify={'center'} key={index}>
-                                    <Col className="text-center" span={24}>
+                                    <Col className="text-center">
                                         {values.jsx}
                                     </Col>
-                                    <Col span={24}>
+                                    <Col>
                                         {values.title.length !== 0 && (
                                             <div className="cousel-caption">
                                                 <div className="m-5">
