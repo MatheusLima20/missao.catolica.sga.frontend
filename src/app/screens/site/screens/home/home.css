@@ -8,9 +8,11 @@ span {
 }
 
 .cousel-caption {
-    background-color: rgba(0, 0, 0, 0.411);
-    border: solid 1px rgba(0, 0, 0, 0.411);
-    border-radius: 1em;
+    height: max-content;
+    color: white;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: solid 1px rgba(0, 0, 0, 0.7);
     font-size: small;
     line-height: 0.8rem;
 }

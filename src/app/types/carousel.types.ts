@@ -3,4 +3,6 @@ export type CarouselType = {
     alt: string;
     title: string;
     subTitle: string;
+    url?: string;
+    viewsAmount?: number;
 };

@@ -1,4 +1,3 @@
-import React from 'react';
 import './footer.css';
 import { MenuNavigation } from '../../../../types/includes/include.types';
 import { Footer } from 'antd/es/layout/layout';

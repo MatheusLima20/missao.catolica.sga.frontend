@@ -73,7 +73,7 @@ export const HomeArticlesScreen = (props: Props) => {
                                                     </h5>
                                                 </div>
                                             }
-                                            description={subTitle}
+                                            description={<div>{subTitle}</div>}
                                         />
                                     </Card>
                                 </a>

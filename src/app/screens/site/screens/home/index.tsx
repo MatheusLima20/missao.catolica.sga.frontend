@@ -22,7 +22,11 @@ export const Home = () => {
             'caution'
         );
 
-        const data: ContentData[] = request.data;
+        const request2 = await ContentController.getByMoreViews();
+
+        let data: ContentData[] = request.data;
+
+        data = data.concat(request2.data);
 
         if (data) {
             setSliders(data);

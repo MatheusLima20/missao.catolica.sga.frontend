@@ -1,7 +1,6 @@
-import { Carousel } from 'react-bootstrap';
 import './home.css';
 import { Content as ContentLayout } from 'antd/es/layout/layout';
-import { Button, Card, Col, Row } from 'antd';
+import { Button, Card, Carousel, Col, Row } from 'antd';
 import { CarouselType } from '../../../../types/carousel.types';
 import { ContentData } from '../../../../types/content/content';
 import ReactPlayer from 'react-player';
@@ -23,35 +22,49 @@ export const HomeScreen = (props: Props) => {
 
     return (
         <ContentLayout className="mt-5">
-            <Row justify={'center'} className="border-0 ">
+            <Row justify={'center'}>
                 <Col md={20}>
-                    <Carousel pause={'hover'} fade>
+                    <Carousel
+                        adaptiveHeight
+                        arrows
+                        autoplay
+                        autoplaySpeed={5000}
+                        style={{ backgroundColor: '#000' }}
+                    >
                         {initSliders().map((values, index) => {
                             return (
-                                <Carousel.Item key={index}>
-                                    <Row justify={'center'}>
-                                        <Col className="text-center" span={24}>
-                                            {values.jsx}
-                                        </Col>
-                                    </Row>
-
-                                    {values.title.length !== 0 && (
-                                        <Carousel.Caption className="cousel-caption">
-                                            <div>
-                                                <h4>
-                                                    <strong>
-                                                        {values.title}
-                                                    </strong>
-                                                </h4>
-                                                <p>
-                                                    <strong>
-                                                        {values.subTitle}
-                                                    </strong>
-                                                </p>
+                                <Row justify={'center'} key={index}>
+                                    <Col className="text-center" span={24}>
+                                        {values.jsx}
+                                    </Col>
+                                    <Col span={24}>
+                                        {values.title.length !== 0 && (
+                                            <div className="cousel-caption">
+                                                <div className="m-5">
+                                                    <a
+                                                        href={values.url}
+                                                        style={{
+                                                            textDecoration:
+                                                                'none',
+                                                            color: 'white'
+                                                        }}
+                                                    >
+                                                        <h4>
+                                                            <strong>
+                                                                {values.title}
+                                                            </strong>
+                                                        </h4>
+                                                    </a>
+                                                    <p>
+                                                        <strong>
+                                                            {values.subTitle}
+                                                        </strong>
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </Carousel.Caption>
-                                    )}
-                                </Carousel.Item>
+                                        )}
+                                    </Col>
+                                </Row>
                             );
                         })}
                     </Carousel>
@@ -122,13 +135,15 @@ export const HomeScreen = (props: Props) => {
                     controls={true}
                 />
             ) : (
-                <img src={value.url} width="100%" className="rounded-4" />
+                <img src={value.url} width="100%" />
             );
             return values.push({
                 alt: alt,
                 jsx: jsx,
                 title: title,
-                subTitle: subTitle
+                subTitle: subTitle,
+                url: value.url,
+                viewsAmount: value.viewsAmount
             });
         });
         return values;
@@ -146,7 +161,8 @@ export const HomeScreen = (props: Props) => {
                 title: title,
                 subTitle: subTitle,
                 tag: value.tag,
-                createdAt: value.createdAt
+                createdAt: value.createdAt,
+                viewsAmount: value.viewsAmount
             });
         });
         return values;

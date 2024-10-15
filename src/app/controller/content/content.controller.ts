@@ -174,6 +174,24 @@ export const ContentController = {
         }
     },
 
+    getByMoreViews: async () => {
+        try {
+            const request = await axios.get(
+                `/content-more-views/${companyCPFCNPJ}`
+            );
+
+            const data = request.data;
+
+            const message = data.message;
+
+            return { error: false, message, data: data.data };
+        } catch (error: any) {
+            const message = await Error.check(error);
+
+            return { error: true, message };
+        }
+    },
+
     getBySearch: async (search: string) => {
         try {
             const request = await axios.get(

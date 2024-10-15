@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimationOnScroll } from 'react-animation-on-scroll';
 import { MenuNavigation } from '../../../../types/includes/include.types';
 import { FooterScreen } from './footer.screen';
