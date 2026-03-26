@@ -491,7 +491,7 @@ export const PlatformRegistrationForm = () => {
         const request = await CepController.get(cep);
 
         const data: AddressSearchCEP = request.data;
-
+        console.log(data)
         if (cep) {
             setValues({
                 ...values,

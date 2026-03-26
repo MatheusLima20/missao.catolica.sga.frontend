@@ -7,6 +7,7 @@ export const CepController = {
         let data;
 
         try {
+            console.log(cep)
             request = await axios.get(`/search-cep/${cep}`);
 
             data = request.data;
